@@ -1,8 +1,6 @@
 package se.yrgo.grocery.domain;
 
-import java.time.LocalDate;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -120,8 +118,11 @@ public class Grocery implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "Grocery [id=" + id + ", name=" + name + ", price=" + price + ", description=" + description
-				+ ", expiredDate=" + expiredDate + ", stockOf=" + stockOf + "]";
+		return "Grocery [id=" + id + ", name=" + name + ", brand=" + brand + ", imageUrl=" + imageUrl + ", price="
+				+ price + ", description=" + description + ", expiredDate=" + expiredDate + ", stockOf=" + stockOf
+				+ "]";
 	}
+
+	
 	
 }
