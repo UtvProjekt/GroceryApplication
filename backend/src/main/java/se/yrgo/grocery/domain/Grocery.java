@@ -10,9 +10,6 @@ import javax.validation.constraints.Size;
 @Entity
 public class Grocery implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 3090615371178706749L;
 	
 	/**
