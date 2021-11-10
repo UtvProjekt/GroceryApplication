@@ -21,7 +21,7 @@ import se.yrgo.grocery.domain.Grocery;
 public class DataAccessProductionVersion implements DataAccess{
 
 	@PersistenceContext
-	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("errorDB");
+	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("groceryDataBase");
 	@PersistenceContext
 	private EntityManager em = emf.createEntityManager();
 	
@@ -33,7 +33,7 @@ public class DataAccessProductionVersion implements DataAccess{
 	 */
 		@SuppressWarnings("unchecked")
 		public List<Grocery> findAll(){
-			Query q = em.createQuery("select error from ErrorMessages error");
+			Query q = em.createQuery("select name from Grocery name");
 			return q.getResultList();
 		}
 
@@ -57,7 +57,7 @@ public class DataAccessProductionVersion implements DataAccess{
 		@Override
 		public void deleteGrocery(int id) {
 			tx.begin();
-			Query q = em.createQuery("delete from ErrorMessages where Id = :id");
+			Query q = em.createQuery("delete from Grocery where Id = :id");
 			q.setParameter("id", id);
 			q.executeUpdate();
 			tx.commit();
@@ -87,7 +87,7 @@ public class DataAccessProductionVersion implements DataAccess{
 		 */
 		@Override
 		public Grocery findGroceryById(long id) {
-			Query q = em.createQuery("select error from ErrorMessages error where error.id = :id");
+			Query q = em.createQuery("select grocery from Grocery grocery where grocery.id = :id");
 			q.setParameter("id", id);
 			return (Grocery) q.getSingleResult();
 		}

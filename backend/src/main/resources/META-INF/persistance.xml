@@ -5,7 +5,7 @@
              version="2.0">
 
    <!-- RESOURCE_LOCAL -->
-   <persistence-unit name="errorDB" transaction-type="RESOURCE_LOCAL">
+   <persistence-unit name="groceryDataBase" transaction-type="RESOURCE_LOCAL">
    		
       <properties>
 	     <property name="hibernate.connection.driver_class" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
