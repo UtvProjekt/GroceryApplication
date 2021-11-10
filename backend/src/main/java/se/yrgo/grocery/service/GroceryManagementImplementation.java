@@ -19,13 +19,13 @@ public class GroceryManagementImplementation implements GroceryManagementService
 	}
 
 	@Override
-	public void deleteError(int id) {
+	public void deleteGrocery(int id) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateError(Grocery gro) {
+	public void updateGrocery(Grocery gro) {
 		// TODO Auto-generated method stub
 		
 	}
