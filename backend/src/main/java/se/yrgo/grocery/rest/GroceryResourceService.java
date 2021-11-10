@@ -30,7 +30,6 @@ public class GroceryResourceService {
 	@DELETE
 	@Path("/deletegrocery/{id}")
 	public void deleteStaff(@PathParam("id") int id) {
-		System.out.println("kommer hit");
 		service.deleteGrocery(id);
 	}
 	
@@ -47,7 +46,6 @@ public class GroceryResourceService {
 	@Produces("application/JSON")
 	@Consumes("application/JSON")
 	public void updateGrocery(Grocery err) {
-		System.out.println("Entered!");
 		service.updateGrocery(err);
 	}
 	

@@ -2,38 +2,37 @@ package se.yrgo.grocery.service;
 
 import java.util.List;
 
+import se.yrgo.grocery.dataaccess.DataAccess;
+import se.yrgo.grocery.dataaccess.DataAccessProductionVersion;
 import se.yrgo.grocery.domain.Grocery;
 
 public class GroceryManagementImplementation implements GroceryManagementService, GroceryManagementServiceLocal{
 
+	private DataAccess ida = new DataAccessProductionVersion();
+	
 	@Override
 	public List<Grocery> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return ida.findAll();
 	}
 
 	@Override
 	public void addGrocery(Grocery gro) {
-		// TODO Auto-generated method stub
-		
+		ida.addGrocery(gro);
 	}
 
 	@Override
 	public void deleteGrocery(int id) {
-		// TODO Auto-generated method stub
-		
+		ida.deleteGrocery(id);
 	}
 
 	@Override
 	public void updateGrocery(Grocery gro) {
-		// TODO Auto-generated method stub
-		
+		ida.updateGrocery(gro);
 	}
 
 	@Override
 	public Grocery findGroceryById(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return ida.findGroceryById(id);
 	}
 
 }
