@@ -1,5 +1,5 @@
 package se.yrgo.grocery.app;
 
-public class ServiceApplication {
+public class ServiceApplication extends Application {
 
 }
