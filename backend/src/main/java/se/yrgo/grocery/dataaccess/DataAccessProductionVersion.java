@@ -60,7 +60,13 @@ public class DataAccessProductionVersion implements DataAccess{
 			Query q = em.createQuery("delete from Grocery where Id = :id");
 			q.setParameter("id", id);
 			q.executeUpdate();
-			tx.commit();
+			
+			if(q.executeUpdate() != 0) {
+				tx.commit();	
+			}
+			else {
+				tx.rollback();
+			}
 				
 		}
 		
