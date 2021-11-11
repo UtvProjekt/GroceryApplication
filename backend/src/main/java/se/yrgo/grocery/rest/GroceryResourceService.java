@@ -23,13 +23,13 @@ public class GroceryResourceService {
 	@GET
 	@Path("/getallgroceries")
 	@Produces("application/json")
-	public List<Grocery> allErrors(){
+	public List<Grocery> allGroceries(){
 		return service.findAll();
 	}
 	
 	@DELETE
 	@Path("/deletegrocery/{id}")
-	public void deleteStaff(@PathParam("id") int id) {
+	public void deleteGrocery(@PathParam("id") int id) {
 		service.deleteGrocery(id);
 	}
 	
@@ -45,16 +45,16 @@ public class GroceryResourceService {
 	@Path("/updategrocery")
 	@Produces("application/JSON")
 	@Consumes("application/JSON")
-	public void updateGrocery(Grocery err) {
-		service.updateGrocery(err);
+	public void updateGrocery(Grocery gro) {
+		service.updateGrocery(gro);
 	}
 	
 	@POST
 	@Path("/addgrocery")
 	@Produces("application/JSON")
 	@Consumes("application/JSON")
-	public void addGrocery(Grocery err) {
-		service.addGrocery(err);
+	public void addGrocery(Grocery gro) {
+		service.addGrocery(gro);
 	}
 
 }
