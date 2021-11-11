@@ -25,7 +25,7 @@ public class Grocery implements java.io.Serializable {
 	@Size(min = 3, max = 40)
 	private String brand;
 	
-	@Size(min = 10)
+	@Size(min = 1)
 	private String imageUrl;
 	
 	private int price;
