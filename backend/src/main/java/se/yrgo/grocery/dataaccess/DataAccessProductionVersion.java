@@ -21,7 +21,7 @@ import se.yrgo.grocery.domain.Grocery;
 public class DataAccessProductionVersion implements DataAccess{
 
 	@PersistenceContext
-	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("groceryDatabase");
+	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("groceryDB");
 	@PersistenceContext
 	private EntityManager em = emf.createEntityManager();
 	
