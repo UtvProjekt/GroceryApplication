@@ -1,4 +1,4 @@
-package se.yrgo.grocery.application;
+package se.yrgo.grocery.app;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.core.Application;

@@ -1,4 +1,4 @@
-package se.yrgo.grocery.application;
+package se.yrgo.grocery.app;
 
 import java.util.Collections;
 import java.util.Set;
