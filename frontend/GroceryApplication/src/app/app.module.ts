@@ -12,6 +12,8 @@ import { ButtonComponent } from './button/button.component';
 import { SigninpageComponent } from './signinpage/signinpage.component';
 import { FooterComponent } from './footer/footer.component';
 import { AddsectionComponent } from './addsection/addsection.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MyaccountComponent } from './myaccount/myaccount.component';
 
 @NgModule({
   declarations: [
@@ -24,11 +26,13 @@ import { AddsectionComponent } from './addsection/addsection.component';
     ButtonComponent,
     SigninpageComponent,
     FooterComponent,
-    AddsectionComponent
+    AddsectionComponent,
+    MyaccountComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

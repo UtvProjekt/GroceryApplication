@@ -1,7 +1,7 @@
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <app-header></app-header>
 <main id="search" class="lightordark">
-    <button (click)="toggleSettingsMenu()" class="cogwheel" id="cogwheel"><img src="../../assets/cogwheel.png"
-            alt="informationbutton"></button>
+    <button (click)="toggleSettingsMenu()" class="cogwheel" id="cogwheel"><fa-icon [icon]="faCog"></fa-icon></button>
 
 
 
@@ -11,13 +11,17 @@
             <h2>Settings</h2>
             <ul class="settingslist">
                 <div class="fancybackground pointer" routerLink="login">
-                    <li class="eachsetting">Register</li>
+                    <li class="eachsetting"><fa-icon [icon]="faPlus"></fa-icon>Register</li>
                 </div>
                 <div class="fancybackground pointer" routerLink="login">
-                    <li class="eachsetting">Sign in</li>
+                    <li class="eachsetting"><fa-icon [icon]="faSignInAlt"></fa-icon>Sign In</li>
                 </div>
                 <div class="fancybackground pointer">
-                    <li class="eachsetting" (click)="darkLightMode()">Toggle Appearance</li>
+                    <li class="eachsetting" (click)="darkLightMode()"><fa-icon [icon]="faPen"></fa-icon>Toggle Appearance</li>
+                </div>
+                <div class="fancybackground pointer">
+                    
+                    <li class="eachsetting" routerLink="myaccount"><fa-icon [icon]="faUser"></fa-icon>My Account</li>
                 </div>
             </ul>
         </section>
