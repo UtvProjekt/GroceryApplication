@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 :root{
     --primary-color: #570057;
     --primary-color-brighter: #860086;
     --darkmode: #181818;
+    --darkmode-darker: #111111;
     --primary-text-color: #fff;
-    
+    --box-shadow-color: #860086;
 }
 ::-webkit-scrollbar{
     display: none;
@@ -26,6 +26,24 @@ html{
 main{
     width: 100vw;
     height: 100vh;
+}
+
+img{
+    width: 100%;
+}
+
+ul{
+    list-style-type: none;
+}
+
+a{
+    text-decoration: none;
+    border: none;
+    color: var(--primary-color-brighter);
+}
+
+.pointer{
+    cursor: pointer;
 }
 
 .lightordark{
