@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
 :root{
     --primary-color: #570057;
     --primary-color-brighter: #860086;
-    --darkmode: #0e0e0e;
+    --darkmode: #181818;
     --primary-text-color: #fff;
+    
 }
 ::-webkit-scrollbar{
     display: none;
@@ -24,10 +26,10 @@ html{
 main{
     width: 100vw;
     height: 100vh;
-    
 }
 
 .lightordark{
     background-color: var(--darkmode);
     color: var(--primary-color-brighter);
 }
+

@@ -7,7 +7,7 @@ header{
     padding: 0 2em;
     position: fixed;
     top: 0;
-    border-bottom: .2em solid var(--primary-color);
+    box-shadow: 0 0 .3em .2em #860086;
     color: var(--primary-text-color);
 }
 ul{
@@ -29,8 +29,15 @@ ul{
         &:hover{
             color: var(--primary-color-brighter);
         }
+        
     }
 }
 .link{
+    display: flex;
+    justify-content: center;
+    height: 100%;
     text-decoration: none;
+    &:hover{
+        border-image: linear-gradient(to top,grey 1px,transparent 0) 2;
+    }
 }
