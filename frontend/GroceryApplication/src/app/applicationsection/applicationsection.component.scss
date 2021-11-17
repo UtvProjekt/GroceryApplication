@@ -54,32 +54,43 @@
         align-items: center;
     }
     .fancybackground {
-        transition: all 200ms;
         position: relative;
-        width: 0;
+        width: 20vw;
         height: 5vh;
-        background-color: var(--primary-color-brighter);
         display: flex;
         justify-content: center;
         align-items: center;
-        &:hover {
+
+
+        &::before{
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 0;
+            height: 5vh;
+            background-color: var(--primary-color-brighter);
+            transition: width 200ms;
+        }
+        &:hover::before{
             width: 20vw;
         }
-        &:hover > .eachsetting {
-            color: var(--darkmode-darker);
-        }
+        
     }
     .eachsetting {
         position: absolute;
         width: 20vw;
         height: 5vh;
         display: flex;
+        background-color: transparent;
         justify-content: center;
         align-items: center;
         color: var(--primary-color-brighter);
         transition: color 100ms 200ms;
         fa-icon{
             padding: 0 0.5em;
+        }
+        &:hover{
+            color: var(--darkmode-darker);
         }
     }
 }
