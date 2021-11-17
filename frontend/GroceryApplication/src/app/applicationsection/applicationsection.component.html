@@ -1,28 +1,49 @@
-<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <app-header></app-header>
-<main id="search" class="lightordark">
-    <button (click)="toggleSettingsMenu()" class="cogwheel" id="cogwheel"><fa-icon [icon]="faCog"></fa-icon></button>
-
-
-
-
-    <div id="coversonsettingopen" (click)="toggleSettingsMenu()"></div>
-        <section class="settings" id="settings">
-            <h2>Settings</h2>
-            <ul class="settingslist">
-                <div class="fancybackground pointer" routerLink="login">
-                    <li class="eachsetting"><fa-icon [icon]="faPlus"></fa-icon>Register</li>
-                </div>
-                <div class="fancybackground pointer" routerLink="login">
-                    <li class="eachsetting"><fa-icon [icon]="faSignInAlt"></fa-icon>Sign In</li>
-                </div>
-                <div class="fancybackground pointer">
-                    <li class="eachsetting" (click)="darkLightMode()"><fa-icon [icon]="faPen"></fa-icon>Toggle Appearance</li>
-                </div>
-                <div class="fancybackground pointer">    
-                    <li class="eachsetting" routerLink="myaccount"><fa-icon [icon]="faUser"></fa-icon>My Account</li>
-                </div>
-            </ul>
-        </section>
-</main>
-<app-addsection id="add"></app-addsection>
+<!--ENTRY PAGE-->
+<section class="movingbackground intro">
+    <h1>Welcome to Oasis</h1>
+    <p>A food store known for it's qualities</p>
+    <a href="#info">
+        <p class="linkonstart">More Info
+        </p>
+    </a>
+</section>
+<!--ABOUT PAGE-->
+<section class="aboutthispage" id="info">
+    <div class="rotatedeffect"></div>
+    <div class="infoinabout"></div>
+</section>
+<!--FOOTER-->
+<app-footer></app-footer>
+<!--SETTINGS SECTION-->
+<div id="coversonsettingopen" (click)="toggleSettingsMenu()"></div>
+<section class="settingssection">
+    <button (click)="toggleSettingsMenu()" class="cogwheel" id="cogwheel">
+        <fa-icon [icon]="faCog"></fa-icon>
+    </button>
+    <section class="settings" id="settings">
+        <h2 style="color: var(--primary-color-brighter)">Settings</h2>
+        <ul class="settingslist">
+            <div class="fancybackground pointer" routerLink="login">
+                <li class="eachsetting">
+                    <fa-icon [icon]="faPlus"></fa-icon>Register
+                </li>
+            </div>
+            <div class="fancybackground pointer" routerLink="login">
+                <li class="eachsetting">
+                    <fa-icon [icon]="faSignInAlt"></fa-icon>Sign In
+                </li>
+            </div>
+            <div class="fancybackground pointer">
+                <li class="eachsetting" (click)="darkLightMode()">
+                    <fa-icon [icon]="faPen"></fa-icon>Toggle Appearance
+                </li>
+            </div>
+            <div class="fancybackground pointer">
+                <li class="eachsetting" routerLink="myaccount">
+                    <fa-icon [icon]="faUser"></fa-icon>My Account
+                </li>
+            </div>
+        </ul>
+    </section>
+</section>

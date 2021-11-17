@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faAt, faUser, faPen, faSignInAlt, faPlus, faCog } from '@fortawesome/free-solid-svg-icons';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-applicationsection',
@@ -19,7 +20,7 @@ export class ApplicationsectionComponent implements OnInit {
   settingsIsOpen: boolean = false
   
 
-  constructor() { }
+  constructor(public globalvar: AppComponent) { }
 
   ngOnInit(): void {
   }
@@ -45,28 +46,12 @@ export class ApplicationsectionComponent implements OnInit {
     this.settingsIsOpen = !this.settingsIsOpen
   }
 
-  lightMode(): void{
-    document.documentElement.style.setProperty('--darkmode', '#fff')
-    document.documentElement.style.setProperty('--primary-text-color', '#0e0e0e')
-    document.documentElement.style.setProperty('--primary-color-brighter', '#570057')
-    document.documentElement.style.setProperty('--darkmode-darker', '#f8f8f8')
-    document.documentElement.style.setProperty('--box-shadow-color', '#d1d1d1')
-  }
-  
-  darkMode(): void{
-    document.documentElement.style.setProperty('--darkmode', '#181818')
-    document.documentElement.style.setProperty('--primary-text-color', '#fff')
-    document.documentElement.style.setProperty('--primary-color-brighter', '#860086')
-    document.documentElement.style.setProperty('--darkmode-darker', '#111111')
-    document.documentElement.style.setProperty('--box-shadow-color', '#860086')
-  }
-
   darkLightMode(): void{
     if(this.darkOrLight){
-      this.lightMode()
+      this.globalvar.lightMode()
     }
     else{
-      this.darkMode()
+      this.globalvar.darkMode()
     }
     this.darkOrLight = !this.darkOrLight
   }

@@ -2,18 +2,16 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100vw;
+    min-width: 100vw;
     height: 10vh;
     padding: 0 2em;
-    position: fixed;
-    background-color: var(--darkmode-darker);
+    position: absolute;
     top: 0;
-    box-shadow: 0 0 .4em .2em var(--box-shadow-color);
     color: var(--primary-text-color);
 }
 ul{
     list-style-type: none;
-    width: 26vw;
+    min-width: 26vw;
     height: 10vh;
     display: flex;
     justify-content: space-between;
@@ -27,11 +25,8 @@ ul{
         font-size: 1.1rem;
         font-weight: 300;
         color: var(--primary-text-color);
-        transition: all 200ms;
         
-        &:hover{
-            color: var(--primary-color-brighter);
-        }
+       
         
     }
 }

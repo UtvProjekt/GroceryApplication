@@ -1,3 +1,43 @@
+section{
+    width: 100vw;
+}
+//INTROPAGE
+.intro{
+    height: 90vh;
+    padding: 14vw 18vw;
+    
+    h1, h2, h3, h4, p, a{
+        color: var(--primary-text-color);
+    }
+    p{
+        font-size: 1.2em;
+    }
+    h1{
+        min-width: 40vw;
+        font-size: 5em;
+    }
+    h2{
+        font-size: 3em;
+    }
+    a p{
+        color: #fff;
+        
+    }
+    .linkonstart{
+        margin-top: 3em;
+        background-color: var(--primary-color-brighter);
+        width: fit-content;
+        height: fit-content;
+        border-radius: 2em;
+        font-size: 1.4em;
+        padding: 0.4em .8em;
+        transition: box-shadow 400ms;
+        &:hover{
+            box-shadow: 0 0 0.5em 0.1em var(--primary-color-brighter);
+        }
+    }
+}
+//SETTINGS COMPONENT
 .cogwheel {
     width: 2.5rem;
     height: 2.5rem;
@@ -16,7 +56,7 @@
     }
     fa-icon{
         font-size: 2.5rem;
-        color: var(--primary-color-brighter);
+        color: var(--primary-text-color);
     }
 }
 .settings {
@@ -33,7 +73,7 @@
     right: 2vw;
     width: 20vw;
     height: 50vh;
-    background-color: var(--darkmode-darker);
+    background-color: var(--darktowhite);
     border-radius: .5em;
     border: 0.1em solid var(--box-shadow-color);
     h2 {
@@ -85,7 +125,7 @@
         justify-content: center;
         align-items: center;
         color: var(--primary-color-brighter);
-        transition: color 100ms 200ms;
+        transition: color 200ms 200ms;
         fa-icon{
             padding: 0 0.5em;
         }
@@ -94,8 +134,33 @@
         }
     }
 }
+
 #coversonsettingopen{
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100vw;
     height: 100vh;
     display: none;
+}
+//INFO SECTION
+.aboutthispage{
+    position: absolute;
+    top: 80vh;
+    height: 100vh;
+    background-color: var(--darkmode);
+}
+.rotatedeffect{
+    position: absolute;
+    left: -2vw;
+    width: 120vw;
+    height: 10vh;
+    transform: rotate(-2deg);
+    background-color: var(--darkmode);
+}
+.infoinabout{
+    position: absolute;
+    bottom: 0;
+    height: 60vh;
+    background-color: var(--darkmode-darker);
 }

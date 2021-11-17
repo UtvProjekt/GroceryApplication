@@ -14,6 +14,8 @@ import { FooterComponent } from './footer/footer.component';
 import { AddsectionComponent } from './addsection/addsection.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MyaccountComponent } from './myaccount/myaccount.component';
+import { SearchsectionComponent } from './searchsection/searchsection.component';
+import { ErrorpageComponent } from './errorpage/errorpage.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { MyaccountComponent } from './myaccount/myaccount.component';
     SigninpageComponent,
     FooterComponent,
     AddsectionComponent,
-    MyaccountComponent
+    MyaccountComponent,
+    SearchsectionComponent,
+    ErrorpageComponent
   ],
   imports: [
     BrowserModule,
