@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { faAt, faUser, faPen, faSignInAlt, faPlus, faCog } from '@fortawesome/free-solid-svg-icons';
 import { AppComponent } from '../app.component';
+import { faAt, faCog, faLongArrowAltDown, faPen, faPlus, faSignInAlt, faUser, faSearch, faUserCircle, faArrowAltCircleUp } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-applicationsection',
@@ -15,42 +15,57 @@ export class ApplicationsectionComponent implements OnInit {
   faSignInAlt = faSignInAlt
   faPlus = faPlus
   faCog = faCog
+  faLongArrowAltDown = faLongArrowAltDown
+  faSearch = faSearch
+  faUserCircle = faUserCircle
+  faArrowAltCircleUp = faArrowAltCircleUp
   //BOOLEANS
   darkOrLight: boolean = true
   settingsIsOpen: boolean = false
-  
+
 
   constructor(public globalvar: AppComponent) { }
 
   ngOnInit(): void {
+    this.displayBottomArrow()
   }
-
-  openSettingsMenu(){
+  displayBottomArrow(){
+    window.onscroll = function(){
+      let element = window
+      
+      if((element.innerHeight + element.scrollY) >= 1600){
+        document.getElementById('scrolltotoparrow')!.style.visibility = "visible"
+      } else{
+        document.getElementById('scrolltotoparrow')!.style.visibility = "hidden"
+      }
+    }
+  }
+  openSettingsMenu() {
     document.getElementById('settings')!.style.visibility = "visible"
     document.getElementById('settings')!.style.opacity = "1"
     document.getElementById('coversonsettingopen')!.style.display = "block"
   }
-  closeSettingsMenu(){
+  closeSettingsMenu() {
     document.getElementById('settings')!.style.visibility = "hidden"
     document.getElementById('settings')!.style.opacity = "0"
     document.getElementById('coversonsettingopen')!.style.display = "none"
   }
 
-  toggleSettingsMenu(){
-    if(!this.settingsIsOpen){
+  toggleSettingsMenu() {
+    if (!this.settingsIsOpen) {
       this.openSettingsMenu()
     }
-    else{
+    else {
       this.closeSettingsMenu()
     }
     this.settingsIsOpen = !this.settingsIsOpen
   }
 
-  darkLightMode(): void{
-    if(this.darkOrLight){
+  darkLightMode(): void {
+    if (this.darkOrLight) {
       this.globalvar.lightMode()
     }
-    else{
+    else {
       this.globalvar.darkMode()
     }
     this.darkOrLight = !this.darkOrLight

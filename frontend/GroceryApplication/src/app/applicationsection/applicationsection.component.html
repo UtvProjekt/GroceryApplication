@@ -1,18 +1,43 @@
 <app-header></app-header>
 <!--ENTRY PAGE-->
-<section class="movingbackground intro">
+<section class="movingbackground intro" id="top">
     <h1>Welcome to Oasis</h1>
     <p>A food store known for it's qualities</p>
-        <p class="linkonstart"><a href="#info">More Info</a></p>
+    <p class="linkonstart"><a href="#info">More Info</a></p>
 </section>
 <!--ABOUT PAGE-->
 <section class="aboutthispage" id="info">
     <div class="rotatedeffect"></div>
-    <div class="infoinabout"></div>
+    <div class="wrapper-about">
+        <div class="infoinabout layoutinabout">
+            <h1>Hello and welcome</h1>
+            <p>to our wide supply of groceries.</p>
+            <p>Our assortment contains some of the most fresh<br>and popular groceries that is out there.</p>
+        </div>
+        <div class="buttonstoclick layoutinabout">
+            <h2>Explore here</h2>
+            <fa-icon [icon]="faLongArrowAltDown"></fa-icon>
+            <div class="buttoncontainerforhomebuttons">
+                <button class="pointer" routerLink="/search">
+                    <h3>Search</h3>
+                    <fa-icon [icon]="faSearch"></fa-icon>
+                </button>
+                <button class="pointer" routerLink="/login">
+                    <h3>Register</h3>
+                    <fa-icon [icon]="faPlus"></fa-icon>
+                </button>
+                <button class="pointer" routerLink="/myaccount">
+                    <h3>Your Account</h3>
+                    <fa-icon [icon]="faUserCircle"></fa-icon>
+                </button>
+            </div>
+        </div>
+    </div>
 </section>
 <!--FOOTER-->
-<app-footer></app-footer>
+<app-footer id="footer"></app-footer>
 <!--SETTINGS SECTION-->
+<div id="scrolltotoparrow"><a href="#top"><fa-icon [icon]="faArrowAltCircleUp"></fa-icon></a></div>
 <div id="coversonsettingopen" (click)="toggleSettingsMenu()"></div>
 <section class="settingssection">
     <button (click)="toggleSettingsMenu()" class="cogwheel" id="cogwheel">

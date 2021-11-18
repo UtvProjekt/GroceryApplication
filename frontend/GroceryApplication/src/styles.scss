@@ -4,14 +4,18 @@
     --primary-color-brighter: #860086;
     --darkmode: #181818;
     --darkmode-darker: #111111;
-    --primary-text-color: #fff;
+    --primary-text-color: #ffffff;
     --box-shadow-color: #860086;
     --darktowhite: #111111;
+    --darktopurple: #111111; 
 }
 ::-webkit-scrollbar{
     display: none;
 }
+
 *, html{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -21,6 +25,9 @@
 html{
     scroll-behavior: smooth;
     scroll-snap-align: start;
+}
+body{
+    overflow-x: hidden;
 }
 
 main{
