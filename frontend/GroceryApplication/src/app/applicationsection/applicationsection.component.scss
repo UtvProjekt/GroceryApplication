@@ -23,15 +23,20 @@ section{
         color: #fff;
         
     }
+    a{
+        padding: 0.4em .8em;
+    }
     .linkonstart{
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin-top: 3em;
         background-color: var(--primary-color-brighter);
         width: fit-content;
         height: fit-content;
         border-radius: 2em;
         font-size: 1.4em;
-        padding: 0.4em .8em;
-        transition: box-shadow 400ms;
+        transition: box-shadow 300ms;
         &:hover{
             box-shadow: 0 0 0.5em 0.1em var(--primary-color-brighter);
         }
@@ -163,4 +168,5 @@ section{
     bottom: 0;
     height: 60vh;
     background-color: var(--darkmode-darker);
+    border-top: 0.1em solid var(--primary-color-brighter);
 }
