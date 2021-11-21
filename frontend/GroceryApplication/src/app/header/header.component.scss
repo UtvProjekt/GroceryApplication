@@ -9,7 +9,7 @@ header {
     top: 0;
     color: var(--primary-text-color);
 }
-ul {
+.links {
     list-style-type: none;
     min-width: 26vw;
     height: 10vh;
@@ -25,24 +25,22 @@ ul {
         font-size: 1.1rem;
         font-weight: 300;
         color: var(--primary-text-color);
-        
-        &::before{
-            content: '';
+
+        &::before {
+            content: "";
             position: absolute;
             width: 0;
             left: 0;
-            border-radius: .2em;
+            border-radius: 0.2em;
             bottom: 1.6em;
             height: 0.2em;
             background-color: var(--primary-text-color);
             transition: width 200ms;
         }
 
-        &:hover::before{
+        &:hover::before {
             width: 100%;
-
         }
-
     }
 }
 .link {
@@ -51,22 +49,55 @@ ul {
     height: 100%;
     text-decoration: none;
 }
-.maintitle{
-    a{
+.maintitle {
+    a {
         color: var(--primary-text-color);
     }
 }
 
-.icons{
+.icons {
     display: flex;
     align-items: center;
     height: 100%;
-    fa-icon{
+    fa-icon {
         font-size: 2em;
         padding-right: 1em;
         transition: color 300ms;
-        &:hover{
+        &:hover {
             color: #b3b030;
         }
+    }
+    .shoppingcart {
+        visibility: hidden;
+        position: absolute;
+        top: 5em;
+        right: 6em;
+        width: 18vw;
+        height: 50vh;
+        background-color: var(--darkmode);
+        border-radius: 0.3em;
+        .shoppingcarttitle{
+            position: relative;
+            height: 3em;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1em;
+            border-bottom: 0.1em solid var(--primary-color-brighter);
+            fa-icon{
+                margin-top: 4px;
+                padding: 0;
+                &:hover{
+                    color: inherit;
+                }
+            }
+        }
+    }
+    &:focus-within .shoppingcart{
+        visibility: visible;
+    }
+    a {
+        color: var(--primary-text-color);
     }
 }

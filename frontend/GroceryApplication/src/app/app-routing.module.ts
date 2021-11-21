@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', component: ApplicationsectionComponent },
   { path: 'search', component: SearchsectionComponent },
   { path: 'add', component: AddsectionComponent },
-  { path: 'login', component: SigninpageComponent },
+  { path: 'signin', component: SigninpageComponent },
   { path: 'myaccount', component: MyaccountComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
