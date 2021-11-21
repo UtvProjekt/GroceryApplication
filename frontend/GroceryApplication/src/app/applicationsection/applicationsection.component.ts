@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
-import { faAt, faCog, faLongArrowAltDown, faPen, faPlus, faSignInAlt, faUser, faSearch, faUserCircle, faArrowAltCircleUp } from '@fortawesome/free-solid-svg-icons';
+import { faAt, faCog, faLongArrowAltDown, faPen, faPlus, faSignInAlt, faUser, faSearch, faUserCircle, faArrowAltCircleUp, faKey } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-applicationsection',
@@ -19,21 +19,32 @@ export class ApplicationsectionComponent implements OnInit {
   faSearch = faSearch
   faUserCircle = faUserCircle
   faArrowAltCircleUp = faArrowAltCircleUp
+  faKey = faKey
   //BOOLEANS
   darkOrLight: boolean = true
   settingsIsOpen: boolean = false
 
+  uid(): string{
+    let head = ""
+    let tail = ""
+    for(let i = 0; i<1000; i++){
+      head = Date.now().toString(36)
+      tail = Math.random().toString(36).substr(2)
+    }
+    return head + tail
+  }
 
   constructor(public globalvar: AppComponent) { }
 
   ngOnInit(): void {
     this.displayBottomArrow()
+    this.uid()
   }
   displayBottomArrow(){
     window.onscroll = function(){
-      let element = window
       
-      if((element.innerHeight + element.scrollY) >= 1600){
+      
+      if((window.innerHeight + window.scrollY) >= 1600){
         document.getElementById('scrolltotoparrow')!.style.visibility = "visible"
       } else{
         document.getElementById('scrolltotoparrow')!.style.visibility = "hidden"

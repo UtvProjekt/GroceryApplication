@@ -1,1 +1,50 @@
-<main class="movingbackground"></main>
+<h1 class="titlelogin"><a routerLink="">Oasis</a></h1>
+<main class="movingbackground">
+    <div class="container">
+        <div class="imagecontainer">
+            <img src="../../assets/grocerybag.jpg" alt="grocerybag">
+
+            <div class="changeinputscontainer">
+                <button class="btn changeinputs pointer" (click)="changeTitle()"><span [hidden]="loginorregister">Sign
+                        in</span>
+                    <span [hidden]="!loginorregister">Create an account</span></button>
+            </div>
+        </div>
+        <div class="formcontainer">
+            <h1 id="title">Sign in here</h1>
+            <form #signin *ngIf="loginorregister">
+                <fieldset>
+                    <legend>Email</legend>
+                    <input type="email" class="loginfields inputs" placeholder="John@gmail.com" required email>
+                    <fa-icon class="envelope" [icon]="faEnvelope"></fa-icon>
+                </fieldset>
+                <fieldset>
+                    <legend>Password</legend>
+                    <input type="password" class="loginfields inputs" placeholder="mySecretPassword" required>
+                    <fa-icon class="key" [icon]="faKey"></fa-icon>
+                </fieldset>
+            </form>
+            <form #register id="register" *ngIf="!loginorregister">
+                <fieldset>
+                    <legend>Email</legend>
+                    <input type="email" name="email" id="email" class="registerfields inputs" placeholder="John@gmail.com" required email autocomplete="off">
+                    <fa-icon class="envelope" [icon]="faEnvelope"></fa-icon>
+                </fieldset>
+                <fieldset>
+                    <legend>Password</legend>
+                    <input type="password" name="password" id="password" class="registerfields inputs" placeholder="mySecretPassword" required>
+                    <fa-icon class="key" [icon]="faKey"></fa-icon>
+                </fieldset>
+                <fieldset>
+                    <legend>Confirm Password</legend>
+                    <input type="password" name="conpassword" id="conpassword" class="registerfields inputs" placeholder="mySecretPassword" required>
+                    <fa-icon class="circle" [icon]="faCheckCircle"></fa-icon>
+                </fieldset>
+            </form>
+            <div class="buttoncontainer">
+                <button class="btn loginbtn pointer" form="signin" [hidden]="!loginorregister">Sign in</button>
+                <button class="btn loginbtn pointer" form="register" [hidden]="loginorregister">Register</button>
+            </div>
+        </div>
+    </div>
+</main>

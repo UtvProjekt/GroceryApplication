@@ -8,14 +8,12 @@ import { ApplicationsectionComponent } from './applicationsection/applicationsec
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { ResultsComponent } from './results/results.component';
 import { OrganizemenuComponent } from './organizemenu/organizemenu.component';
-import { ButtonComponent } from './button/button.component';
 import { SigninpageComponent } from './signinpage/signinpage.component';
 import { FooterComponent } from './footer/footer.component';
 import { AddsectionComponent } from './addsection/addsection.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MyaccountComponent } from './myaccount/myaccount.component';
 import { SearchsectionComponent } from './searchsection/searchsection.component';
-import { ErrorpageComponent } from './errorpage/errorpage.component';
 
 @NgModule({
   declarations: [
@@ -25,18 +23,16 @@ import { ErrorpageComponent } from './errorpage/errorpage.component';
     SearchbarComponent,
     ResultsComponent,
     OrganizemenuComponent,
-    ButtonComponent,
     SigninpageComponent,
     FooterComponent,
     AddsectionComponent,
     MyaccountComponent,
     SearchsectionComponent,
-    ErrorpageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

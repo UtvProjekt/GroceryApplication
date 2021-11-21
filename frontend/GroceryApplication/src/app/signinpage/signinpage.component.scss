@@ -1,0 +1,140 @@
+.titlelogin{
+    position: absolute;
+    left: 1.65vw;
+    top: 3vh;
+    font-size: 2em;
+    a{
+        color: var(--primary-text-color);
+    }
+}
+main {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.container {
+    width: 70vw;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: .5em;
+}
+.imagecontainer {
+    width: 30vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    fa-icon {
+        font-size: 20em;
+        color: var(--primary-color);
+    }
+}
+.formcontainer {
+    width: 30vw;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    h1 {
+        font-size: 2.5em;
+        color: #000;
+    }
+}
+form {
+    width: 100%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+fieldset {
+    position: relative;
+    height: 7vh;
+    background-color: #fff;
+    border: none;
+    border-radius: 0.2em;
+    
+    
+    fa-icon {
+        position: absolute;
+        left: 0.2em;
+        bottom: 0.6em;
+        padding: 0 .5em;
+    }
+    .envelope {
+        color: #c98e35;
+    }
+    .key {
+        color: #808080;
+    }
+    .circle {
+        color: #008000;
+    }
+}
+
+.inputs {
+    width: 20vw;
+    height: 4vh;
+    border-radius: 0.2em;
+    font-size: 1.1em;
+    outline: none;
+    border: none;
+    transition: all 100ms;
+    padding-left: 2em;
+    border-bottom: 0.2em solid #b3b030;
+
+    &:hover{
+        border-color: var(--primary-color-brighter);
+    }
+    &:focus {
+        width: 25vw;
+        border-color: var(--primary-color);
+        background-color: #d4d4d4;
+    }
+}
+
+.buttoncontainer {
+    width: 20vw;
+    height: 5vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.loginbtn {
+    background-color: transparent;
+    color: #000;
+    width: 4.5vw;
+    height: 4.5vh;
+    font-size: 1.1em;
+    border-radius: 0.1em;
+    border: 0.15em solid #b3b030;
+    transition: all 200ms;
+    &:hover {
+        background-color: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+    }
+}
+.changeinputscontainer {
+    position: relative;
+    width: 9vw;
+    height: 4vh;
+}
+.changeinputs {
+    width: 11vw;
+    height: 4vh;
+    font-size: 1.1em;
+    padding: 0 1em;
+    span {
+        padding: 0.2em 0;
+        color: #000;
+        border-bottom: 0.2em solid #b3b030;
+    }
+}
