@@ -11,12 +11,13 @@ export class AppComponent {
  
   lightMode(): void{
     document.documentElement.style.setProperty('--darkmode', '#eee')
-    document.documentElement.style.setProperty('--primary-text-color', '#000')
+    document.documentElement.style.setProperty('--primary-text-color', '#161616')
     document.documentElement.style.setProperty('--primary-color-brighter', '#570057')
-    document.documentElement.style.setProperty('--darkmode-darker', '#c9c9c9')
+    document.documentElement.style.setProperty('--darkmode-darker', '#b2b2b2')
     document.documentElement.style.setProperty('--box-shadow-color', '#d1d1d1')
     document.documentElement.style.setProperty('--darktowhite', '#f4f4f4')
-    document.documentElement.style.setProperty('----darktopurple', '#860086')
+    document.documentElement.style.setProperty('--darktopurple', '#860086')
+    document.documentElement.style.setProperty('--primarytopurple', '#570057')
   }
   
   darkMode(): void{
@@ -27,6 +28,7 @@ export class AppComponent {
     document.documentElement.style.setProperty('--box-shadow-color', '#860086')
     document.documentElement.style.setProperty('--darktowhite', '#111111')
     document.documentElement.style.setProperty('--darktopurple', '#111111')
+    document.documentElement.style.setProperty('--primarytopurple', '#fff')
   }
 
   darkLightMode(): void{

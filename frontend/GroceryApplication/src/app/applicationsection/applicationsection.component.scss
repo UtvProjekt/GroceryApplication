@@ -196,6 +196,8 @@ section {
     }
 }
 .infoinabout {
+    display: flex;
+    flex-direction: column;
 }
 .buttonstoclick {
     height: 80%;
@@ -225,13 +227,14 @@ section {
         width: 8vw;
         height: 8vw;
         border-radius: 1em;
-        box-shadow: 0.2em 0.2em 0em 0.1em #a0a0a0;
+        box-shadow: 0.2em 0.2em 0em 0.1em var(--primary-color);
         transition: all 200ms;
         border: none;
-
+        
         h3,
         fa-icon {
             transition: box-shadow 300ms, color 500ms, filter 400ms;
+            color: var(--primarytopurple);
         }
         h3 {
             font-size: 1.5em;
@@ -242,7 +245,7 @@ section {
         }
         &:hover {
             transform: translate(0.2em, 0.3em);
-            box-shadow: 0 0 0 0 #2e2e2e; 
+            box-shadow: 0 0 0 0 var(--primary-color); 
             text-shadow: 0 0 0.5em #860086;
             * {
                 color: var(--primary-color-brighter);

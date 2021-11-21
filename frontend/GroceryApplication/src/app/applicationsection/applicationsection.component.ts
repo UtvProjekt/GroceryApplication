@@ -37,10 +37,9 @@ export class ApplicationsectionComponent implements OnInit {
   constructor(public globalvar: AppComponent) { }
 
   ngOnInit(): void {
-    this.displayBottomArrow()
-    this.uid()
+    this.bindBottomArrow()
   }
-  displayBottomArrow(){
+  bindBottomArrow(){
     window.onscroll = function(){
       
       

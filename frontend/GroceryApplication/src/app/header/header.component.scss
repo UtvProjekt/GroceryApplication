@@ -4,7 +4,7 @@ header {
     align-items: center;
     min-width: 100vw;
     height: 10vh;
-    padding: 0 2em;
+    padding-left: 2em;
     position: absolute;
     top: 0;
     color: var(--primary-text-color);
@@ -54,5 +54,19 @@ ul {
 .maintitle{
     a{
         color: var(--primary-text-color);
+    }
+}
+
+.icons{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    fa-icon{
+        font-size: 2em;
+        padding-right: 1em;
+        transition: color 300ms;
+        &:hover{
+            color: #b3b030;
+        }
     }
 }
