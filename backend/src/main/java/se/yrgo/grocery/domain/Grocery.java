@@ -28,7 +28,7 @@ public class Grocery implements java.io.Serializable {
 	@Size(min = 1)
 	private String imageUrl;
 	
-	private int price;
+	private double price;
 	
 	@Size(min = 0, max = 2000)
 	private String description;
@@ -39,7 +39,7 @@ public class Grocery implements java.io.Serializable {
 	
 	public Grocery() {}
 
-	public Grocery(String name, int price, String description, int expiredDate, int stockOf, String brand, String imageUrl) {
+	public Grocery(String name, double price, String description, int expiredDate, int stockOf, String brand, String imageUrl) {
 		this.name = name;
 		this.price = price;
 		this.description = description;
@@ -81,11 +81,11 @@ public class Grocery implements java.io.Serializable {
 		this.name = name;
 	}
 
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 

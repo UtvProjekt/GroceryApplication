@@ -11,7 +11,7 @@ export class AppComponent {
  
   lightMode(): void{
     document.documentElement.style.setProperty('--darkmode', '#eee')
-    document.documentElement.style.setProperty('--primary-text-color', '#161616')
+    document.documentElement.style.setProperty('--primary-text-color', '#262626')
     document.documentElement.style.setProperty('--primary-color-brighter', '#570057')
     document.documentElement.style.setProperty('--darkmode-darker', '#b2b2b2')
     document.documentElement.style.setProperty('--box-shadow-color', '#d1d1d1')
