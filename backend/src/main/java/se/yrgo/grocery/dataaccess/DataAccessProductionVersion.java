@@ -13,12 +13,13 @@ import javax.persistence.Query;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import se.yrgo.grocery.domain.Grocery;
+import se.yrgo.grocery.domain.Login;
 
 /**
  * Class that handles queries and communication with the database.
  */
 @Default
-public class DataAccessProductionVersion implements DataAccess{
+public class DataAccessProductionVersion implements DataAccess, LoginDataAccess{
 
 	@PersistenceContext
 	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("groceryDB");
@@ -44,7 +45,7 @@ public class DataAccessProductionVersion implements DataAccess{
 		 */
 		public void addGrocery(Grocery gro){
 			tx.begin();
-			Grocery persistError = new Grocery();
+			Grocery persistError = new Grocery(gro.getName(), gro.getPrice(), gro.getDescription(), gro.getExpiredDate(), gro.getStockOf(), gro.getBrand(), gro.getImageUrl());
 			em.persist(persistError);
 			tx.commit();
 			
@@ -96,6 +97,28 @@ public class DataAccessProductionVersion implements DataAccess{
 			Query q = em.createQuery("select grocery from Grocery grocery where grocery.id = :id");
 			q.setParameter("id", id);
 			return (Grocery) q.getSingleResult();
+		}
+
+		@Override
+		public void addUser(Login credentials) {
+			tx.begin();
+			Login persistUser = new Login(credentials.getEmail(), credentials.getPassword());
+			em.persist(persistUser);
+			tx.commit();
+		}
+
+		@Override
+		public Login findUserByEmail(String email) {
+			Query q = em.createQuery("select login from Login login where login.email = :email");
+			q.setParameter("email", email);
+			return (Login) q.getSingleResult();
+			
+		}
+
+		@Override
+		public List<Login> findAllUsers() {
+			Query q = em.createQuery("select email from Login email");
+			return q.getResultList();
 		}
 
 
