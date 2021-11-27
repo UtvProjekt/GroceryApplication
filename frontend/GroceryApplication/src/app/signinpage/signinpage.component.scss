@@ -90,7 +90,7 @@ fieldset {
     border: none;
     transition: all 100ms;
     padding-left: 2em;
-    border-bottom: 0.2em solid #b3b030;
+    border-bottom: 0.2em solid var(--yellow);
 
     &:hover{
         border-color: var(--primary-color-brighter);
@@ -117,7 +117,7 @@ fieldset {
     height: 5vh;
     font-size: 1.1em;
     border-radius: 0.1em;
-    border: 0.15em solid #b3b030;
+    border: 0.15em solid var(--yellow);
     transition: all 200ms;
     &:hover {
         background-color: var(--primary-color);
@@ -138,6 +138,6 @@ fieldset {
     span {
         padding: 0.2em 0;
         color: #000;
-        border-bottom: 0.2em solid #b3b030;
+        border-bottom: 0.2em solid var(--yellow);
     }
 }

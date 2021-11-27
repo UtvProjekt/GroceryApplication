@@ -8,6 +8,7 @@ header {
     position: absolute;
     top: 0;
     color: var(--primary-text-color);
+    transition: outline 200ms;
 }
 .links {
     list-style-type: none;

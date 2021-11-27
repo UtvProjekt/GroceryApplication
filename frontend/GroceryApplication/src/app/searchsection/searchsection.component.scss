@@ -1,0 +1,29 @@
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.searchpane{
+    width: 100vw;
+    height: 0;
+    background-color: var(--darktowhite);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: height 600ms 500ms ease-in-out;
+}
+
+#searchbarcontainer{
+    position: absolute;
+    transition: all 400ms ease 100ms;
+}
+
+.searchpanecontainer{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 10vh;
+    left: 0;
+    width: 100vw;
+    height: 80vh;
+}

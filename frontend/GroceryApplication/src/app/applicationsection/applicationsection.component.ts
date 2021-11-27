@@ -39,10 +39,9 @@ export class ApplicationsectionComponent implements OnInit {
   ngOnInit(): void {
     this.bindBottomArrow()
   }
+  
   bindBottomArrow(){
     window.onscroll = function(){
-      
-      
       if((window.innerHeight + window.scrollY) >= 1600){
         document.getElementById('scrolltotoparrow')!.style.visibility = "visible"
       } else{
