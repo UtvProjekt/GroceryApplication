@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Login } from 'src/Login';
+import { LoginService } from 'src/Login.service';
 
 @Component({
   selector: 'app-addsection',
@@ -7,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddsectionComponent implements OnInit {
 
-  constructor() { }
+  constructor(public loginService: LoginService) { }
 
   ngOnInit(): void {
   }
+
+  
 
 }

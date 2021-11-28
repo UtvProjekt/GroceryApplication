@@ -11,25 +11,25 @@ import javax.validation.constraints.Size;
 public class Login implements java.io.Serializable {
 
 	private static final long serialVersionUID = 3090615371178706749L;
-	
+
 	/**
 	 * Variables for login
 	 */
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
-	@Column(unique=true)
+
+	@Column(unique = true)
 	@Size(min = 3, max = 100)
 	private String email;
-	
+
 	@Size(min = 3)
 	private String password;
-	
+
 	public Login() {
-		
+
 	}
-	
+
 	public Login(String email, String password) {
 		this.email = email;
 		this.password = password;
@@ -64,7 +64,4 @@ public class Login implements java.io.Serializable {
 		return "Login [id=" + id + ", email=" + email + ", password=" + password + "]";
 	}
 
-	
-	
 }
-

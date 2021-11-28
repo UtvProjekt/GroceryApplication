@@ -31,22 +31,25 @@ export class SigninpageComponent implements OnInit {
     // IF TRUE SIGN IN
   }
 
+  
+
   registerToApp(form: NgForm) {
     try {
       if (this.passwordIsNotEqual(form)) {
         if (this.loginService.checkIfEmailExists(form.value.email)) {
-          this.createUser(form)
+          console.log("created user")
+          this.addUser(form)
         }
       }
       else {
-        throw new Error("Error")
+        alert("Passwords must match")
       }
     } catch (error) {
-      alert("Passwords must match")
+      alert(error)
     }
   }
 
-  public createUser(form: NgForm): void {
+  addUser(form: NgForm): void {
     this.loginService.createUser(form.value).subscribe(
       (response: Login) => {
         alert("Created new User")

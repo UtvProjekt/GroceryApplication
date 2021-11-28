@@ -24,26 +24,26 @@
                     <fa-icon class="key" [icon]="faKey"></fa-icon>
                 </fieldset>
             </form>
-            <form #regForm="ngForm" (ngSubmit)="registerToApp(regForm)" id="register" *ngIf="!loginorregister">
+            <form (ngSubmit)="registerToApp(regForm)" #regForm="ngForm" id="register" *ngIf="!loginorregister">
                 <fieldset>
                     <legend>Email</legend>
-                    <input type="email" name="email" id="email" class="registerfields inputs" placeholder="John@gmail.com" required email autocomplete="off">
+                    <input type="email" name="email" id="email" class="registerfields inputs" placeholder="John@gmail.com" required email autocomplete="off" ngModel>
                     <fa-icon class="envelope" [icon]="faEnvelope"></fa-icon>
                 </fieldset>
                 <fieldset>
                     <legend>Password</legend>
-                    <input type="password" name="password" id="password" class="registerfields inputs" placeholder="mySecretPassword" required>
+                    <input type="password" name="password" id="password" class="registerfields inputs" placeholder="mySecretPassword" required ngModel>
                     <fa-icon class="key" [icon]="faKey"></fa-icon>
                 </fieldset>
                 <fieldset>
                     <legend>Confirm Password</legend>
-                    <input type="password" name="conpassword" id="conpassword" class="registerfields inputs" placeholder="mySecretPassword" required>
+                    <input type="password" name="conpassword" id="conpassword" class="registerfields inputs" placeholder="mySecretPassword" required ngModel>
                     <fa-icon class="circle" [icon]="faCheckCircle"></fa-icon>
                 </fieldset>
             </form>
             <div class="buttoncontainer">
-                <button class="btn loginbtn pointer" form="signin" type="submit" [hidden]="!loginorregister">Sign in</button>
-                <button class="btn loginbtn pointer" form="register" type="submit" [hidden]="loginorregister">Register</button>
+                <button class="btn loginbtn pointer" form="signin" type="submit" *ngIf="loginorregister">Sign in</button>
+                <button class="btn loginbtn pointer" form="register" type="submit" *ngIf="!loginorregister">Register</button>
             </div>
         </div>
     </div>
