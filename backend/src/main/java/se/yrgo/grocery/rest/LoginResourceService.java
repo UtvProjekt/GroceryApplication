@@ -15,7 +15,7 @@ import se.yrgo.grocery.service.LoginManagementService;
 
 
 
-
+@Path("/signin")
 public class LoginResourceService {
 
 	private LoginManagementService service = new LoginManagementImplementation();
@@ -35,13 +35,18 @@ public class LoginResourceService {
 		return service.findUserByEmail(email);
 	}
 	
-	
+	@GET
+	@Path("/controlemail/{email}")
+	public boolean checkIfEmailExists(@PathParam("email")String email) {
+		return service.controlEmail(email);
+	}
 	
 	@POST
 	@Path("/adduser")
 	@Produces("application/JSON")
 	@Consumes("application/JSON")
-	public void addGrocery(Login credentials) {
+	public void createUser(Login credentials) {
+		System.out.println("test");
 		service.addUser(credentials);
 	}
 

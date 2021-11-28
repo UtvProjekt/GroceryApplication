@@ -9,4 +9,5 @@ public interface LoginDataAccess {
 	public void addUser(Login credentials);
 	public Login findUserByEmail(String email);
 	public List<Login> findAllUsers();
+	public boolean controlEmail(String input);
 }

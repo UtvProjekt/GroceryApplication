@@ -6,6 +6,7 @@ import javax.ws.rs.core.Application;
 import org.jboss.resteasy.plugins.interceptors.CorsFilter;
 
 import se.yrgo.grocery.rest.GroceryResourceService;
+import se.yrgo.grocery.rest.LoginResourceService;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -25,6 +26,7 @@ public class ServiceApplication extends Application{
         corsfilter.setAllowedMethods("OPTIONS, GET, POST, PUT, DELETE, PATCH");
         singletons.add(corsfilter);
         singletons.add(new GroceryResourceService());
+        singletons.add(new LoginResourceService());
     }
 
     @Override

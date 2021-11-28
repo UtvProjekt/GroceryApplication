@@ -8,4 +8,5 @@ public interface LoginManagementService {
 	public List<Login> findAllUsers();
 	public void addUser(Login credentials);
 	public Login findUserByEmail(String email);
+	public boolean controlEmail(String input);
 }

@@ -19,6 +19,7 @@
         <property name="hbm2ddl.auto">update</property>
 
    		<mapping class="se.yrgo.grocery.domain.Grocery"/>
+   		<mapping class="se.yrgo.grocery.domain.Login"/>
     </session-factory>
 
 </hibernate-configuration>

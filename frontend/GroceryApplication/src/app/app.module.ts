@@ -14,6 +14,8 @@ import { AddsectionComponent } from './addsection/addsection.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MyaccountComponent } from './myaccount/myaccount.component';
 import { SearchsectionComponent } from './searchsection/searchsection.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { SearchsectionComponent } from './searchsection/searchsection.component'
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
+    FormsModule, ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

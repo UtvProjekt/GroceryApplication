@@ -15,7 +15,7 @@ import se.yrgo.grocery.service.GroceryManagementImplementation;
 import se.yrgo.grocery.service.GroceryManagementServiceLocal;
 
 
-
+@Path("/grocery")
 public class GroceryResourceService {
 
 	private GroceryManagementServiceLocal service = new GroceryManagementImplementation();

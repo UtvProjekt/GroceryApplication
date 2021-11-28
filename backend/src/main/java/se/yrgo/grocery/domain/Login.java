@@ -1,5 +1,6 @@
 package se.yrgo.grocery.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,13 +19,12 @@ public class Login implements java.io.Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
+	@Column(unique=true)
 	@Size(min = 3, max = 100)
 	private String email;
 	
 	@Size(min = 3)
 	private String password;
-	
-	
 	
 	public Login() {
 		

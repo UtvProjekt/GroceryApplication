@@ -25,4 +25,9 @@ public class LoginManagementImplementation implements LoginManagementService{
 		return ida.findUserByEmail(email);
 	}
 
+	@Override
+	public boolean controlEmail(String input) {
+		return ida.controlEmail(input);
+	}
+
 }
