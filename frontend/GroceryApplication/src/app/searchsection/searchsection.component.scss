@@ -10,12 +10,12 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: height 600ms 500ms ease-in-out;
+    transition: height 500ms 600ms ease-in-out;
 }
 
 #searchbarcontainer{
     position: absolute;
-    transition: all 400ms ease 100ms;
+    transition: all 500ms ease-out 50ms;
 }
 
 .searchpanecontainer{
