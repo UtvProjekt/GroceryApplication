@@ -9,7 +9,7 @@
 
     <div class="icons">
         <fa-icon [icon]="faShoppingCart" class="pointer shoppingcarticon" (click)="toggleShoppingCart()"></fa-icon>
-        <ul class="shoppingcart" id="shoppingcart">
+        <ul class="shoppingcart" id="shoppingcart" *ngIf="showCart">
             <div class="shoppingcarttitle">
                 <h2>Shopping Cart</h2>
                 <fa-icon [icon]="faTimes" class="pointer" (click)="toggleShoppingCart()"></fa-icon>

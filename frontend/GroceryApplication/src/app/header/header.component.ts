@@ -19,21 +19,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  cart1(){
-    document.getElementById('shoppingcart')!.style.visibility = "visible"
-  }
-
-  cart2(){
-    document.getElementById('shoppingcart')!.style.visibility = "hidden"
-  }
+ 
 
   toggleShoppingCart(){
-    if(!this.showCart){
-      this.cart1()
-    }
-    else{
-      this.cart2()
-    }
     this.showCart = !this.showCart
   }
 
