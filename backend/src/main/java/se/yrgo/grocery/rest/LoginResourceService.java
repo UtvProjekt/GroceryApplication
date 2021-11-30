@@ -35,18 +35,11 @@ public class LoginResourceService {
 		return service.findUserByEmail(email);
 	}
 	
-	@GET
-	@Path("/controlemail/{email}")
-	public boolean checkIfEmailExists(@PathParam("email")String email) {
-		return service.controlEmail(email);
-	}
-	
 	@POST
 	@Path("/adduser")
 	@Produces("application/JSON")
 	@Consumes("application/JSON")
-	public void createUser(Login credentials) {
-		System.out.println("test");
+	public void addUser(Login credentials) {
 		service.addUser(credentials);
 	}
 

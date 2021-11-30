@@ -118,16 +118,4 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 		return q.getResultList();
 	}
 
-	@Override
-	public boolean controlEmail(String input) {
-		List<Login> users = findAllUsers();
-
-		for (Login login : users) {
-			if (login.getEmail().equals(input)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 }

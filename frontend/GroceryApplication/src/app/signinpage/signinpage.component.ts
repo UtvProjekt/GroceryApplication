@@ -3,6 +3,9 @@ import { faCheckCircle, faEnvelope, faKey, faShoppingBasket } from '@fortawesome
 import { NgForm } from '@angular/forms';
 import { LoginService } from 'src/Login.service';
 import { Login } from 'src/Login';
+import { Observable } from 'rxjs';
+import { Md5 } from 'ts-md5';
+import { sha256 } from 'js-sha256';
 
 
 @Component({
@@ -13,6 +16,8 @@ import { Login } from 'src/Login';
 export class SigninpageComponent implements OnInit {
   //GLOBAL
   loginorregister: boolean = true
+  public users: Login[] = []
+  public userToSend!: Login
 
 
   //FA ICONS
@@ -24,7 +29,7 @@ export class SigninpageComponent implements OnInit {
   constructor(public loginService: LoginService) { }
 
   ngOnInit(): void {
-   
+    
   }
 
   signInToApp(form: NgForm) {
@@ -33,12 +38,15 @@ export class SigninpageComponent implements OnInit {
 
   
 
-  registerToApp(form: NgForm) {
+  registerToApp(regForm: NgForm): void {
     try {
-      if (this.passwordIsNotEqual(form)) {
-        if (this.loginService.checkIfEmailExists(form.value.email)) {
+      if (this.passwordIsNotEqual(regForm)) {
+        if (!this.checkEmail(regForm.value.email)) {
           console.log("created user")
-          this.addUser(form)
+          this.addUser(regForm)
+        }
+        else{
+          alert("That email already exists")
         }
       }
       else {
@@ -49,10 +57,27 @@ export class SigninpageComponent implements OnInit {
     }
   }
 
+  checkEmail(email: string): boolean{
+    this.loginService.getData().subscribe(
+      (response: Login[]) => {
+        this.users = response
+      }
+    )
+    for (const iterator of this.users) {
+      if(iterator.email === email){
+        return true;
+      }
+    }
+    return false;
+  }
+
   addUser(form: NgForm): void {
+    delete form.value.conpassword
+    form.value.password = sha256(form.value.password)
+    
     this.loginService.createUser(form.value).subscribe(
       (response: Login) => {
-        alert("Created new User")
+        console.log(response)
       }
     )
   }

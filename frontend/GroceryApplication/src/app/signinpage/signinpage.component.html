@@ -27,17 +27,17 @@
             <form (ngSubmit)="registerToApp(regForm)" #regForm="ngForm" id="register" *ngIf="!loginorregister">
                 <fieldset>
                     <legend>Email</legend>
-                    <input type="email" name="email" id="email" class="registerfields inputs" placeholder="John@gmail.com" required email autocomplete="off" ngModel>
+                    <input type="email" ngModel name="email" id="email" class="registerfields inputs" placeholder="John@gmail.com" required email autocomplete="off" >
                     <fa-icon class="envelope" [icon]="faEnvelope"></fa-icon>
                 </fieldset>
                 <fieldset>
                     <legend>Password</legend>
-                    <input type="password" name="password" id="password" class="registerfields inputs" placeholder="mySecretPassword" required ngModel>
+                    <input type="password" ngModel name="password" id="password" class="registerfields inputs" placeholder="mySecretPassword" required>
                     <fa-icon class="key" [icon]="faKey"></fa-icon>
                 </fieldset>
                 <fieldset>
                     <legend>Confirm Password</legend>
-                    <input type="password" name="conpassword" id="conpassword" class="registerfields inputs" placeholder="mySecretPassword" required ngModel>
+                    <input type="password" ngModel name="conpassword" id="conpassword" class="registerfields inputs" placeholder="mySecretPassword" required>
                     <fa-icon class="circle" [icon]="faCheckCircle"></fa-icon>
                 </fieldset>
             </form>

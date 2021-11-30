@@ -8,21 +8,13 @@ import { NgForm } from "@angular/forms";
 export class LoginService {
 
     constructor(private httpClient: HttpClient) { }
-    
-   
-
-    
 
     public getData(): Observable<Login[]> {
-        return this.httpClient.get<Login[]>('http://localhost:25000/ErrorApplication/page/signin/getallusers')
+        return this.httpClient.get<Login[]>('http://localhost:25000/GroceryApplication/page/signin/getallusers')
     }
 
-    public checkIfEmailExists(credentials: string): Observable<string>{
-        return this.httpClient.post<string>('http://localhost:25000/grocery/page/signin/controlemail/', credentials)
-    }
-
-    public createUser(credentials: Login): Observable<Login>{
-        return this.httpClient.post<Login>('http://localhost:25000/grocery/page/signin/adduser', credentials)
+    public createUser(login: Login): Observable<Login>{
+        return this.httpClient.post<Login>('http://localhost:25000/GroceryApplication/page/signin/adduser', login)
     }
 
     /* UPDATE AND DELETE
