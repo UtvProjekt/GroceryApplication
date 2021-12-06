@@ -9,18 +9,18 @@
                         in instead</span>
                     <span [hidden]="!loginorregister">Create an account</span></button>
             </div>
-        </div>
+        </div> 
         <div class="formcontainer">
             <h1 id="title">Sign in here</h1>
-            <form #signin="ngForm" *ngIf="loginorregister">
+            <form (ngSubmit)="checkIfPasswordsAreEqual(signin)" #signin="ngForm" *ngIf="loginorregister" id="signin">
                 <fieldset>
                     <legend>Email</legend>
-                    <input type="email" class="loginfields inputs" placeholder="John@gmail.com" required email>
+                    <input type="email" ngModel name="signInEmail" class="loginfields inputs" placeholder="John@gmail.com" required email>
                     <fa-icon class="envelope" [icon]="faEnvelope"></fa-icon>
                 </fieldset>
                 <fieldset>
                     <legend>Password</legend>
-                    <input type="password" class="loginfields inputs" placeholder="mySecretPassword" required>
+                    <input type="password" ngModel name="signInPassword" class="loginfields inputs" placeholder="mySecretPassword" required>
                     <fa-icon class="key" [icon]="faKey"></fa-icon>
                 </fieldset>
             </form>

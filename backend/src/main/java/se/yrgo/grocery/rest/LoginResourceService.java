@@ -26,8 +26,15 @@ public class LoginResourceService {
 	public List<Login> allUsers(){
 		return service.findAllUsers();
 	}
-
 	
+	@GET
+	@Path("/checkpassword/{email}")
+	@Produces("application/JSON")
+	public String getPasswordByEmail(@PathParam("email")String email){
+		return service.getPasswordByEmail(email);
+	}
+	
+
 	@GET
 	@Path("{email}")
 	@Produces("application/JSON")

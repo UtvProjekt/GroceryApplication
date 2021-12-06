@@ -4,7 +4,6 @@ import { NgForm } from '@angular/forms';
 import { LoginService } from 'src/Login.service';
 import { Login } from 'src/Login';
 import { Observable } from 'rxjs';
-import { Md5 } from 'ts-md5';
 import { sha256 } from 'js-sha256';
 
 
@@ -18,6 +17,7 @@ export class SigninpageComponent implements OnInit {
   loginorregister: boolean = true
   public users: Login[] = []
   public userToSend!: Login
+  public checkIfSignedIn: number = 0;
 
 
   //FA ICONS
@@ -25,6 +25,7 @@ export class SigninpageComponent implements OnInit {
   faKey = faKey
   faCheckCircle = faCheckCircle
   faShoppingBasket = faShoppingBasket
+
 
   constructor(public loginService: LoginService) { }
 
@@ -36,7 +37,25 @@ export class SigninpageComponent implements OnInit {
     // IF TRUE SIGN IN
   }
 
-  
+  checkIfPasswordsAreEqual(signIn: NgForm){
+
+  let responseValue = ""
+   this.loginService.getPasswordByEmail(signIn.value.signInEmail).subscribe(
+    (response: string) => {
+      responseValue = response
+    }
+
+  )
+    //ändra så den kollar roll också
+    if(sha256(signIn.value.signInPassword) === responseValue){
+      this.checkIfSignedIn = 1
+      //document.cookie = Number(this.checkIfSignedIn)
+      console.log("Status: " + this.checkIfSignedIn)
+    }else{
+      console.log("Fel inloggning, försök igen.")
+    }
+
+  }
 
   registerToApp(regForm: NgForm): void {
     try {
