@@ -27,36 +27,36 @@ public class Login implements java.io.Serializable {
 	private String password;
 	
 	@Size(min = 5)
-	private String firstName;
+	private String firstname;
 	
 	@Size(min = 5)
-	private String surName;
+	private String surname;
 
 	public Login() {
 
 	}
 
-	public Login(String email, String password, String firstName, String surName) {
+	public Login(String email, String password, String firstname, String surname) {
 		this.email = email;
 		this.password = password;
-		this.firstName = firstName; 
-		this.surName = surName;
+		this.firstname = firstname; 
+		this.surname = surname;
 	}
 
 	public String getFirstName() {
-		return firstName;
+		return firstname;
 	}
 	
 	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+		this.firstname = firstName;
 	}
 	
 	public String getSurName() {
-		return surName;
+		return surname;
 	}
 	
 	public void setSurName(String surName) {
-		this.surName = surName;
+		this.surname = surName;
 	}
 
 	public long getId() {

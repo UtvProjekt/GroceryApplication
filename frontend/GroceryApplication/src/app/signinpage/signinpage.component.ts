@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faCheckCircle, faEnvelope, faKey, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faEnvelope, faKey, faShoppingBasket, faSignature } from '@fortawesome/free-solid-svg-icons';
 import { NgForm } from '@angular/forms';
 import { LoginService } from 'src/Login.service';
 import { Login } from 'src/Login';
@@ -25,6 +25,7 @@ export class SigninpageComponent implements OnInit {
   faKey = faKey
   faCheckCircle = faCheckCircle
   faShoppingBasket = faShoppingBasket
+  faSignature = faSignature
 
 
   constructor(public loginService: LoginService) { }

@@ -15,7 +15,7 @@
             <form (ngSubmit)="checkIfPasswordsAreEqual(signin)" #signin="ngForm" *ngIf="loginorregister" id="signin">
                 <fieldset>
                     <legend>Email</legend>
-                    <input type="email" ngModel name="signInEmail" class="loginfields inputs" placeholder="John@gmail.com" required email>
+                    <input type="email" ngModel name="signInEmail" class="loginfields inputs" placeholder="JohnDoe@gmail.com" required email>
                     <fa-icon class="envelope" [icon]="faEnvelope"></fa-icon>
                 </fieldset>
                 <fieldset>
@@ -25,9 +25,21 @@
                 </fieldset>
             </form>
             <form (ngSubmit)="registerToApp(regForm)" #regForm="ngForm" id="register" *ngIf="!loginorregister">
+
+                <div class="names">
+                    <fieldset>
+                        <legend>Firstname</legend>
+                        <input type="text" ngModel name="firstname" id="firstname" class="inputs namefields" placeholder="John" required autocomplete="off">
+                    </fieldset>
+                    <fieldset>
+                        <legend>Lastname</legend>
+                        <input type="text" ngModel name="surname" id="surname" class="inputs namefields" placeholder="Doe" required autocomplete="off">
+                    </fieldset>
+                </div>
+
                 <fieldset>
                     <legend>Email</legend>
-                    <input type="email" ngModel name="email" id="email" class="registerfields inputs" placeholder="John@gmail.com" required email autocomplete="off" >
+                    <input type="email" ngModel name="email" id="email" class="registerfields inputs" placeholder="JohnDoe@gmail.com" required email autocomplete="off" >
                     <fa-icon class="envelope" [icon]="faEnvelope"></fa-icon>
                 </fieldset>
                 <fieldset>

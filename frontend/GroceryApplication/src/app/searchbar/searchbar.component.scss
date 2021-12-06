@@ -35,7 +35,7 @@ input{
     font-weight: var(--thickfont);
     border: 0.1em solid var(--primary-color-brighter);
     transition: all 200ms;
-    color: #fff;
+    color: var(--primary-text-color);
     &:hover{
         color: #000;
         background-color: var(--yellow);
