@@ -99,7 +99,7 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 	@Override
 	public void addUser(Login credentials) {
 		tx.begin();
-		Login persistUser = new Login(credentials.getEmail(), credentials.getPassword());
+		Login persistUser = new Login(credentials.getEmail(), credentials.getPassword(), credentials.getFirstName(), credentials.getSurName());
 		em.persist(persistUser);
 		tx.commit();
 	}
