@@ -17,6 +17,10 @@ export class LoginService {
         return this.httpClient.post<Login>('http://localhost:25000/GroceryApplication/page/signin/adduser', login)
     }
 
+    public getPasswordByEmail(email: string): Observable<string>{
+        return this.httpClient.get<string>(`http://localhost:25000/GroceryApplication/page/signin/checkpassword/${email}`)
+    }
+
     /* UPDATE AND DELETE
     public updateData(error: ErrorMessage): Observable<ErrorMessage> {
         return this.httpClient.put<ErrorMessage>('http://localhost:25000/ErrorApplication/api/error/updateerror', error)
