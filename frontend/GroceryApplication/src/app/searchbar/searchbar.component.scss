@@ -1,5 +1,5 @@
 .container{
-    width: 40vw;
+    min-width: 40vw;
     height: 30vh;
     display: flex;
     //flex-direction: column;
@@ -10,7 +10,7 @@
 
 fieldset{
     position: relative;
-    width: 32vw;
+    width: 28vw;
     min-width: 500px;
     height: fit-content;
     border: none;
@@ -18,12 +18,13 @@ fieldset{
 
 input{
     width: 100%;
-    height: 5vh;
+    height: 4.5vh;
     padding: 0 .5em;
     outline: none; 
-    border: none;
+    border: 0.15em solid var(--primary-color);
     font-size: 1.2em;
     border-radius: 0.1em;
+    box-sizing: content-box;
 }
 
 .searchbtn{
