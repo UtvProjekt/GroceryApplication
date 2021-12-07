@@ -4,7 +4,6 @@ import { NgForm } from '@angular/forms';
 import { LoginService } from 'src/Login.service';
 import { Login } from 'src/Login';
 import { Observable } from 'rxjs';
-import { Md5 } from 'ts-md5';
 import { sha256 } from 'js-sha256';
 
 
@@ -42,7 +41,6 @@ export class SigninpageComponent implements OnInit {
     try {
       if (this.passwordIsNotEqual(regForm)) {
         if (!this.checkEmail(regForm.value.email)) {
-          console.log("created user")
           this.addUser(regForm)
         }
         else{
