@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faCheckCircle, faEnvelope, faKey, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faEnvelope, faKey, faShoppingBasket, faSignature } from '@fortawesome/free-solid-svg-icons';
 import { NgForm } from '@angular/forms';
 import { LoginService } from 'src/Login.service';
 import { Login } from 'src/Login';
@@ -17,6 +17,8 @@ export class SigninpageComponent implements OnInit {
   loginorregister: boolean = true
   public users: Login[] = []
   public userToSend!: Login
+  public checkIfSignedIn: number = 0;
+  public responseValue: string = ""
 
 
   //FA ICONS
@@ -24,6 +26,8 @@ export class SigninpageComponent implements OnInit {
   faKey = faKey
   faCheckCircle = faCheckCircle
   faShoppingBasket = faShoppingBasket
+  faSignature = faSignature
+
 
   constructor(public loginService: LoginService) { }
 
@@ -35,7 +39,24 @@ export class SigninpageComponent implements OnInit {
     // IF TRUE SIGN IN
   }
 
-  
+  checkIfPasswordsAreEqual(signIn: NgForm){
+   this.loginService.getPasswordByEmail(signIn.value.signInEmail).subscribe(
+    (response: string) => {
+      this.responseValue = response
+      //BUGG, SÄTTER SIG INTE LIKA MED STRINGEN FRÅN DATABASEN
+      console.log(this.responseValue)
+    })
+    //ändra så den kollar roll också
+    if(sha256(signIn.value.signInPassword) === this.responseValue){
+      this.checkIfSignedIn = 1
+      //document.cookie = Number(this.checkIfSignedIn)
+      console.log("Status: " + this.checkIfSignedIn)
+    }else{
+      console.log("Fel inloggning, försök igen.")
+      console.log(this.responseValue)
+    }
+
+  }
 
   registerToApp(regForm: NgForm): void {
     try {
@@ -71,6 +92,7 @@ export class SigninpageComponent implements OnInit {
 
   addUser(form: NgForm): void {
     delete form.value.conpassword
+    
     form.value.password = sha256(form.value.password)
     
     this.loginService.createUser(form.value).subscribe(
