@@ -18,7 +18,7 @@ export class LoginService {
     }
 
     public getPasswordByEmail(email: string): Observable<string>{
-        return this.httpClient.get<string>(`http://localhost:25000/GroceryApplication/page/signin/checkpassword/${email}`)
+        return this.httpClient.get<string>('http://localhost:25000/GroceryApplication/page/signin/checkpassword/' + email)
     }
 
     /* UPDATE AND DELETE

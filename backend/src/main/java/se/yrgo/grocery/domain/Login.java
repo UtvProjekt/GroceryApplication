@@ -43,19 +43,19 @@ public class Login implements java.io.Serializable {
 		this.surname = surname;
 	}
 
-	public String getFirstName() {
+	public String getFirstname() {
 		return firstname;
 	}
 	
-	public void setFirstName(String firstName) {
+	public void setFirstname(String firstName) {
 		this.firstname = firstName;
 	}
 	
-	public String getSurName() {
+	public String getSurname() {
 		return surname;
 	}
 	
-	public void setSurName(String surName) {
+	public void setSurname(String surName) {
 		this.surname = surName;
 	}
 

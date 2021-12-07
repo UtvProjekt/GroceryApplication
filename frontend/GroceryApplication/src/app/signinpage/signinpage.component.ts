@@ -18,6 +18,7 @@ export class SigninpageComponent implements OnInit {
   public users: Login[] = []
   public userToSend!: Login
   public checkIfSignedIn: number = 0;
+  public responseValue: string = ""
 
 
   //FA ICONS
@@ -39,21 +40,20 @@ export class SigninpageComponent implements OnInit {
   }
 
   checkIfPasswordsAreEqual(signIn: NgForm){
-
-  let responseValue = ""
    this.loginService.getPasswordByEmail(signIn.value.signInEmail).subscribe(
     (response: string) => {
-      responseValue = response
-    }
-
-  )
+      this.responseValue = response
+      //BUGG, SÄTTER SIG INTE LIKA MED STRINGEN FRÅN DATABASEN
+      console.log(this.responseValue)
+    })
     //ändra så den kollar roll också
-    if(sha256(signIn.value.signInPassword) === responseValue){
+    if(sha256(signIn.value.signInPassword) === this.responseValue){
       this.checkIfSignedIn = 1
       //document.cookie = Number(this.checkIfSignedIn)
       console.log("Status: " + this.checkIfSignedIn)
     }else{
       console.log("Fel inloggning, försök igen.")
+      console.log(this.responseValue)
     }
 
   }
@@ -93,6 +93,7 @@ export class SigninpageComponent implements OnInit {
 
   addUser(form: NgForm): void {
     delete form.value.conpassword
+    
     form.value.password = sha256(form.value.password)
     
     this.loginService.createUser(form.value).subscribe(

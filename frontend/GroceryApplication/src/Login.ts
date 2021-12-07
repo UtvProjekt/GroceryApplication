@@ -1,7 +1,7 @@
 export interface Login{
     id: number
     email: string
-    password: string
     firstname: string
+    password: string
     surname: string
 }

@@ -99,7 +99,7 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 	@Override
 	public void addUser(Login credentials) {
 		tx.begin();
-		Login persistUser = new Login(credentials.getEmail(), credentials.getPassword(), credentials.getFirstName(), credentials.getSurName());
+		Login persistUser = new Login(credentials.getEmail(), credentials.getPassword(), credentials.getFirstname(), credentials.getSurname());
 		em.persist(persistUser);
 		tx.commit();
 	}
@@ -121,7 +121,7 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 	@Override
 	public String getPasswordByEmail(String email) {
 		Query q = em.createQuery("select password.password from Login password where password.email = :email");
-
+		q.setParameter("email", email);
 		return (String) q.getSingleResult();
 	}
 
