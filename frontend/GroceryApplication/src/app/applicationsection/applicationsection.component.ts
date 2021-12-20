@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { faAt, faCog, faLongArrowAltDown, faPen, faPlus, faSignInAlt, faUser, faSearch, faUserCircle, faArrowAltCircleUp, faKey } from '@fortawesome/free-solid-svg-icons';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-applicationsection',
@@ -34,7 +35,7 @@ export class ApplicationsectionComponent implements OnInit {
     return head + tail
   }
 
-  constructor(public globalvar: AppComponent) { }
+  constructor(public globalvar: AppComponent, public headervar: HeaderComponent) { }
 
   ngOnInit(): void {
     this.bindBottomArrow()
@@ -61,6 +62,8 @@ export class ApplicationsectionComponent implements OnInit {
   }
 
   toggleSettingsMenu() {
+      this.headervar.setShowCartFalse()
+      this.headervar.setShowMenuFalse()
     if (!this.settingsIsOpen) {
       this.openSettingsMenu()
     }
