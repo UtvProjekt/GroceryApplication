@@ -68,6 +68,9 @@ section {
         color: var(--primary-text-color);
     }
 }
+#settings{
+    z-index: 300;
+}
 .settings {
     display: flex;
     flex-direction: column;
