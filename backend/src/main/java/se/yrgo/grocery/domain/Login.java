@@ -26,10 +26,10 @@ public class Login implements java.io.Serializable {
 	@Size(min = 3)
 	private String password;
 	
-	@Size(min = 5)
+	@Size(min = 0)
 	private String firstname;
 	
-	@Size(min = 5)
+	@Size(min = 0)
 	private String surname;
 
 	public Login() {

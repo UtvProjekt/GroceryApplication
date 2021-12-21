@@ -10,15 +10,15 @@ export class LoginService {
     constructor(private httpClient: HttpClient) { }
 
     public getData(): Observable<Login[]> {
-        return this.httpClient.get<Login[]>('http://localhost:25000/GroceryApplication/page/signin/getallusers')
+        return this.httpClient.get<Login[]>('http://localhost:25000/grocery/page/signin/getallusers')
     }
 
     public createUser(login: Login): Observable<Login>{
-        return this.httpClient.post<Login>('http://localhost:25000/GroceryApplication/page/signin/adduser', login)
+        return this.httpClient.post<Login>('http://localhost:25000/grocery/page/signin/adduser', login)
     }
 
     public getPasswordByEmail(email: string): Observable<string>{
-        return this.httpClient.get<string>('http://localhost:25000/GroceryApplication/page/signin/checkpassword/' + email)
+        return this.httpClient.get<string>(`http://localhost:25000/GroceryApplication/page/signin/checkpassword/${email}`)
     }
 
     /* UPDATE AND DELETE
