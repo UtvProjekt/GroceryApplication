@@ -1,8 +1,8 @@
 package se.yrgo.grocery.dataaccess;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,6 +20,7 @@ import se.yrgo.grocery.domain.Login;
  * Class that handles queries and communication with the database.
  */
 @Default
+@Stateless
 public class DataAccessProductionVersion implements DataAccess, LoginDataAccess {
 
 	@PersistenceContext
