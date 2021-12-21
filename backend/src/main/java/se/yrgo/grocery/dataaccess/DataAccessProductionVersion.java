@@ -44,11 +44,24 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 	 * @throws JsonProcessingException
 	 */
 	public void addGrocery(Grocery gro) {
+		/*
 		tx.begin();
 		Grocery persistError = new Grocery(gro.getName(), gro.getPrice(), gro.getDescription(), gro.getExpiredDate(),
 				gro.getStockOf(), gro.getBrand(), gro.getImageUrl());
 		em.persist(persistError);
 		tx.commit();
+		 */
+		
+		try {
+			tx.begin(); 
+			Grocery persistError = new Grocery(gro.getName(), gro.getPrice(), gro.getDescription(), gro.getExpiredDate(),
+					gro.getStockOf(), gro.getBrand(), gro.getImageUrl());
+			em.persist(persistError);	
+			tx.commit();
+		}
+		catch(Exception ex) {
+			tx.rollback();
+		}
 
 	}
 
@@ -57,20 +70,31 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 	 */
 	@Override
 	public void deleteGrocery(int id) {
-		tx.begin();
+		/*tx.begin();
+		
 		Query q = em.createQuery("delete from Grocery where Id = :id");
 		q.setParameter("id", id);
 		q.executeUpdate();
+		*/
+		try {
+			tx.begin(); 
+			em.remove(findGroceryById(id));			
+			tx.commit();
+		}
+		catch(Exception ex) {
+			tx.rollback();
+		}
 
-		if (q.executeUpdate() != 0) {
+		/*if (q.executeUpdate() != 0) {
 			tx.commit();
 		} else {
 			tx.rollback();
-		}
+		}*/
 
 	}
 
 	public void updateGrocery(Grocery gro) {
+		/*
 		tx.begin();
 
 		Grocery grocery = findGroceryById(gro.getId());
@@ -83,6 +107,16 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 		grocery.setImageUrl(gro.getImageUrl());
 
 		tx.commit();
+		 */
+		try {
+			tx.begin(); 
+			em.merge(gro);			
+			tx.commit();
+		}
+		catch(Exception ex) {
+			tx.rollback();
+		}
+		
 
 	}
 
@@ -99,10 +133,22 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 
 	@Override
 	public void addUser(Login credentials) {
+		/*
 		tx.begin();
 		Login persistUser = new Login(credentials.getEmail(), credentials.getPassword(), credentials.getFirstname(), credentials.getSurname());
 		em.persist(persistUser);
 		tx.commit();
+		 */
+		
+		try {
+			tx.begin(); 
+			Login persistUser = new Login(credentials.getEmail(), credentials.getPassword(), credentials.getFirstname(), credentials.getSurname());
+			em.persist(persistUser);
+			tx.commit();
+		}
+		catch(Exception ex) {
+			tx.rollback();
+		}
 	}
 
 	@Override

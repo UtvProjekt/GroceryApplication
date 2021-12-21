@@ -7,15 +7,21 @@ footer{
     display: flex;
     :nth-child(n){
         flex-direction: column;
-        justify-content: space-evenly;
+        justify-content: space-between;
 
     }
     section{
-        padding: 0 20px;
+        padding: 10px 20px;
         display: flex;
         width: 25vw;
         height: 100%;
         color: var(--primary-text-color);
+        h4{
+            color: var(--primary-color-brighter);
+        }
+    }
+    .socials{
+        justify-content: flex-end;
     }
     .socials{
         justify-content: end;
