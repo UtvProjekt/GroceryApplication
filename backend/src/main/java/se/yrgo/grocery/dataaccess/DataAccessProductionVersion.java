@@ -15,6 +15,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import se.yrgo.grocery.domain.Grocery;
 import se.yrgo.grocery.domain.Login;
+import se.yrgo.grocery.exceptions.GroceryNotFoundException;
 
 /**
  * Class that handles queries and communication with the database.
@@ -59,7 +60,7 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 			em.persist(persistError);	
 			tx.commit();
 		}
-		catch(Exception ex) {
+		catch(GroceryNotFoundException ex) {
 			tx.rollback();
 		}
 
