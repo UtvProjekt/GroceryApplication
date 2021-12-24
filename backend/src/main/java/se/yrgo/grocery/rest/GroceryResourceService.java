@@ -17,9 +17,16 @@ import se.yrgo.grocery.service.GroceryManagementServiceLocal;
 
 @Path("/grocery")
 public class GroceryResourceService {
-
+	
+	private static final GroceryResourceService INSTANCE = new GroceryResourceService();
 	private GroceryManagementServiceLocal service = new GroceryManagementImplementation();
 
+	private GroceryResourceService() {}
+	
+	public static GroceryResourceService getInstance() {
+		return INSTANCE;
+	}
+	
 	@GET
 	@Path("/getallgroceries")
 	@Produces("application/json")

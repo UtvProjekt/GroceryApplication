@@ -17,9 +17,17 @@ import se.yrgo.grocery.service.LoginManagementService;
 
 @Path("/signin")
 public class LoginResourceService {
+	
+	private static final LoginResourceService INSTANCE = new LoginResourceService();
 
 	private LoginManagementService service = new LoginManagementImplementation();
 
+	private LoginResourceService() {}
+	
+	public static LoginResourceService getInstance() {
+		return INSTANCE;
+	}
+	
 	@GET
 	@Path("/getallusers")
 	@Produces("application/json")

@@ -25,8 +25,8 @@ public class ServiceApplication extends Application{
         corsfilter.getAllowedOrigins().add("*");
         corsfilter.setAllowedMethods("OPTIONS, GET, POST, PUT, DELETE, PATCH");
         singletons.add(corsfilter);
-        singletons.add(new GroceryResourceService());
-        singletons.add(new LoginResourceService());
+        singletons.add(GroceryResourceService.getInstance());
+        singletons.add(LoginResourceService.getInstance());
     }
 
     @Override
