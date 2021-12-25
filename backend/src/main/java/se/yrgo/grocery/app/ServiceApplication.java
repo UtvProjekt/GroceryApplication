@@ -18,6 +18,7 @@ public class ServiceApplication extends Application{
 	 * 
 	 * Cors - Access to api
 	 */
+	
 	private Set<Object> singletons = new HashSet<>();
 
     public ServiceApplication() {
@@ -34,5 +35,4 @@ public class ServiceApplication extends Application{
         return singletons;
     }
 
-    
 }
