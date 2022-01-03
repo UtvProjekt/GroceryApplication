@@ -142,7 +142,7 @@ section {
             padding: 0 0.5em;
         }
         &:hover {
-            color: var(--darkmode-darker);
+            color: var(--darktowhite);
         }
     }
 }
@@ -207,7 +207,7 @@ section {
     }
 }
 .buttonstoclick {
-    height: 40%;
+    min-height: 40%;
     display: flex;
     justify-content: space-around;
     align-items: center;

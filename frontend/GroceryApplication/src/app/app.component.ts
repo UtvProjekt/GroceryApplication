@@ -8,12 +8,12 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'GroceryApplication';
   darkOrLight: boolean = true;
- 
+  
   lightMode(): void{
     document.documentElement.style.setProperty('--darkmode', '#eee')
     document.documentElement.style.setProperty('--primary-text-color', '#262626')
     document.documentElement.style.setProperty('--primary-color-brighter', '#570057')
-    document.documentElement.style.setProperty('--darkmode-darker', '#7f7f7f')
+    document.documentElement.style.setProperty('--darkmode-darker', '#7f7f7f8f')
     document.documentElement.style.setProperty('--box-shadow-color', '#d1d1d1')
     document.documentElement.style.setProperty('--darktowhite', '#f4f4f4')
     document.documentElement.style.setProperty('--darktopurple', '#860086')
