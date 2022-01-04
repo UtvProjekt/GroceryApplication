@@ -251,8 +251,9 @@ section {
         }
         &:hover {
             transform: translate(0.2em, 0.3em);
-            box-shadow: 0 0 0 0 var(--primary-color); 
+            box-shadow: 0 0 0 0 var(--box-shadow-color);
             text-shadow: 0 0 0.5em #860086;
+
             * {
                 color: var(--primary-color-brighter);
             }

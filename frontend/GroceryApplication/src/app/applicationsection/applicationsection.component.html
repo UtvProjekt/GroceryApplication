@@ -48,21 +48,13 @@
     <section class="settings" id="settings">
         <h2 style="color: var(--primary-color-brighter)">Settings</h2>
         <ul class="settingslist">
-            <div class="fancybackground pointer" routerLink="/signin">
-                <li class="eachsetting">
-                    <fa-icon [icon]="faSignInAlt"></fa-icon>Sign In
-                </li>
-            </div>
+            
             <div class="fancybackground pointer">
                 <li class="eachsetting" (click)="darkLightMode()">
                     <fa-icon [icon]="faPen"></fa-icon>Toggle Appearance
                 </li>
             </div>
-            <div class="fancybackground pointer">
-                <li class="eachsetting" routerLink="myaccount">
-                    <fa-icon [icon]="faUser"></fa-icon>My Account
-                </li>
-            </div>
+            
         </ul>
     </section>
 </section>

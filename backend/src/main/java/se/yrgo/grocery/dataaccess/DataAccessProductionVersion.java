@@ -160,6 +160,7 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Login> findAllUsers() {
 		Query q = em.createQuery("select email from Login email");

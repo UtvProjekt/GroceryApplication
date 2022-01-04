@@ -5,22 +5,21 @@
             <img src="../../assets/grocerybag.jpg" alt="grocerybag">
 
             <div class="changeinputscontainer">
-                <button class="btn changeinputs pointer" (click)="changeTitle()"><span [hidden]="loginorregister">Sign
-                        in instead</span>
+                <button class="btn changeinputs pointer" (click)="changeTitle()"><span [hidden]="loginorregister">Sign in instead</span>
                     <span [hidden]="!loginorregister">Create an account</span></button>
             </div>
         </div> 
         <div class="formcontainer">
             <h1 id="title">Sign in here</h1>
-            <form (ngSubmit)="checkIfPasswordsAreEqual(signin)" #signin="ngForm" *ngIf="loginorregister" id="signin">
+            <form (ngSubmit)="checkIfPasswordsAreEqual()" *ngIf="loginorregister" id="signin" [formGroup]="signInForm">
                 <fieldset>
                     <legend>Email</legend>
-                    <input type="email" ngModel name="signInEmail" class="inputs" placeholder="JohnDoe@gmail.com" required email>
+                    <input type="email" name="signInEmail" id="signInEmail" class="inputs" placeholder="JohnDoe@gmail.com" formControlName="signInEmail">
                     <fa-icon class="envelope" [icon]="faEnvelope"></fa-icon>
                 </fieldset>
                 <fieldset>
                     <legend>Password</legend>
-                    <input type="password" ngModel name="signInPassword" class="inputs" placeholder="mySecretPassword" required>
+                    <input type="password" name="signInPassword" id="signInPassword" class="inputs" placeholder="mySecretPassword" formControlName="signInPassword">
                     <fa-icon class="key" [icon]="faKey"></fa-icon>
                 </fieldset>
                 <div>
@@ -28,38 +27,38 @@
                     <input type="checkbox" name="rememberme" id="rememberme">
                 </div>
             </form>
-            <form (ngSubmit)="registerToApp(regForm)" #regForm="ngForm" id="register" *ngIf="!loginorregister">
-
+            <form (ngSubmit)="registerToApp()" id="register" *ngIf="!loginorregister" [formGroup]="registerForm">
+                
                 <div class="names">
                     <fieldset>
                         <legend>Firstname</legend>
-                        <input type="text" ngModel name="firstname" id="firstname" class="inputs namefields" placeholder="John" required autocomplete="off">
+                        <input type="text" name="firstname" id="firstname" class="inputs namefields" placeholder="John" autocomplete="off" formControlName="firstname">
                     </fieldset>
                     <fieldset>
                         <legend>Lastname</legend>
-                        <input type="text" ngModel name="surname" id="surname" class="inputs namefields" placeholder="Doe" required autocomplete="off">
+                        <input type="text" name="surname" id="surname" class="inputs namefields" placeholder="Doe" autocomplete="off" formControlName="surname">
                     </fieldset>
                 </div>
-
+                
                 <fieldset>
                     <legend>Email</legend>
-                    <input type="email" ngModel name="email" id="email" class="inputs" placeholder="JohnDoe@gmail.com" required email autocomplete="off" >
+                    <input type="email" name="email" id="email" class="inputs" placeholder="JohnDoe@gmail.com" autocomplete="off" formControlName="email">
                     <fa-icon class="envelope" [icon]="faEnvelope"></fa-icon>
                 </fieldset>
                 <fieldset>
                     <legend>Password</legend>
-                    <input type="password" ngModel name="password" id="password" class="inputs" placeholder="mySecretPassword" required>
+                    <input type="password" name="password" id="password" class="inputs" placeholder="mySecretPassword" formControlName="password">
                     <fa-icon class="key" [icon]="faKey"></fa-icon>
                 </fieldset>
                 <fieldset>
                     <legend>Confirm Password</legend>
-                    <input type="password" ngModel name="conpassword" id="conpassword" class="inputs" placeholder="mySecretPassword" required>
+                    <input type="password" name="conpassword" id="conpassword" class="inputs" placeholder="mySecretPassword" formControlName="conpassword">
                     <fa-icon class="circle" [icon]="faCheckCircle"></fa-icon>
                 </fieldset>
             </form>
             <div class="buttoncontainer">
-                <button class="btn loginbtn pointer" form="signin" type="submit" *ngIf="loginorregister">Sign in</button>
-                <button class="btn loginbtn pointer regbtn" form="register" type="submit" *ngIf="!loginorregister">Register</button>
+                <button class="btn loginbtn pointer" form="signin" type="submit" *ngIf="loginorregister" [disabled]="signInForm.invalid">Sign in</button>
+                <button class="btn loginbtn pointer regbtn" form="register" type="submit" *ngIf="!loginorregister" [disabled]="registerForm.invalid">Register</button>
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faCheckCircle, faEnvelope, faKey, faShoppingBasket, faSignature } from '@fortawesome/free-solid-svg-icons';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { LoginService } from 'src/Login.service';
 import { Login } from 'src/Login';
 import { Observable } from 'rxjs';
@@ -13,12 +13,27 @@ import { sha256 } from 'js-sha256';
   styleUrls: ['./signinpage.component.scss']
 })
 export class SigninpageComponent implements OnInit {
+  //FORM CONTROLS
+    signInForm = this.builder.group({
+      signInEmail: ['', Validators.email],
+      signInPassword: ['', Validators.required],
+    })
+
+    registerForm = this.builder.group({
+      firstname: ['', Validators.required],
+      surname: ['', Validators.required],
+      email: ['', Validators.email],
+      password: ['', Validators.required],
+      conpassword: ['', Validators.required]
+    })
+
   //GLOBAL
   loginorregister: boolean = true
   public users: Login[] = []
   public userToSend!: Login
   public checkIfSignedIn: number = 0;
   public responseValue: string = ""
+  
 
 
   //FA ICONS
@@ -29,25 +44,25 @@ export class SigninpageComponent implements OnInit {
   faSignature = faSignature
 
 
-  constructor(public loginService: LoginService) { }
+  constructor(public loginService: LoginService, private builder: FormBuilder) { }
 
   ngOnInit(): void {
-    
+      
   }
 
   signInToApp(form: NgForm) {
     // IF TRUE SIGN IN
   }
 
-  checkIfPasswordsAreEqual(signIn: NgForm){
-   this.loginService.getPasswordByEmail(signIn.value.signInEmail).subscribe(
+  checkIfPasswordsAreEqual(){
+   this.loginService.getPasswordByEmail(this.signInForm.value.signInEmail).subscribe(
     (response: string) => {
       this.responseValue = response
       //BUGG, SÄTTER SIG INTE LIKA MED STRINGEN FRÅN DATABASEN
       console.log(this.responseValue)
     })
     //ändra så den kollar roll också
-    if(sha256(signIn.value.signInPassword) === this.responseValue){
+    if(sha256(this.signInForm.value.signInPassword) === this.responseValue){
       this.checkIfSignedIn = 1
       //document.cookie = Number(this.checkIfSignedIn)
       console.log("Status: " + this.checkIfSignedIn)
@@ -58,11 +73,11 @@ export class SigninpageComponent implements OnInit {
 
   }
 
-  registerToApp(regForm: NgForm): void {
+  registerToApp(): void {
     try {
-      if (this.passwordIsNotEqual(regForm)) {
-        if (!this.checkEmail(regForm.value.email)) {
-          this.addUser(regForm)
+      if (this.passwordIsNotEqual()) {
+        if (!this.checkEmail(this.registerForm.value.email)) {
+          this.addUser()
         }
         else{
           alert("That email already exists")
@@ -90,20 +105,20 @@ export class SigninpageComponent implements OnInit {
     return false;
   }
 
-  addUser(form: NgForm): void {
-    delete form.value.conpassword
+  addUser(): void {
+    delete this.registerForm.value.conpassword
     
-    form.value.password = sha256(form.value.password)
+    this.registerForm.value.password = sha256(this.registerForm.value.password)
     
-    this.loginService.createUser(form.value).subscribe(
+    this.loginService.createUser(this.registerForm.value).subscribe(
       (response: Login) => {
         console.log(response)
       }
     )
   }
 
-  passwordIsNotEqual(form: NgForm) {
-    if (form.value.password !== form.value.conpassword) {
+  passwordIsNotEqual() {
+    if (this.registerForm.value.password !== this.registerForm.value.conpassword) {
       return false;
     }
     return true;

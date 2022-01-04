@@ -77,10 +77,6 @@ header {
     }
 
 .menucontainer{
-   
-    .menuwrapper{
-        
-        }
         h2{
             display: flex;
             justify-content: space-between;
@@ -101,8 +97,9 @@ header {
         font-size: 2em;
         padding-right: 1em;
         transition: color 300ms;
-        &:hover {
-            color: #b3b030;
+        
+        &:hover{
+            color: var(--yellow);
         }
     }
     .menu {

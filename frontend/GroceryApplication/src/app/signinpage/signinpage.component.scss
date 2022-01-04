@@ -16,7 +16,8 @@ main {
     align-items: center;
 }
 .container {
-    width: 70vw;
+    width: 80em;
+    min-width: 40em;
     height: 80vh;
     display: flex;
     justify-content: center;
@@ -25,7 +26,8 @@ main {
     border-radius: .5em;
 }
 .imagecontainer {
-    width: 30vw;
+    width: 35em;
+    min-width: 10em;
     height: 80vh;
     display: flex;
     flex-direction: column;
@@ -129,18 +131,19 @@ fieldset {
 }
 
 .loginbtn {
-    background-color: transparent;
-    color: #000;
-    width: 5vw;
+    min-width: 5em;
     height: 5vh;
     font-size: 1.1em;
     border-radius: 0.1em;
-    border: 0.15em solid var(--yellow);
     transition: all 200ms;
-    &:hover {
-        background-color: var(--primary-color);
-        color: white;
-        border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: white;
+    border: 2px solid var(--primary-color);
+    
+    &:disabled{      
+        background-color: transparent;
+        color: #000;
+        border: 2px solid var(--yellow);
     }
 }
 .regbtn{
@@ -152,7 +155,7 @@ fieldset {
     height: 4vh;
 }
 .changeinputs {
-    width: 12vw;
+    min-width: 12em;
     height: 4vh;
     font-size: 1.1em;
     padding: 0 1em;

@@ -1,6 +1,8 @@
 package se.yrgo.grocery.domain;
 
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,7 +10,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Grocery implements java.io.Serializable {
+public class Grocery implements Serializable {
 
 	private static final long serialVersionUID = 3090615371178706749L;
 	
