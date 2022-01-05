@@ -35,7 +35,7 @@ section {
         justify-content: center;
         align-items: center;
         margin-top: 3em;
-        background-color: var(--primary-color-brighter);
+        background-color: #860086;
         width: fit-content;
         height: fit-content;
         border-radius: 2em;
@@ -230,8 +230,8 @@ section {
         justify-content: center;
         align-items: center;
         background-color: var(--darkmode-darker);
-        min-width: 160px;
-        min-height: 160px;
+        min-width: 12em;
+        min-height: 12em;
         border-radius: 1em;
         box-shadow: 0.2em 0.2em 0em 0.1em var(--primary-color);
         transition: all 200ms;

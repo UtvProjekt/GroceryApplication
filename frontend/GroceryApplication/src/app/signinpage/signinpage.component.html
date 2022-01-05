@@ -11,7 +11,7 @@
         </div> 
         <div class="formcontainer">
             <h1 id="title">Sign in here</h1>
-            <form (ngSubmit)="checkIfPasswordsAreEqual()" *ngIf="loginorregister" id="signin" [formGroup]="signInForm">
+            <form (ngSubmit)="loginSystem()" *ngIf="loginorregister" id="signin" [formGroup]="signInForm">
                 <fieldset>
                     <legend>Email</legend>
                     <input type="email" name="signInEmail" id="signInEmail" class="inputs" placeholder="JohnDoe@gmail.com" formControlName="signInEmail">
@@ -26,6 +26,7 @@
                     <label for="rememberme">Remember me?</label>
                     <input type="checkbox" name="rememberme" id="rememberme">
                 </div>
+
             </form>
             <form (ngSubmit)="registerToApp()" id="register" *ngIf="!loginorregister" [formGroup]="registerForm">
                 
@@ -60,6 +61,7 @@
                 <button class="btn loginbtn pointer" form="signin" type="submit" *ngIf="loginorregister" [disabled]="signInForm.invalid">Sign in</button>
                 <button class="btn loginbtn pointer regbtn" form="register" type="submit" *ngIf="!loginorregister" [disabled]="registerForm.invalid">Register</button>
             </div>
+            <div class="successmessage" *ngIf="this.successmessage">Success. Redirecting..</div>
         </div>
     </div>
 </main>
