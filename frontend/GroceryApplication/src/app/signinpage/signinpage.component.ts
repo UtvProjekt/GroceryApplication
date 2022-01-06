@@ -1,14 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { faCheckCircle, faEnvelope, faKey, faShoppingBasket, faSignature } from '@fortawesome/free-solid-svg-icons';
-import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { LoginService } from 'src/Login.service';
 import { Login } from 'src/Login';
-import { Observable } from 'rxjs';
 import { sha256 } from 'js-sha256';
-import { Router } from '@angular/router';
-import { Variable } from '@angular/compiler/src/render3/r3_ast';
-import { myVariables } from 'src/Variables';
-
+import { MyaccountComponent } from '../myaccount/myaccount.component';
 
 @Component({
   selector: 'app-signinpage',
@@ -16,15 +12,17 @@ import { myVariables } from 'src/Variables';
   styleUrls: ['./signinpage.component.scss']
 })
 export class SigninpageComponent implements OnInit {
+
   //FORM CONTROLS
   signInForm = this.builder.group({
     signInEmail: ['', Validators.email],
     signInPassword: ['', Validators.required],
+    rememberMe: []
   })
 
   registerForm = this.builder.group({
     firstname: ['', Validators.required],
-    surname: ['', Validators.required],
+    lastname: ['', Validators.required],
     email: ['', Validators.email],
     password: ['', Validators.required],
     conpassword: ['', Validators.required]
@@ -35,11 +33,14 @@ export class SigninpageComponent implements OnInit {
   public users: Login[] = []
   public userToSend!: Login
   public checkIfSignedIn: number = 0;
-  private responseValue: string = ""
   public login: Login[] = []
   public successmessage: boolean = false
 
-
+  //Personal Info
+  public loggedIn: boolean = false
+  public email: string = ""
+  public firstname: string = ""
+  public lastname: string = ""
 
   //FA ICONS
   faEnvelope = faEnvelope
@@ -48,19 +49,25 @@ export class SigninpageComponent implements OnInit {
   faShoppingBasket = faShoppingBasket
   faSignature = faSignature
 
-
-  constructor(public loginService: LoginService, private builder: FormBuilder, private router: Router) { }
+  constructor(public loginService: LoginService, private builder: FormBuilder, private myacc: MyaccountComponent) { }
 
   ngOnInit(): void {
-    this.loginSystem()
+    this.checkIfUserIsSignedIn()
+  }
+
+  checkIfUserIsSignedIn(): void {
+    if (this.myacc.getCookieValue("isUserLoggedIn") === "true") {
+      this.loggedIn = true
+    }
   }
 
   signInToApp(): void {
     this.successmessage = true
-    myVariables.isLoggedIn === true
+    document.getElementById("returnmessage")!.innerText = "Success. Redirecting.."
+    document.getElementById("returnmessage")!.style.color = "green"
     setTimeout(() => {
+      this.loggedIn = true
       this.successmessage = false
-      this.router.navigate(["/myaccount"])
     }, 2000);
   }
 
@@ -70,33 +77,51 @@ export class SigninpageComponent implements OnInit {
     this.loginService.getData().subscribe(
       (response: Login[]) => {
         this.login = response
+        const d = new Date()
+        d.setTime(d.getTime() + 30 * 60000)
+        let expiresIn = "expires=" + d.toLocaleString()
         for (const iterator of this.login) {
           if (iterator.email === emailFromForm) {
+            if (this.signInForm.value.rememberMe) {
+              document.cookie = "email=" + iterator.email
+              document.cookie = "firstname=" + iterator.firstname
+              document.cookie = "lastname=" + iterator.lastname
+              document.cookie = "isUserLoggedIn=true"
+              this.email = iterator.email
+              this.firstname = iterator.firstname
+              this.lastname = iterator.lastname
+            }
+            else {
+              document.cookie = "email=" + iterator.email + ";" + expiresIn + "Thu, 18 Dec 2013 12:00:00 UTC;path=/"
+              document.cookie = "firstname=" + iterator.firstname + ";" + expiresIn + "Thu, 18 Dec 2013 12:00:00 UTC;path=/"
+              document.cookie = "lastname=" + iterator.lastname + ";" + expiresIn + "Thu, 18 Dec 2013 12:00:00 UTC;path=/"
+              this.email = iterator.email
+              this.firstname = iterator.firstname
+              this.lastname = iterator.lastname
+            }
             if (iterator.password === sha256(passwordFromForm)) {
               this.signInToApp()
             }
+            else {
+              document.getElementById("returnmessage")!.innerText = "Wrong password"
+              document.getElementById("returnmessage")!.style.color = "red"
+              this.successmessage = true
+              setTimeout(() => {
+                this.successmessage = false
+              }, 3000);
+            }
+          }
+          if (!this.login.find(x => x.email === emailFromForm)) {
+            this.successmessage = true
+            document.getElementById("returnmessage")!.innerText = "Could not find that email."
+            document.getElementById("returnmessage")!.style.color = "red"
+            setTimeout(() => {
+              this.successmessage = false
+            }, 3000);
           }
         }
       }
     )
-  }
-
-  checkIfPasswordsAreEqual(): void {
-    this.loginService.getPasswordByEmail(this.signInForm.value.signInEmail).subscribe(
-      (response: string) => {
-        this.responseValue = response
-        //BUGG, SÄTTER SIG INTE LIKA MED STRINGEN FRÅN DATABASEN
-      })
-    //ändra så den kollar roll också
-    if (sha256(this.signInForm.value.signInPassword) === this.responseValue) {
-      this.checkIfSignedIn = 1
-      //document.cookie = Number(this.checkIfSignedIn)
-      console.log("Status: " + this.checkIfSignedIn)
-    } else {
-      console.log("Fel inloggning, försök igen.")
-      console.log(this.responseValue)
-    }
-
   }
 
   registerToApp(): void {

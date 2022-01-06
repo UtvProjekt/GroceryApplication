@@ -32,17 +32,17 @@ public class Login implements Serializable {
 	private String firstname;
 	
 	@Size(min = 0)
-	private String surname;
+	private String lastname;
 
 	public Login() {
 
 	}
 
-	public Login(String email, String password, String firstname, String surname) {
+	public Login(String email, String password, String firstname, String lastname) {
 		this.email = email;
 		this.password = password;
 		this.firstname = firstname; 
-		this.surname = surname;
+		this.lastname = lastname;
 	}
 
 	public String getFirstname() {
@@ -53,12 +53,12 @@ public class Login implements Serializable {
 		this.firstname = firstName;
 	}
 	
-	public String getSurname() {
-		return surname;
+	public String getLastname() {
+		return lastname;
 	}
 	
-	public void setSurname(String surName) {
-		this.surname = surName;
+	public void setLastname(String surName) {
+		this.lastname = surName;
 	}
 
 	public long getId() {

@@ -1,67 +1,78 @@
 <h1 class="titlelogin"><a routerLink="">Oasis</a></h1>
-<main class="movingbackground">
+<main class="movingbackground" *ngIf="!this.loggedIn">
     <div class="container">
         <div class="imagecontainer">
             <img src="../../assets/grocerybag.jpg" alt="grocerybag">
 
             <div class="changeinputscontainer">
-                <button class="btn changeinputs pointer" (click)="changeTitle()"><span [hidden]="loginorregister">Sign in instead</span>
+                <button class="btn changeinputs pointer" (click)="changeTitle()"><span [hidden]="loginorregister">Sign
+                        in instead</span>
                     <span [hidden]="!loginorregister">Create an account</span></button>
             </div>
-        </div> 
+        </div>
         <div class="formcontainer">
-            <h1 id="title">Sign in here</h1>
-            <form (ngSubmit)="loginSystem()" *ngIf="loginorregister" id="signin" [formGroup]="signInForm">
-                <fieldset>
-                    <legend>Email</legend>
-                    <input type="email" name="signInEmail" id="signInEmail" class="inputs" placeholder="JohnDoe@gmail.com" formControlName="signInEmail">
-                    <fa-icon class="envelope" [icon]="faEnvelope"></fa-icon>
-                </fieldset>
-                <fieldset>
-                    <legend>Password</legend>
-                    <input type="password" name="signInPassword" id="signInPassword" class="inputs" placeholder="mySecretPassword" formControlName="signInPassword">
-                    <fa-icon class="key" [icon]="faKey"></fa-icon>
-                </fieldset>
-                <div>
-                    <label for="rememberme">Remember me?</label>
-                    <input type="checkbox" name="rememberme" id="rememberme">
-                </div>
+            <div class="formwrapper">
+                <h1 id="title">Sign in here</h1>
+                <form (ngSubmit)="loginSystem()" *ngIf="loginorregister" id="signin" [formGroup]="signInForm">
+                    <fieldset>
+                        <legend>Email</legend>
+                        <input type="email" name="signInEmail" id="signInEmail" class="inputs"
+                            placeholder="JohnDoe@gmail.com" formControlName="signInEmail">
+                        <fa-icon class="envelope" [icon]="faEnvelope"></fa-icon>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Password</legend>
+                        <input type="password" name="signInPassword" id="signInPassword" class="inputs"
+                            placeholder="mySecretPassword" formControlName="signInPassword">
+                        <fa-icon class="key" [icon]="faKey"></fa-icon>
+                    </fieldset>
+                    <div>
+                        <label for="rememberme">Remember me?</label>
+                        <input type="checkbox" name="rememberme" id="rememberme" formControlName="rememberMe">
+                    </div>
+                </form>
+                <form (ngSubmit)="registerToApp()" id="register" *ngIf="!loginorregister" [formGroup]="registerForm">
+                    <div class="names">
+                        <fieldset>
+                            <legend>Firstname</legend>
+                            <input type="text" name="firstname" id="firstname" class="inputs namefields"
+                                placeholder="John" autocomplete="off" formControlName="firstname">
+                        </fieldset>
+                        <fieldset>
+                            <legend>Lastname</legend>
+                            <input type="text" name="lastname" id="lastname" class="inputs namefields" placeholder="Doe"
+                                autocomplete="off" formControlName="lastname">
+                        </fieldset>
+                    </div>
 
-            </form>
-            <form (ngSubmit)="registerToApp()" id="register" *ngIf="!loginorregister" [formGroup]="registerForm">
-                
-                <div class="names">
                     <fieldset>
-                        <legend>Firstname</legend>
-                        <input type="text" name="firstname" id="firstname" class="inputs namefields" placeholder="John" autocomplete="off" formControlName="firstname">
+                        <legend>Email</legend>
+                        <input type="email" name="email" id="email" class="inputs" placeholder="JohnDoe@gmail.com"
+                            autocomplete="off" formControlName="email">
+                        <fa-icon class="envelope" [icon]="faEnvelope"></fa-icon>
                     </fieldset>
                     <fieldset>
-                        <legend>Lastname</legend>
-                        <input type="text" name="surname" id="surname" class="inputs namefields" placeholder="Doe" autocomplete="off" formControlName="surname">
+                        <legend>Password</legend>
+                        <input type="password" name="password" id="password" class="inputs"
+                            placeholder="mySecretPassword" formControlName="password">
+                        <fa-icon class="key" [icon]="faKey"></fa-icon>
                     </fieldset>
+                    <fieldset>
+                        <legend>Confirm Password</legend>
+                        <input type="password" name="conpassword" id="conpassword" class="inputs"
+                            placeholder="mySecretPassword" formControlName="conpassword">
+                        <fa-icon class="circle" [icon]="faCheckCircle"></fa-icon>
+                    </fieldset>
+                </form>
+                <div class="buttoncontainer">
+                    <button class="btn loginbtn pointer" form="signin" type="submit" *ngIf="loginorregister"
+                        [disabled]="signInForm.invalid">Sign in</button>
+                    <button class="btn loginbtn pointer regbtn" form="register" type="submit" *ngIf="!loginorregister"
+                        [disabled]="registerForm.invalid">Register</button>
                 </div>
-                
-                <fieldset>
-                    <legend>Email</legend>
-                    <input type="email" name="email" id="email" class="inputs" placeholder="JohnDoe@gmail.com" autocomplete="off" formControlName="email">
-                    <fa-icon class="envelope" [icon]="faEnvelope"></fa-icon>
-                </fieldset>
-                <fieldset>
-                    <legend>Password</legend>
-                    <input type="password" name="password" id="password" class="inputs" placeholder="mySecretPassword" formControlName="password">
-                    <fa-icon class="key" [icon]="faKey"></fa-icon>
-                </fieldset>
-                <fieldset>
-                    <legend>Confirm Password</legend>
-                    <input type="password" name="conpassword" id="conpassword" class="inputs" placeholder="mySecretPassword" formControlName="conpassword">
-                    <fa-icon class="circle" [icon]="faCheckCircle"></fa-icon>
-                </fieldset>
-            </form>
-            <div class="buttoncontainer">
-                <button class="btn loginbtn pointer" form="signin" type="submit" *ngIf="loginorregister" [disabled]="signInForm.invalid">Sign in</button>
-                <button class="btn loginbtn pointer regbtn" form="register" type="submit" *ngIf="!loginorregister" [disabled]="registerForm.invalid">Register</button>
+                <div class="successmessage" id="returnmessage" [hidden]="!this.successmessage">Success. Redirecting..</div>
             </div>
-            <div class="successmessage" *ngIf="this.successmessage">Success. Redirecting..</div>
         </div>
     </div>
 </main>
+<app-myaccount *ngIf="this.loggedIn" [email]="email" [firstname]="firstname" [lastname]="lastname"></app-myaccount>

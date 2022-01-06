@@ -46,21 +46,18 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 	 */
 	public void addGrocery(Grocery gro) {
 		/*
-		tx.begin();
-		Grocery persistError = new Grocery(gro.getName(), gro.getPrice(), gro.getDescription(), gro.getExpiredDate(),
-				gro.getStockOf(), gro.getBrand(), gro.getImageUrl());
-		em.persist(persistError);
-		tx.commit();
+		 * tx.begin(); Grocery persistError = new Grocery(gro.getName(), gro.getPrice(),
+		 * gro.getDescription(), gro.getExpiredDate(), gro.getStockOf(), gro.getBrand(),
+		 * gro.getImageUrl()); em.persist(persistError); tx.commit();
 		 */
-		
+
 		try {
-			tx.begin(); 
-			Grocery persistError = new Grocery(gro.getName(), gro.getPrice(), gro.getDescription(), gro.getExpiredDate(),
-					gro.getStockOf(), gro.getBrand(), gro.getImageUrl());
-			em.persist(persistError);	
+			tx.begin();
+			Grocery persistGrocery = new Grocery(gro.getName(), gro.getPrice(), gro.getDescription(),
+					gro.getExpiredDate(), gro.getStockOf(), gro.getBrand(), gro.getImageUrl());
+			em.persist(persistGrocery);
 			tx.commit();
-		}
-		catch(GroceryNotFoundException ex) {
+		} catch (GroceryNotFoundException ex) {
 			tx.rollback();
 		}
 
@@ -71,53 +68,46 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 	 */
 	@Override
 	public void deleteGrocery(int id) {
-		/*tx.begin();
-		
-		Query q = em.createQuery("delete from Grocery where Id = :id");
-		q.setParameter("id", id);
-		q.executeUpdate();
-		*/
+		/*
+		 * tx.begin();
+		 * 
+		 * Query q = em.createQuery("delete from Grocery where Id = :id");
+		 * q.setParameter("id", id); q.executeUpdate();
+		 */
 		try {
-			tx.begin(); 
-			em.remove(findGroceryById(id));			
+			tx.begin();
+			em.remove(findGroceryById(id));
 			tx.commit();
-		}
-		catch(Exception ex) {
+		} catch (Exception ex) {
 			tx.rollback();
 		}
 
-		/*if (q.executeUpdate() != 0) {
-			tx.commit();
-		} else {
-			tx.rollback();
-		}*/
+		/*
+		 * if (q.executeUpdate() != 0) { tx.commit(); } else { tx.rollback(); }
+		 */
 
 	}
 
 	public void updateGrocery(Grocery gro) {
 		/*
-		tx.begin();
-
-		Grocery grocery = findGroceryById(gro.getId());
-		grocery.setName(gro.getName());
-		grocery.setPrice(gro.getPrice());
-		grocery.setDescription(gro.getDescription());
-		grocery.setExpiredDate(gro.getExpiredDate());
-		grocery.setStockOf(gro.getStockOf());
-		grocery.setBrand(gro.getBrand());
-		grocery.setImageUrl(gro.getImageUrl());
-
-		tx.commit();
+		 * tx.begin();
+		 * 
+		 * Grocery grocery = findGroceryById(gro.getId());
+		 * grocery.setName(gro.getName()); grocery.setPrice(gro.getPrice());
+		 * grocery.setDescription(gro.getDescription());
+		 * grocery.setExpiredDate(gro.getExpiredDate());
+		 * grocery.setStockOf(gro.getStockOf()); grocery.setBrand(gro.getBrand());
+		 * grocery.setImageUrl(gro.getImageUrl());
+		 * 
+		 * tx.commit();
 		 */
 		try {
-			tx.begin(); 
-			em.merge(gro);			
+			tx.begin();
+			em.merge(gro);
 			tx.commit();
-		}
-		catch(Exception ex) {
+		} catch (Exception ex) {
 			tx.rollback();
 		}
-		
 
 	}
 
@@ -135,19 +125,18 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 	@Override
 	public void addUser(Login credentials) {
 		/*
-		tx.begin();
-		Login persistUser = new Login(credentials.getEmail(), credentials.getPassword(), credentials.getFirstname(), credentials.getSurname());
-		em.persist(persistUser);
-		tx.commit();
+		 * tx.begin(); Login persistUser = new Login(credentials.getEmail(),
+		 * credentials.getPassword(), credentials.getFirstname(),
+		 * credentials.getSurname()); em.persist(persistUser); tx.commit();
 		 */
-		
+
 		try {
-			tx.begin(); 
-			Login persistUser = new Login(credentials.getEmail(), credentials.getPassword(), credentials.getFirstname(), credentials.getSurname());
+			tx.begin();
+			Login persistUser = new Login(credentials.getEmail(), credentials.getPassword(), credentials.getFirstname(),
+					credentials.getLastname());
 			em.persist(persistUser);
 			tx.commit();
-		}
-		catch(Exception ex) {
+		} catch (Exception ex) {
 			tx.rollback();
 		}
 	}
