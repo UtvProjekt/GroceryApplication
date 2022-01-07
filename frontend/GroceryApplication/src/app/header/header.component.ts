@@ -1,5 +1,6 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { faShoppingCart, faTimes, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { MyaccountComponent } from '../myaccount/myaccount.component';
 
 @Component({
   selector: 'app-header',
@@ -16,9 +17,14 @@ export class HeaderComponent implements OnInit {
   showCart: boolean = false
   showMenu: boolean = false
 
-  constructor() { }
+  public loggedIn: boolean = false
+
+  constructor(public myacc: MyaccountComponent) { }
 
   ngOnInit(): void {
+    if(this.myacc.getCookieValue("isUserLoggedIn") === "true"){
+      this.loggedIn = true
+    }
   }
 
   toggleMenu(){

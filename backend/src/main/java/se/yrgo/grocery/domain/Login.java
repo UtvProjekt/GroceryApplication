@@ -34,15 +34,18 @@ public class Login implements Serializable {
 	@Size(min = 0)
 	private String lastname;
 
+	private boolean admin;
+	
 	public Login() {
 
 	}
 
-	public Login(String email, String password, String firstname, String lastname) {
+	public Login(String email, String password, String firstname, String lastname, boolean admin) {
 		this.email = email;
 		this.password = password;
 		this.firstname = firstname; 
 		this.lastname = lastname;
+		this.admin = admin;
 	}
 
 	public String getFirstname() {
@@ -88,6 +91,14 @@ public class Login implements Serializable {
 	@Override
 	public String toString() {
 		return "Login [id=" + id + ", email=" + email + ", password=" + password + "]";
+	}
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 
 }

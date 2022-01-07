@@ -20,7 +20,7 @@ input{
     height: 40px;
     padding: 0 .5em;
     outline: none; 
-    border: 0.15em solid var(--primary-color);
+    border: 0.15em solid var(--yellow);
     font-size: 1.2em;
     border-radius: 4px;
     box-sizing: content-box;
@@ -32,7 +32,7 @@ input{
     border-radius: 0.1em;
     font-size: 1.3em;
     font-weight: var(--thickfont);
-    border: 0.1em solid var(--primary-color-brighter);
+    border: 0.1em solid var(--yellow);
     transition: all 200ms;
     color: var(--primary-text-color);
     &:hover{

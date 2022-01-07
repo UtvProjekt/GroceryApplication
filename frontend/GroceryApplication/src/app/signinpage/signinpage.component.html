@@ -1,5 +1,5 @@
 <h1 class="titlelogin"><a routerLink="">Oasis</a></h1>
-<main class="movingbackground" *ngIf="!this.loggedIn">
+<main class="movingbackground">
     <div class="container">
         <div class="imagecontainer">
             <img src="../../assets/grocerybag.jpg" alt="grocerybag">
@@ -75,4 +75,3 @@
         </div>
     </div>
 </main>
-<app-myaccount *ngIf="this.loggedIn" [email]="email" [firstname]="firstname" [lastname]="lastname"></app-myaccount>

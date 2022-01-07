@@ -5,6 +5,7 @@ import { LoginService } from 'src/Login.service';
 import { Login } from 'src/Login';
 import { sha256 } from 'js-sha256';
 import { MyaccountComponent } from '../myaccount/myaccount.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signinpage',
@@ -37,7 +38,7 @@ export class SigninpageComponent implements OnInit {
   public successmessage: boolean = false
 
   //Personal Info
-  public loggedIn: boolean = false
+  private loggedIn: boolean = false
   public email: string = ""
   public firstname: string = ""
   public lastname: string = ""
@@ -49,9 +50,11 @@ export class SigninpageComponent implements OnInit {
   faShoppingBasket = faShoppingBasket
   faSignature = faSignature
 
-  constructor(public loginService: LoginService, private builder: FormBuilder, private myacc: MyaccountComponent) { }
+  constructor(public loginService: LoginService, private builder: FormBuilder, private myacc: MyaccountComponent, private router: Router) { }
 
   ngOnInit(): void {
+    this.expiresIn30Min()
+    this.expiresIn30Days()
     this.checkIfUserIsSignedIn()
   }
 
@@ -65,7 +68,9 @@ export class SigninpageComponent implements OnInit {
     this.successmessage = true
     document.getElementById("returnmessage")!.innerText = "Success. Redirecting.."
     document.getElementById("returnmessage")!.style.color = "green"
+    
     setTimeout(() => {
+      this.router.navigate(["/"])
       this.loggedIn = true
       this.successmessage = false
     }, 2000);
@@ -77,24 +82,25 @@ export class SigninpageComponent implements OnInit {
     this.loginService.getData().subscribe(
       (response: Login[]) => {
         this.login = response
-        const d = new Date()
-        d.setTime(d.getTime() + 30 * 60000)
-        let expiresIn = "expires=" + d.toLocaleString()
+        let expiresIn30Min = this.expiresIn30Min()
+        let expiresIn30Days = this.expiresIn30Days()
         for (const iterator of this.login) {
           if (iterator.email === emailFromForm) {
             if (this.signInForm.value.rememberMe) {
-              document.cookie = "email=" + iterator.email
-              document.cookie = "firstname=" + iterator.firstname
-              document.cookie = "lastname=" + iterator.lastname
-              document.cookie = "isUserLoggedIn=true"
+              document.cookie = "email=" + iterator.email + ";" + expiresIn30Days + ";path=/"
+              document.cookie = "firstname=" + iterator.firstname + ";" + expiresIn30Days + ";path=/"
+              document.cookie = "lastname=" + iterator.lastname + ";" + expiresIn30Days + ";path=/"
+              document.cookie = "isUserLoggedIn=true;" + expiresIn30Days + ";path=/"
+              //OM ADMIN ÄR TRUE SKAPA ADMIN-COOKIE
               this.email = iterator.email
               this.firstname = iterator.firstname
-              this.lastname = iterator.lastname
+              this.lastname = iterator.lastname 
             }
             else {
-              document.cookie = "email=" + iterator.email + ";" + expiresIn + "Thu, 18 Dec 2013 12:00:00 UTC;path=/"
-              document.cookie = "firstname=" + iterator.firstname + ";" + expiresIn + "Thu, 18 Dec 2013 12:00:00 UTC;path=/"
-              document.cookie = "lastname=" + iterator.lastname + ";" + expiresIn + "Thu, 18 Dec 2013 12:00:00 UTC;path=/"
+              document.cookie = "email=" + iterator.email + ";" + expiresIn30Min + ";path=/"
+              document.cookie = "firstname=" + iterator.firstname + ";" + expiresIn30Min + ";path=/"
+              document.cookie = "lastname=" + iterator.lastname + ";" + expiresIn30Min + ";path=/"
+              document.cookie = "isUserLoggedIn=true;" + expiresIn30Min + ";path=/"
               this.email = iterator.email
               this.firstname = iterator.firstname
               this.lastname = iterator.lastname
@@ -122,6 +128,21 @@ export class SigninpageComponent implements OnInit {
         }
       }
     )
+  }
+
+  public expiresIn30Min(): string{
+    const d = new Date()
+    d.setTime(d.getTime() + 30 * 60000)
+    let expiresIn = "expires=" + d.toLocaleString()
+    console.log(expiresIn)
+    return expiresIn
+  }
+  public expiresIn30Days(): string{
+    const d = new Date()
+    d.setDate(d.getDate() + 30)
+    let expiresIn = "expires=" + d.toLocaleString()
+    console.log(expiresIn)
+    return expiresIn
   }
 
   registerToApp(): void {

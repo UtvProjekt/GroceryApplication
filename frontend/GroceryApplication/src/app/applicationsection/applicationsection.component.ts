@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { faAt, faCog, faLongArrowAltDown, faPen, faPlus, faSignInAlt, faUser, faSearch, faUserCircle, faArrowAltCircleUp, faKey } from '@fortawesome/free-solid-svg-icons';
 import { HeaderComponent } from '../header/header.component';
+import { MyaccountComponent } from '../myaccount/myaccount.component';
 
 @Component({
   selector: 'app-applicationsection',
@@ -25,22 +26,23 @@ export class ApplicationsectionComponent implements OnInit {
   darkOrLight: boolean = true
   settingsIsOpen: boolean = false
 
-  uid(): string{
-    let head = ""
-    let tail = ""
-    for(let i = 0; i<1000; i++){
-      head = Date.now().toString(36)
-      tail = Math.random().toString(36).substr(2)
-    }
-    return head + tail
-  }
+  public firstnameForApp: string = ""
+  public loggedInApp: boolean = false
 
-  constructor(public globalvar: AppComponent, public headervar: HeaderComponent) { }
+  constructor(public globalvar: AppComponent, public headervar: HeaderComponent, public myacc: MyaccountComponent, public headercomp: HeaderComponent) { }
 
   ngOnInit(): void {
+    this.isUserSignedIn()
     this.bindBottomArrow()
   }
   
+  isUserSignedIn(){
+    if(this.myacc.getCookieValue("isUserLoggedIn") === "true"){
+      this.loggedInApp = true
+    }
+    this.firstnameForApp = this.myacc.getCookieValue("firstname")
+  }
+
   bindBottomArrow(){
     window.onscroll = function(){
       if((window.innerHeight + window.scrollY) >= 1600){

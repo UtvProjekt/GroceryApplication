@@ -1,6 +1,8 @@
 <!--ENTRY PAGE-->
 <section class="movingbackground intro" id="top">
-    <h1>Welcome to Oasis</h1>
+    <div class="title">
+        <h1>Welcome to Oasis</h1><h1 *ngIf="this.loggedInApp">, {{ this.firstnameForApp }}.</h1>
+    </div>
     <p>A food store known for it's qualities</p>
     <p class="linkonstart"><a href="#info">More Info</a></p>
 </section>
@@ -29,7 +31,7 @@
                     <fa-icon [icon]="faKey"></fa-icon>
                 </button>
                 <button class="pointer" routerLink="/myaccount">
-                    <h3>Your Account</h3>
+                    <h3>My Account</h3>
                     <fa-icon [icon]="faUserCircle"></fa-icon>
                 </button>
             </div>

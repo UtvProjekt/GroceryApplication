@@ -133,7 +133,7 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 		try {
 			tx.begin();
 			Login persistUser = new Login(credentials.getEmail(), credentials.getPassword(), credentials.getFirstname(),
-					credentials.getLastname());
+					credentials.getLastname(), credentials.isAdmin());
 			em.persist(persistUser);
 			tx.commit();
 		} catch (Exception ex) {

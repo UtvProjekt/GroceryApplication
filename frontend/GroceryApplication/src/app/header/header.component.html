@@ -17,8 +17,8 @@
                         <fa-icon [icon]="faTimes" class="pointer"></fa-icon>
                     </div>
                     <a routerLink="/search" class="link"><li class="headeroptions">Search article</li></a>
-                    <a routerLink="/signin" routerLinkActive="activelink" class="link"><li class="headeroptions">Register / Sign in</li></a>
-                    <a routerLink="/myaccount" routerLinkActive="activelink" class="link"><li class="headeroptions">My Account</li></a>
+                    <a *ngIf="!loggedIn" routerLink="/signin" routerLinkActive="activelink" class="link"><li class="headeroptions">Register / Sign in</li></a>
+                    <a *ngIf="loggedIn" routerLink="/myaccount" routerLinkActive="activelink" class="link"><li class="headeroptions">My Account</li></a>
                 </ul>
             </div>
         </div>

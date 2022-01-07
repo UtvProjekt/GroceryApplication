@@ -6,6 +6,11 @@ section {
     height: 90vh;
     padding: 14vw 18vw;
 
+    .title{
+        min-width: 20vw;
+        display: flex;
+        justify-content: flex-start;
+    }
     h1,
     h2,
     h3,
@@ -18,7 +23,6 @@ section {
         font-size: 1.2em;
     }
     h1 {
-        min-width: 40vw;
         font-size: 5em;
     }
     h2 {
