@@ -57,5 +57,12 @@ public class LoginResourceService {
 	public void addUser(Login credentials) {
 		service.addUser(credentials);
 	}
+	
+	@GET
+	@Path("/checkifadmin/{email}")
+	@Produces("application/JSON")
+	public boolean checkIfAdmin(@PathParam("email")String email){
+		return service.checkIfAdmin(email);
+	}
 
 }

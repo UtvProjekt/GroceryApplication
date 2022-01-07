@@ -30,5 +30,9 @@ public class LoginManagementImplementation implements LoginManagementService{
 		return ida.getPasswordByEmail(email);
 	}
 
+	@Override
+	public boolean checkIfAdmin(String email) {
+		return ida.checkIfAdmin(email);
+	}
 	
 }

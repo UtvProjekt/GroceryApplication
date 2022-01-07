@@ -9,4 +9,5 @@ public interface LoginManagementService {
 	public void addUser(Login credentials);
 	public Login findUserByEmail(String email);
 	public String getPasswordByEmail(String email);
+	public boolean checkIfAdmin(String email);
 }

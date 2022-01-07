@@ -162,5 +162,17 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 				.setParameter("email", email);
 		return (String) q.getSingleResult();
 	}
+	
+	@Override
+	public boolean checkIfAdmin(String email) {
+		Login adminCheck = findUserByEmail(email);
+		if(adminCheck.isAdmin()) {
+			return true;
+		}
+		else {	
+			return false;
+		}
+		
+	}
 
 }
