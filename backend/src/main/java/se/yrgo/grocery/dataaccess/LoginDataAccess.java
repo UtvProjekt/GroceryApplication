@@ -10,4 +10,5 @@ public interface LoginDataAccess {
 	public Login findUserByEmail(String email);
 	public List<Login> findAllUsers();
 	public String getPasswordByEmail(String email);
+	public boolean checkIfAdmin(String email);
 }

@@ -92,6 +92,12 @@ export class SigninpageComponent implements OnInit {
               document.cookie = "lastname=" + iterator.lastname + ";" + expiresIn30Days + ";path=/"
               document.cookie = "isUserLoggedIn=true;" + expiresIn30Days + ";path=/"
               //OM ADMIN ÄR TRUE SKAPA ADMIN-COOKIE
+              if(this.checkIfLoggedInIsAdmin(iterator.email)){
+                document.cookie = "admin=" + true + ";" + expiresIn30Days + ";path=/"
+              }
+              else {
+                document.cookie = "admin=" + false + ";" + expiresIn30Days + ";path=/"
+              }
               this.email = iterator.email
               this.firstname = iterator.firstname
               this.lastname = iterator.lastname 
@@ -101,6 +107,16 @@ export class SigninpageComponent implements OnInit {
               document.cookie = "firstname=" + iterator.firstname + ";" + expiresIn30Min + ";path=/"
               document.cookie = "lastname=" + iterator.lastname + ";" + expiresIn30Min + ";path=/"
               document.cookie = "isUserLoggedIn=true;" + expiresIn30Min + ";path=/"
+
+              if(this.checkIfLoggedInIsAdmin(iterator.email)){
+                document.cookie = "admin=" + true + ";" + expiresIn30Min + ";path=/"
+              }
+              else {
+                document.cookie = "admin=" + false + ";" + expiresIn30Min + ";path=/"
+              }
+               
+              
+
               this.email = iterator.email
               this.firstname = iterator.firstname
               this.lastname = iterator.lastname
@@ -143,6 +159,18 @@ export class SigninpageComponent implements OnInit {
     let expiresIn = "expires=" + d.toLocaleString()
     console.log(expiresIn)
     return expiresIn
+  }
+
+  checkIfLoggedInIsAdmin(email: string): boolean {
+    this.loginService.checkIfAdmin(email).subscribe(
+      (response: boolean) => {
+        if(response == true){
+          return true;
+        }
+        return false;
+      }
+    )
+    return false;
   }
 
   registerToApp(): void {

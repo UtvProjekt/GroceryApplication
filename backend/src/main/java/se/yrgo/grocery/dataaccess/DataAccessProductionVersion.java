@@ -129,7 +129,7 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 		 * credentials.getPassword(), credentials.getFirstname(),
 		 * credentials.getSurname()); em.persist(persistUser); tx.commit();
 		 */
-
+		
 		try {
 			tx.begin();
 			Login persistUser = new Login(credentials.getEmail(), credentials.getPassword(), credentials.getFirstname(),
@@ -154,6 +154,25 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 	public List<Login> findAllUsers() {
 		Query q = em.createQuery("select email from Login email");
 		return q.getResultList();
+	}
+
+	@Override
+	public String getPasswordByEmail(String email) {
+		Query q = em.createQuery("select password.password from Login password where password.email = :email")
+				.setParameter("email", email);
+		return (String) q.getSingleResult();
+	}
+	
+	@Override
+	public boolean checkIfAdmin(String email) {
+		Login adminCheck = findUserByEmail(email);
+		if(adminCheck.isAdmin() == 1) {
+			return true;
+		}
+		else {	
+			return false;
+		}
+		
 	}
 
 }
