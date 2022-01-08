@@ -26,9 +26,8 @@ main {
     border-radius: .5em;
 }
 .imagecontainer {
-    width: 35em;
-    min-width: 10em;
-    height: 80vh;
+    max-width: 35em;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
