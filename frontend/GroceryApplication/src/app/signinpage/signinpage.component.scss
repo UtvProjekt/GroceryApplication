@@ -16,7 +16,7 @@ main {
     align-items: center;
 }
 .container {
-    max-width: 80em;
+    min-width: 70vw;
     min-height: 80vh;
     display: flex;
     justify-content: center;
@@ -36,7 +36,7 @@ main {
         color: var(--primary-color);
     }
 }
-@media screen and (min-width: 1400px){
+@media screen and (max-width: 1400px){
     .imagecontainer{
         width: 40em;
     }
@@ -87,9 +87,9 @@ fieldset {
         top: 22%;
         left: 2%;
     }
-    @media screen and (max-width: 1400px){
+    @media screen and (max-width: 1600px){
         fa-icon{
-            top: 16%;
+            top: 14%;
         }
     }
     .envelope {
