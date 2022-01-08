@@ -21,6 +21,10 @@ export class LoginService {
         return this.httpClient.get<string>(`http://localhost:25000/GroceryApplication/page/signin/checkpassword/${email}`)
     }
 
+    public checkIfAdmin(email: string): Observable<boolean>{
+        return this.httpClient.get<boolean>(`http://localhost:25000/grocery/page/signin/checkifadmin/${email}`)
+    }
+
     /* UPDATE AND DELETE
     public updateData(error: ErrorMessage): Observable<ErrorMessage> {
         return this.httpClient.put<ErrorMessage>('http://localhost:25000/ErrorApplication/api/error/updateerror', error)
