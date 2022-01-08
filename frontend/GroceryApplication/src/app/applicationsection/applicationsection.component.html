@@ -1,7 +1,8 @@
 <!--ENTRY PAGE-->
 <section class="movingbackground intro" id="top">
     <div class="title">
-        <h1>Welcome to Oasis</h1><h1 *ngIf="this.loggedInApp">, {{ this.firstnameForApp }}.</h1>
+        <h1>Welcome to Oasis</h1>
+        <h1 *ngIf="this.loggedInApp">, {{ this.firstnameForApp }}.</h1>
     </div>
     <p>A food store known for it's qualities</p>
     <p class="linkonstart"><a href="#info">More Info</a></p>
@@ -13,11 +14,17 @@
         <div class="infoinabout layoutinabout">
             <h1>Hello and welcome</h1>
             <p>to our wide supply of groceries.</p>
-            <p class="paragrafsinfo">Our assortment contains some of the most fresh<br>and popular groceries that is out there.</p>
+            <p class="paragrafsinfo">Our assortment contains some of the most fresh<br>and popular groceries that is out
+                there.</p>
             <h2>Our idea</h2>
-            <p class="paragrafsinfo">The idea of a fast and easy food website has been<br>something that we've personaly wanted to see but never experienced.</p>
-            <p class="paragrafsinfo">So thats what we came up with, as junior java developers we had 8<br>weeks to create this website.</p>
-            
+            <p class="paragrafsinfo">The idea of a fast and easy food shop has been<br>something that we've personaly
+                wanted to see but never experienced.</p>
+            <p class="paragrafsinfo">So thats what we came up with, as junior java developers we had 8<br>weeks to
+                create this website.</p>
+            <h3>Our name. Oasis</h3>
+            <p class="paragrafsinfo">Our website Oasis stands for "Oscar Anton and Sebastians innovative store". "But why oasis?" You might ask.<br><br> Well, our name fits
+                the title nicely, but it wasn't really planned out and we can't give you a good answer apart from that it was just something Anton came up with, completely at random. </p>
+
         </div>
         <div class="buttonstoclick layoutinabout">
             <h2>Start here</h2>
@@ -41,7 +48,9 @@
 <!--FOOTER-->
 <app-footer id="footer"></app-footer>
 <!--SETTINGS SECTION-->
-<div id="scrolltotoparrow"><a href="#top"><fa-icon [icon]="faArrowAltCircleUp"></fa-icon></a></div>
+<div id="scrolltotoparrow"><a href="#top">
+        <fa-icon [icon]="faArrowAltCircleUp"></fa-icon>
+    </a></div>
 <div id="coversonsettingopen" (click)="toggleSettingsMenu()"></div>
 <section class="settingssection">
     <button (click)="toggleSettingsMenu()" class="cogwheel" id="cogwheel">
@@ -50,13 +59,13 @@
     <section class="settings" id="settings">
         <h2 style="color: var(--primary-color-brighter)">Settings</h2>
         <ul class="settingslist">
-            
+
             <div class="fancybackground pointer">
                 <li class="eachsetting" (click)="darkLightMode()">
                     <fa-icon [icon]="faPen"></fa-icon>Toggle Appearance
                 </li>
             </div>
-            
+
         </ul>
     </section>
 </section>
