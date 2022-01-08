@@ -16,15 +16,15 @@
                 <form (ngSubmit)="loginSystem()" *ngIf="loginorregister" id="signin" [formGroup]="signInForm">
                     <fieldset>
                         <legend>Email</legend>
-                        <input type="email" name="signInEmail" id="signInEmail" class="inputs"
-                            placeholder="JohnDoe@gmail.com" formControlName="signInEmail">
                         <fa-icon class="envelope" [icon]="faEnvelope"></fa-icon>
+                        <input type="email" name="signInEmail" id="signInEmail" class="inputs" autocomplete="off"
+                            placeholder="JohnDoe@gmail.com" formControlName="signInEmail">
                     </fieldset>
                     <fieldset>
                         <legend>Password</legend>
+                        <fa-icon class="key" [icon]="faKey"></fa-icon>
                         <input type="password" name="signInPassword" id="signInPassword" class="inputs"
                             placeholder="mySecretPassword" formControlName="signInPassword">
-                        <fa-icon class="key" [icon]="faKey"></fa-icon>
                     </fieldset>
                     <div>
                         <label for="rememberme">Remember me?</label>

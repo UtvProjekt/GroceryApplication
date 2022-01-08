@@ -16,9 +16,8 @@ main {
     align-items: center;
 }
 .container {
-    width: 80em;
-    min-width: 40em;
-    height: 80vh;
+    max-width: 80em;
+    min-height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,7 +25,7 @@ main {
     border-radius: .5em;
 }
 .imagecontainer {
-    max-width: 35em;
+    width: 30em;
     height: fit-content;
     display: flex;
     flex-direction: column;
@@ -35,6 +34,11 @@ main {
     fa-icon {
         font-size: 20em;
         color: var(--primary-color);
+    }
+}
+@media screen and (min-width: 1400px){
+    .imagecontainer{
+        width: 40em;
     }
 }
 .formcontainer {
@@ -60,13 +64,11 @@ main {
 }
 form {
     width: 100%;
-    min-height: fit-content;
+    min-height: 60%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    fieldset{
-        margin-top: 1em;
-    }
+    justify-content: space-evenly;
     div{
         margin-top: 2em;
         label{
@@ -80,12 +82,15 @@ fieldset {
     background-color: #fff;
     border: none;
     border-radius: 0.2em;
-    
-    fa-icon {
+    fa-icon{
         position: absolute;
-        left: 0.2em;
-        bottom: 0.6em;
-        padding: 0 .5em;
+        top: 22%;
+        left: 2%;
+    }
+    @media screen and (max-width: 1400px){
+        fa-icon{
+            top: 16%;
+        }
     }
     .envelope {
         color: #c98e35;
@@ -105,6 +110,7 @@ fieldset {
 }
 
 .inputs {
+    
     width: 20vw;
     height: 4vh;
     border-radius: 0.2em;
@@ -163,6 +169,8 @@ fieldset {
     margin-top: 2em;
 }
 .changeinputscontainer {
+    display: flex;
+    justify-content: center;
     position: relative;
     width: 12vw;
     height: 4vh;
