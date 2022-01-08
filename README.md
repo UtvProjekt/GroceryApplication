@@ -9,4 +9,4 @@
 ### JPA - Database Implementation.
 
 ### Apache Solr.
-The website also is powered by solr which is a powerful 3rd party searchengine that can sort and rank the most optimal return for that search.
+The website also is powered by solr which is a powerful 3rd party searchengine that can sort and rank the most optimal returns for that search.
