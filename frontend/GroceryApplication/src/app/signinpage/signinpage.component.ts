@@ -68,14 +68,18 @@ export class SigninpageComponent implements OnInit {
     this.successmessage = true
     document.getElementById("returnmessage")!.innerText = "Success. Redirecting.."
     document.getElementById("returnmessage")!.style.color = "green"
-    
+
     setTimeout(() => {
       this.router.navigate(["/"])
       this.loggedIn = true
       this.successmessage = false
     }, 2000);
   }
-
+  /**
+   * @author AntonEwards
+   * 
+   * 
+   */
   loginSystem(): void {
     let emailFromForm = this.signInForm.value.signInEmail
     let passwordFromForm = this.signInForm.value.signInPassword
@@ -84,44 +88,53 @@ export class SigninpageComponent implements OnInit {
         this.login = response
         let expiresIn30Min = this.expiresIn30Min()
         let expiresIn30Days = this.expiresIn30Days()
+        /**
+         * 
+         */
+        if (!this.login.find(x => x.email === emailFromForm)) {
+          this.successmessage = true
+          document.getElementById("returnmessage")!.innerText = "Could not find that email."
+          document.getElementById("returnmessage")!.style.color = "red"
+          setTimeout(() => {
+            this.successmessage = false
+          }, 3000);
+        }
+
         for (const iterator of this.login) {
           if (iterator.email === emailFromForm) {
-            if (this.signInForm.value.rememberMe) {
-              document.cookie = "email=" + iterator.email + ";" + expiresIn30Days + ";path=/"
-              document.cookie = "firstname=" + iterator.firstname + ";" + expiresIn30Days + ";path=/"
-              document.cookie = "lastname=" + iterator.lastname + ";" + expiresIn30Days + ";path=/"
-              document.cookie = "isUserLoggedIn=true;" + expiresIn30Days + ";path=/"
-              //OM ADMIN ÄR TRUE SKAPA ADMIN-COOKIE
-              if(this.checkIfLoggedInIsAdmin(iterator.email)){
-                document.cookie = "admin=" + true + ";" + expiresIn30Days + ";path=/"
-              }
-              else {
-                document.cookie = "admin=" + false + ";" + expiresIn30Days + ";path=/"
-              }
-              this.email = iterator.email
-              this.firstname = iterator.firstname
-              this.lastname = iterator.lastname 
-            }
-            else {
-              document.cookie = "email=" + iterator.email + ";" + expiresIn30Min + ";path=/"
-              document.cookie = "firstname=" + iterator.firstname + ";" + expiresIn30Min + ";path=/"
-              document.cookie = "lastname=" + iterator.lastname + ";" + expiresIn30Min + ";path=/"
-              document.cookie = "isUserLoggedIn=true;" + expiresIn30Min + ";path=/"
-
-              if(this.checkIfLoggedInIsAdmin(iterator.email)){
-                document.cookie = "admin=" + true + ";" + expiresIn30Min + ";path=/"
-              }
-              else {
-                document.cookie = "admin=" + false + ";" + expiresIn30Min + ";path=/"
-              }
-               
-              
-
-              this.email = iterator.email
-              this.firstname = iterator.firstname
-              this.lastname = iterator.lastname
-            }
             if (iterator.password === sha256(passwordFromForm)) {
+              if (this.signInForm.value.rememberMe) {
+                document.cookie = "email=" + iterator.email + ";" + expiresIn30Days + ";path=/"
+                document.cookie = "firstname=" + iterator.firstname + ";" + expiresIn30Days + ";path=/"
+                document.cookie = "lastname=" + iterator.lastname + ";" + expiresIn30Days + ";path=/"
+                document.cookie = "isUserLoggedIn=true;" + expiresIn30Days + ";path=/"
+                //OM ADMIN ÄR TRUE SKAPA ADMIN-COOKIE
+                if (this.checkIfLoggedInIsAdmin(iterator.email)) {
+                  document.cookie = "admin=" + true + ";" + expiresIn30Days + ";path=/"
+                }
+                else {
+                  document.cookie = "admin=" + false + ";" + expiresIn30Days + ";path=/"
+                }
+                this.email = iterator.email
+                this.firstname = iterator.firstname
+                this.lastname = iterator.lastname
+              }
+              else {
+                document.cookie = "email=" + iterator.email + ";" + expiresIn30Min + ";path=/"
+                document.cookie = "firstname=" + iterator.firstname + ";" + expiresIn30Min + ";path=/"
+                document.cookie = "lastname=" + iterator.lastname + ";" + expiresIn30Min + ";path=/"
+                document.cookie = "isUserLoggedIn=true;" + expiresIn30Min + ";path=/"
+
+                if (this.checkIfLoggedInIsAdmin(iterator.email)) {
+                  document.cookie = "admin=" + true + ";" + expiresIn30Min + ";path=/"
+                }
+                else {
+                  document.cookie = "admin=" + false + ";" + expiresIn30Min + ";path=/"
+                }
+                this.email = iterator.email
+                this.firstname = iterator.firstname
+                this.lastname = iterator.lastname
+              }
               this.signInToApp()
             }
             else {
@@ -133,27 +146,19 @@ export class SigninpageComponent implements OnInit {
               }, 3000);
             }
           }
-          if (!this.login.find(x => x.email === emailFromForm)) {
-            this.successmessage = true
-            document.getElementById("returnmessage")!.innerText = "Could not find that email."
-            document.getElementById("returnmessage")!.style.color = "red"
-            setTimeout(() => {
-              this.successmessage = false
-            }, 3000);
-          }
         }
       }
     )
   }
 
-  public expiresIn30Min(): string{
+  public expiresIn30Min(): string {
     const d = new Date()
     d.setTime(d.getTime() + 30 * 60000)
     let expiresIn = "expires=" + d.toLocaleString()
     console.log(expiresIn)
     return expiresIn
   }
-  public expiresIn30Days(): string{
+  public expiresIn30Days(): string {
     const d = new Date()
     d.setDate(d.getDate() + 30)
     let expiresIn = "expires=" + d.toLocaleString()
@@ -164,7 +169,7 @@ export class SigninpageComponent implements OnInit {
   checkIfLoggedInIsAdmin(email: string): boolean {
     this.loginService.checkIfAdmin(email).subscribe(
       (response: boolean) => {
-        if(response == true){
+        if (response == true) {
           return true;
         }
         return false;
