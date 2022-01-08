@@ -15,7 +15,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import se.yrgo.grocery.domain.Grocery;
 import se.yrgo.grocery.domain.Login;
+import se.yrgo.grocery.exceptions.GroceryCouldNotBeAddedException;
 import se.yrgo.grocery.exceptions.GroceryNotFoundException;
+import se.yrgo.grocery.solr.SolrService;
 
 /**
  * Class that handles queries and communication with the database.
@@ -28,8 +30,8 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("groceryDB");
 	@PersistenceContext
 	private EntityManager em = emf.createEntityManager();
-
 	private EntityTransaction tx = em.getTransaction();
+	private SolrService solrService = new SolrService();
 
 	/**
 	 * @return - returns all groceries from the database
@@ -53,12 +55,21 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 
 		try {
 			tx.begin();
-			Grocery persistGrocery = new Grocery(gro.getName(), gro.getPrice(), gro.getDescription(),
-					gro.getExpiredDate(), gro.getStockOf(), gro.getBrand(), gro.getImageUrl());
+			Grocery persistGrocery = new Grocery(gro.getName(), gro.getPrice(), gro.getDescription(),gro.getExpiredDate(), gro.getStockOf(), gro.getBrand(), gro.getImageUrl());
 			em.persist(persistGrocery);
+
+			solrService.addNewGroceryItem(persistGrocery);
+			solrService.reload();
+			
 			tx.commit();
-		} catch (GroceryNotFoundException ex) {
+		} 
+		catch (GroceryNotFoundException ex) {
+			//logga och ge error message här sen
 			tx.rollback();
+		}
+		catch (GroceryCouldNotBeAddedException ex) {
+			//logga och ge error message här sen
+			tx.rollback();		
 		}
 
 	}
@@ -77,30 +88,23 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 		try {
 			tx.begin();
 			em.remove(findGroceryById(id));
+			
+			solrService.deleteGroceryItem(id);
+			
 			tx.commit();
-		} catch (Exception ex) {
+		} 
+		catch (GroceryNotFoundException ex) {
+			tx.rollback();
+		}
+		catch (Exception ex) {
 			tx.rollback();
 		}
 
-		/*
-		 * if (q.executeUpdate() != 0) { tx.commit(); } else { tx.rollback(); }
-		 */
 
 	}
 
 	public void updateGrocery(Grocery gro) {
-		/*
-		 * tx.begin();
-		 * 
-		 * Grocery grocery = findGroceryById(gro.getId());
-		 * grocery.setName(gro.getName()); grocery.setPrice(gro.getPrice());
-		 * grocery.setDescription(gro.getDescription());
-		 * grocery.setExpiredDate(gro.getExpiredDate());
-		 * grocery.setStockOf(gro.getStockOf()); grocery.setBrand(gro.getBrand());
-		 * grocery.setImageUrl(gro.getImageUrl());
-		 * 
-		 * tx.commit();
-		 */
+
 		try {
 			tx.begin();
 			em.merge(gro);

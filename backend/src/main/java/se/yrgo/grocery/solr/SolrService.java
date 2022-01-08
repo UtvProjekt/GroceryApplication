@@ -6,6 +6,8 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 
 import se.yrgo.grocery.domain.Grocery;
+import se.yrgo.grocery.exceptions.GroceryCouldNotBeAddedException;
+import se.yrgo.grocery.exceptions.GroceryNotFoundException;
 
 public class SolrService {
 	private String baseUrl = "http://localhost:8983/";
@@ -13,7 +15,7 @@ public class SolrService {
 	private String reloadUrl = baseUrl + "solr/admin/cores?action=RELOAD&core=groceryApp";
 	private String deleteUrl = baseUrl + "solr/groceryApp/update?commit=true";
 
-	public int addNewGroceryItem(Grocery groceryToAdd) {
+	public void addNewGroceryItem(Grocery groceryToAdd) {
 		
 		Grocery[] errorMessageArray = {groceryToAdd};
 		Client client = ClientBuilder.newClient();
@@ -22,7 +24,10 @@ public class SolrService {
 		
 		response.close();
 		client.close();
-		return response.getStatus();
+		
+		if (response.getStatus() != 200) {
+			throw new GroceryCouldNotBeAddedException();
+		}	
 	}
 	
 	public int reload() {
@@ -34,7 +39,7 @@ public class SolrService {
 		return response.getStatus();
 	}
 
-	public int deleteGroceryItem(int id) {
+	public void deleteGroceryItem(int id) {
 		Client client = ClientBuilder.newClient();
 		String delete = "{\"delete\": {\"id\":\"" + id + "\"}}";
 		Response response = client.target(deleteUrl).request().buildPost(Entity.json(delete)).invoke();
@@ -42,7 +47,11 @@ public class SolrService {
 		
 		response.close();
 		client.close();
-		return response.getStatus();
+		
+		if (response.getStatus() != 200) {
+			throw new GroceryNotFoundException();
+		}
+
 	}
 
 }
