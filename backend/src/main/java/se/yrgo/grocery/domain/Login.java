@@ -34,13 +34,15 @@ public class Login implements Serializable {
 	@Size(min = 0)
 	private String lastname;
 
-	private boolean admin;
+	
+	@Column(nullable = false, columnDefinition = "BIT")
+	private int admin;
 	
 	public Login() {
 
 	}
 
-	public Login(String email, String password, String firstname, String lastname, boolean admin) {
+	public Login(String email, String password, String firstname, String lastname, int admin) {
 		this.email = email;
 		this.password = password;
 		this.firstname = firstname; 
@@ -93,11 +95,11 @@ public class Login implements Serializable {
 		return "Login [id=" + id + ", email=" + email + ", password=" + password + "]";
 	}
 
-	public boolean isAdmin() {
+	public int isAdmin() {
 		return admin;
 	}
 
-	public void setAdmin(boolean admin) {
+	public void setAdmin(int admin) {
 		this.admin = admin;
 	}
 

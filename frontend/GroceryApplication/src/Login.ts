@@ -1,6 +1,6 @@
 export interface Login{
     id: number
-    admin: boolean
+    admin: number
     email: string
     firstname: string
     password: string

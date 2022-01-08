@@ -129,7 +129,7 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 		 * credentials.getPassword(), credentials.getFirstname(),
 		 * credentials.getSurname()); em.persist(persistUser); tx.commit();
 		 */
-
+		
 		try {
 			tx.begin();
 			Login persistUser = new Login(credentials.getEmail(), credentials.getPassword(), credentials.getFirstname(),
@@ -166,7 +166,7 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 	@Override
 	public boolean checkIfAdmin(String email) {
 		Login adminCheck = findUserByEmail(email);
-		if(adminCheck.isAdmin()) {
+		if(adminCheck.isAdmin() == 1) {
 			return true;
 		}
 		else {	
