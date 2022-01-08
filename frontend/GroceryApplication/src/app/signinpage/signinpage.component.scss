@@ -62,6 +62,14 @@ main {
     align-items: center;
     justify-content: space-evenly;
 }
+@media screen and (max-width: 1600px) {
+    .formwrapper, .formcontainer{
+        height: 60vh;
+    }
+    .registerform{
+        height: 80%;
+    }
+}
 form {
     width: 100%;
     min-height: 60%;

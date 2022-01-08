@@ -31,7 +31,7 @@
                         <input type="checkbox" name="rememberme" id="rememberme" formControlName="rememberMe">
                     </div>
                 </form>
-                <form (ngSubmit)="registerToApp()" id="register" *ngIf="!loginorregister" [formGroup]="registerForm">
+                <form class="registerform" (ngSubmit)="registerToApp()" id="register" *ngIf="!loginorregister" [formGroup]="registerForm">
                     <div class="names">
                         <fieldset>
                             <legend>Firstname</legend>
