@@ -84,7 +84,7 @@ export class SigninpageComponent implements OnInit {
     let emailFromForm = this.signInForm.value.signInEmail
     let passwordFromForm = this.signInForm.value.signInPassword
     this.loginService.getData().subscribe(
-      (response: Login[]) => {
+      async (response:Login[]) => {
         this.login = response
         let expiresIn30Min = this.expiresIn30Min()
         let expiresIn30Days = this.expiresIn30Days()
@@ -109,12 +109,18 @@ export class SigninpageComponent implements OnInit {
                 document.cookie = "lastname=" + iterator.lastname + ";" + expiresIn30Days + ";path=/"
                 document.cookie = "isUserLoggedIn=true;" + expiresIn30Days + ";path=/"
                 //OM ADMIN ÄR TRUE SKAPA ADMIN-COOKIE
-                if (this.checkIfLoggedInIsAdmin(iterator.email)) {
-                  document.cookie = "admin=" + true + ";" + expiresIn30Days + ";path=/"
-                }
-                else {
-                  document.cookie = "admin=" + false + ";" + expiresIn30Days + ";path=/"
-                }
+                this.loginService.checkIfAdmin(iterator.email).subscribe(
+                  (response: boolean) => {
+                    if (response == true) {
+                      document.cookie = "admin=true;" + expiresIn30Days + ";path=/"
+                      console.log("sant")
+                    }
+                    else{
+                      document.cookie = "admin=false;" + expiresIn30Days + ";path=/"
+                      console.log("falskt")
+                    }
+                  }
+                )
                 this.email = iterator.email
                 this.firstname = iterator.firstname
                 this.lastname = iterator.lastname
@@ -124,13 +130,20 @@ export class SigninpageComponent implements OnInit {
                 document.cookie = "firstname=" + iterator.firstname + ";" + expiresIn30Min + ";path=/"
                 document.cookie = "lastname=" + iterator.lastname + ";" + expiresIn30Min + ";path=/"
                 document.cookie = "isUserLoggedIn=true;" + expiresIn30Min + ";path=/"
-
-                if (this.checkIfLoggedInIsAdmin(iterator.email)) {
-                  document.cookie = "admin=" + true + ";" + expiresIn30Min + ";path=/"
-                }
-                else {
-                  document.cookie = "admin=" + false + ";" + expiresIn30Min + ";path=/"
-                }
+                
+                this.loginService.checkIfAdmin(iterator.email).subscribe(
+                  (response: boolean) => {
+                    if (response == true) {
+                      document.cookie = "admin=true;" + expiresIn30Min + ";path=/"
+                      console.log("sant")
+                    }
+                    else{
+                      document.cookie = "admin=false;" + expiresIn30Min + ";path=/"
+                      console.log("falskt")
+                    }
+                  }
+                )
+               
                 this.email = iterator.email
                 this.firstname = iterator.firstname
                 this.lastname = iterator.lastname
@@ -166,17 +179,7 @@ export class SigninpageComponent implements OnInit {
     return expiresIn
   }
 
-  checkIfLoggedInIsAdmin(email: string): boolean {
-    this.loginService.checkIfAdmin(email).subscribe(
-      (response: boolean) => {
-        if (response == true) {
-          return true;
-        }
-        return false;
-      }
-    )
-    return false;
-  }
+ 
 
   registerToApp(): void {
     try {
