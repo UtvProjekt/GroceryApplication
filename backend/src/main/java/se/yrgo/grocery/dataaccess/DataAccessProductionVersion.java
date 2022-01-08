@@ -156,11 +156,4 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 		return q.getResultList();
 	}
 
-	@Override
-	public String getPasswordByEmail(String email) {
-		Query q = em.createQuery("select password.password from Login password where password.email = :email")
-				.setParameter("email", email);
-		return (String) q.getSingleResult();
-	}
-
 }

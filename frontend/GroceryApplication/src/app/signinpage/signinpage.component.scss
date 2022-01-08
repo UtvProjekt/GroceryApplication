@@ -155,6 +155,10 @@ fieldset {
         border: 2px solid var(--yellow);
         cursor: not-allowed;
     }
+
+    &:active{
+        transform: scale(.98);
+    }
 }
 .regbtn{
     margin-top: 2em;
