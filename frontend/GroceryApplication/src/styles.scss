@@ -85,3 +85,26 @@ a{
     background-color: transparent;
     border: none;
 }
+
+.lesserheader{
+    display: flex;
+    align-items: center;
+    padding-inline: 1em;
+    position: absolute;
+    height: 10vh;
+    width: 100vw;
+    font-size: 2em;
+    a{
+        color: #fff;
+    }
+}
+
+.text-align{
+    text-align: center;
+}
+
+.flex-to-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

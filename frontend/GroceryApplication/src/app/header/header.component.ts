@@ -17,13 +17,13 @@ export class HeaderComponent implements OnInit {
   showCart: boolean = false
   showMenu: boolean = false
 
-  public loggedIn: boolean = false
+  public loggedInHeader: boolean = false
 
   constructor(public myacc: MyaccountComponent) { }
 
   ngOnInit(): void {
     if(this.myacc.getCookieValue("isUserLoggedIn") === "true"){
-      this.loggedIn = true
+      this.loggedInHeader = true
     }
   }
 

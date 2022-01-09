@@ -1,0 +1,16 @@
+<div id="coversonsettingopen" (click)="toggleSettingsMenu()"></div>
+<section class="settingssection">
+    <button (click)="toggleSettingsMenu()" class="cogwheel" id="cogwheel">
+        <fa-icon [icon]="faCog"></fa-icon>
+    </button>
+    <section class="settings" id="settings">
+        <h2 style="color: var(--primary-color-brighter)">Settings</h2>
+        <ul class="settingslist">
+            <div class="fancybackground pointer">
+                <li class="eachsetting" (click)="darkLightMode()">
+                    <fa-icon [icon]="faPen"></fa-icon>Toggle Appearance
+                </li>
+            </div>
+        </ul>
+    </section>
+</section>

@@ -7,7 +7,6 @@ import { HeaderComponent } from './header/header.component';
 import { ApplicationsectionComponent } from './applicationsection/applicationsection.component';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { ResultsComponent } from './results/results.component';
-import { OrganizemenuComponent } from './organizemenu/organizemenu.component';
 import { SigninpageComponent } from './signinpage/signinpage.component';
 import { FooterComponent } from './footer/footer.component';
 import { AddsectionComponent } from './addsection/addsection.component';
@@ -16,6 +15,7 @@ import { MyaccountComponent } from './myaccount/myaccount.component';
 import { SearchsectionComponent } from './searchsection/searchsection.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -24,12 +24,12 @@ import { HttpClientModule } from '@angular/common/http';
     ApplicationsectionComponent,
     SearchbarComponent,
     ResultsComponent,
-    OrganizemenuComponent,
     SigninpageComponent,
     FooterComponent,
     AddsectionComponent,
     MyaccountComponent,
     SearchsectionComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,

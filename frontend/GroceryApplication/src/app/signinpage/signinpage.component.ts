@@ -68,12 +68,11 @@ export class SigninpageComponent implements OnInit {
     this.successmessage = true
     document.getElementById("returnmessage")!.innerText = "Success. Redirecting.."
     document.getElementById("returnmessage")!.style.color = "green"
-
     setTimeout(() => {
       this.router.navigate(["/"])
       this.loggedIn = true
       this.successmessage = false
-    }, 2000);
+    }, 1500);
   }
   /**
    * @author AntonEwards
@@ -167,14 +166,14 @@ export class SigninpageComponent implements OnInit {
   public expiresIn30Min(): string {
     const d = new Date()
     d.setTime(d.getTime() + 30 * 60000)
-    let expiresIn = "expires=" + d.toLocaleString()
+    let expiresIn = "expires=" + d.toUTCString()
     console.log(expiresIn)
     return expiresIn
   }
   public expiresIn30Days(): string {
     const d = new Date()
-    d.setDate(d.getDate() + 30)
-    let expiresIn = "expires=" + d.toLocaleString()
+    d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000))
+    let expiresIn = "expires=" + d.toUTCString()
     console.log(expiresIn)
     return expiresIn
   }

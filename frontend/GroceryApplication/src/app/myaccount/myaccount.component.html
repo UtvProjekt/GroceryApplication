@@ -1,4 +1,18 @@
-
+<h1 class="lesserheader"><a routerLink="/">Oasis</a>
+    <fa-icon [icon]="faSignOut" (click)="signOut()" class="pointer"></fa-icon>
+</h1>
 <main class="movingbackground">
-
+    <div class="flexcontainer">
+        <!-- SHOPPING CART -->
+        <div class="shoppingcartcontainer">
+            
+        </div>
+        <!-- ORIGANIZE SELECTORS -->
+        <div class="organizemenucontainer">
+            <h1 class="name text-align">{{ this.firstname }} {{ this.lastname }}</h1>
+            <p class="email text-align">{{ this.email }}</p>
+            
+        </div>
+    </div>
 </main>
+<app-settings></app-settings>

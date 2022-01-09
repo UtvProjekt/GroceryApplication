@@ -1,4 +1,6 @@
 import { Component, Injectable, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-myaccount',
@@ -7,7 +9,11 @@ import { Component, Injectable, Input, OnInit } from '@angular/core';
 })
 @Injectable({ providedIn: 'root' })
 export class MyaccountComponent implements OnInit {
-  constructor() { }
+  //Fa Icons
+  faSignOut = faSignOutAlt
+
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.email = this.getCookieValue("email")
@@ -18,14 +24,29 @@ export class MyaccountComponent implements OnInit {
   @Input() email: string = ""
   @Input() firstname: string = ""
   @Input() lastname: string = ""
+
+
+  public signOut(): void{
+    document.cookie = "email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+    document.cookie = "firstname=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+    document.cookie = "lastname=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+    document.cookie = "isUserLoggedIn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+    document.cookie = "admin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+    this.router.navigate(["/"])
+  }
+
+
+  /**
+   * Cookie handlers
+   */
   
-  getCookies(): void{
+  public getCookies(): void{
     this.email = this.getCookieValue("email")
     this.firstname = this.getCookieValue("firstname")
     this.lastname = this.getCookieValue("lastname")
   }
 
-  public getCookie(name: string){
+  public getCookie(name: string): any{
     name = name + "="
     let decodedCookie = decodeURIComponent(document.cookie)
     let ca = decodedCookie.split(";")
