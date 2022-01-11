@@ -25,6 +25,8 @@ export class SettingsComponent implements OnInit {
   //BOOLEANS
   darkOrLight: boolean = true
   settingsIsOpen: boolean = false
+  showCart: boolean = false
+  showMenu: boolean = false
 
   constructor(public globalvar: AppComponent, public headervar: HeaderComponent) { }
 
@@ -33,8 +35,8 @@ export class SettingsComponent implements OnInit {
 
 
   toggleSettingsMenu() {
-    this.headervar.setShowCartFalse()
-    this.headervar.setShowMenuFalse()
+    this.setShowCartFalse()
+    this.setShowMenuFalse()
   if (!this.settingsIsOpen) {
     this.openSettingsMenu()
   }
@@ -63,6 +65,13 @@ export class SettingsComponent implements OnInit {
     document.getElementById('settings')!.style.visibility = "hidden"
     document.getElementById('settings')!.style.opacity = "0"
     document.getElementById('coversonsettingopen')!.style.display = "none"
+  }
+
+  setShowCartFalse(){
+    this.showCart = false
+  }
+  setShowMenuFalse(){
+    this.showMenu = false
   }
 
 }

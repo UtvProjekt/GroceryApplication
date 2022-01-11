@@ -1,55 +1,55 @@
 <!--ENTRY PAGE-->
 <section class="movingbackground intro" id="top">
-    <div class="title">
-        <h1>Welcome to Oasis</h1>
-        <h1 *ngIf="this.loggedInApp">! {{ this.firstnameForApp }}</h1>
+    <div class="introtext">
+        <div class="title">
+            <h1>Welcome to Oasis!</h1>
+        </div>
+        <p>A food store known for it's qualities</p>
+        <p class="linkonstart"><a href="#info">Shop Now</a></p>
     </div>
-    <p>A food store known for it's qualities</p>
-    <p class="linkonstart"><a href="#info">More Info</a></p>
+    <div class="notifyme">
+        <h2>Notify me about new groceries?</h2>
+        <form>
+            <div>
+                <label for="email">Email (Required)</label>
+                <input type="text" name="email" required placeholder="Email" autocomplete="off">
+            </div>
+            <div>
+                <label for="phonenumber">Phone Number (Optional)</label>
+                <input type="tel" name="phonenumber" placeholder="Phone Number">
+            </div>
+            <button type="submit" class="pointer">Send</button>
+        </form>
+    </div>
 </section>
 <!--ABOUT PAGE-->
 <section class="aboutthispage" id="info">
     <div class="rotatedeffect"></div>
     <div class="wrapper-about">
-        <div class="infoinabout layoutinabout">
+        <section class="describetext">
             <h1>Hello and welcome</h1>
             <p>to our wide supply of groceries.</p>
-            <p class="paragrafsinfo">Our assortment contains some of the most fresh<br>and popular groceries that is out
-                there.</p>
-            <h2>Our idea</h2>
-            <p class="paragrafsinfo">The idea of a fast and easy food shop has been<br>something that we've personaly
-                wanted to see but never experienced.</p>
-            <p class="paragrafsinfo">So thats what we came up with, as junior java developers we had 8<br>weeks to
-                create this website.</p>
-            <h3>Our name. Oasis</h3>
-            <p class="paragrafsinfo">Our website Oasis stands for "Oscar Anton and Sebastians innovative store". "But
-                why oasis?" You might ask.<br><br> Well, our names fits
-                the title nicely, but it wasn't really planned out and we can't give you a good answer apart from that
-                it was just something Anton came up with, completely at random.</p>
-        </div>
-        <div class="buttonstoclick layoutinabout">
-            <h2>Start here</h2>
-            <div class="buttoncontainerforhomebuttons">
-                <button class="pointer" routerLink="/search">
-                    <h3>Search</h3>
-                    <fa-icon [icon]="faSearch"></fa-icon>
-                </button>
-                <button class="pointer" routerLink="/signin">
-                    <h3>Sign in</h3>
-                    <fa-icon [icon]="faKey"></fa-icon>
-                </button>
-                <button class="pointer" routerLink="/myaccount">
-                    <h3>My Account</h3>
-                    <fa-icon [icon]="faUserCircle"></fa-icon>
-                </button>
+            <p>Our assortment contains some of the most fresh<br>and popular groceries that is out there.</p>
+            <p>Check out our lastest additions below, or explore our entire sortiment to the right.</p>
+        </section>
+        <section class="explorebuttons">
+            <div class="buttoncontainer">
+                <button class="pointer direct-link"><h2>Search more</h2><fa-icon [icon]="faSearch"></fa-icon></button>
+                <button class="pointer direct-link"><h2>My Account</h2><fa-icon [icon]="faUser"></fa-icon></button>
+                <button class="pointer direct-link"><h2>Sign in</h2><fa-icon [icon]="faKey"></fa-icon></button>
             </div>
-        </div>
+        </section>
+        <section class="slider">
+
+        </section>
     </div>
 </section>
 <!--FOOTER-->
 <app-footer id="footer"></app-footer>
 <!--SETTINGS SECTION-->
-<div id="scrolltotoparrow"><a href="#top"><fa-icon [icon]="faArrowAltCircleUp"></fa-icon></a></div>
+<div id="scrolltotoparrow"><a href="#top">
+        <fa-icon [icon]="faArrowAltCircleUp"></fa-icon>
+    </a></div>
 <app-settings></app-settings>
 <!-- HEADER -->
 <app-header></app-header>
