@@ -1,30 +1,18 @@
 main{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.searchpane{
-    width: 100vw;
-    height: 0;
-    background-color: var(--darktowhite);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: height 500ms 600ms ease-in-out;
-}
-
-#searchbarcontainer{
-    position: absolute;
-    transition: all 500ms ease-out 50ms;
+    
 }
 
 .searchpanecontainer{
-    display: flex;
-    justify-content: center;
-    position: absolute;
+    background-color: var(--darkmode);
+    position: relative;
     top: 10vh;
-    left: 0;
-    width: 100vw;
-    height: 80vh;
-    
+    height: 90vh;
+    padding: min(3rem, 4vh) 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#searchbar{
+    margin-left: 3em;
 }

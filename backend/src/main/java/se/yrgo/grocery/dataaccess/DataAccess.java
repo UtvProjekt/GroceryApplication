@@ -5,6 +5,7 @@ import java.util.List;
 import se.yrgo.grocery.domain.Grocery;
 
 public interface DataAccess {
+	public String searchForGroceries(String search, int rows);
 	public List<Grocery> findAll();
 	public void addGrocery(Grocery gro); 
 	public void deleteGrocery(int id);

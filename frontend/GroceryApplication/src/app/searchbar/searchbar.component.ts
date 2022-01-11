@@ -1,27 +1,47 @@
 import { Component, OnInit } from '@angular/core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { GroceryService } from 'src/Grocery.service';
 
 @Component({
   selector: 'app-searchbar',
   templateUrl: './searchbar.component.html',
   styleUrls: ['./searchbar.component.scss']
 })
+
 export class SearchbarComponent implements OnInit {
+  public jsonString: any
+
+  public arr = []
+
 
   /* ICONS */
   faSearch = faSearch
 
-  constructor() { }
+  constructor(public groceryService: GroceryService) { }
 
   ngOnInit(): void {
   }
 
-  positionSearchComponentUpper(){
-    document.getElementById('searchbarcontainer')!.style.transform = "translate(-26vw, -35vh)"
-    //document.getElementById('searchbarcontainer')!.style.flexDirection = "row"
-    document.getElementById('header')!.style.outline = "0.1em solid var(--primary-text-color)"
-    document.getElementById('searchpane')!.style.height = "90vh";
 
+  onSearch(){
+    
+  }
+
+  public async searchForData(input: string): Promise<void> {
+    let response = await this.groceryService.getSearchData(input)
+    this.jsonString = await response.toPromise()
+    this.jsonString = this.jsonString.response.docs
+    /**
+     * Json returnerar flera objekt, för att välja lägg array på jsonString först.
+     */
+    console.log(this.jsonString[0].name)
+    this.arr = this.jsonString
+
+
+    
+
+    //this.resultCount = this.jsonString.length
+    //Kan läggas på om vi har tid
   }
 
 }

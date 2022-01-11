@@ -5,7 +5,7 @@
             <h1>Welcome to Oasis!</h1>
         </div>
         <p>A food store known for it's qualities</p>
-        <p class="linkonstart"><a href="#info">Shop Now</a></p>
+        <p class="linkonstart"><a routerLink="/search">Shop Now</a></p>
     </div>
     <div class="notifyme">
         <h2>Notify me about new groceries?</h2>
@@ -34,9 +34,9 @@
         </section>
         <section class="explorebuttons">
             <div class="buttoncontainer">
-                <button class="pointer direct-link"><h2>Search more</h2><fa-icon [icon]="faSearch"></fa-icon></button>
-                <button class="pointer direct-link"><h2>My Account</h2><fa-icon [icon]="faUser"></fa-icon></button>
-                <button class="pointer direct-link"><h2>Sign in</h2><fa-icon [icon]="faKey"></fa-icon></button>
+                <button class="pointer direct-link" routerLink="/search"><h2>Search more</h2><fa-icon [icon]="faSearch"></fa-icon></button>
+                <button class="pointer direct-link" routerLink="/myaccount"><h2>My Account</h2><fa-icon [icon]="faUser"></fa-icon></button>
+                <button class="pointer direct-link" routerLink="/signin"><h2>Sign in</h2><fa-icon [icon]="faKey"></fa-icon></button>
             </div>
         </section>
         <section class="slider">

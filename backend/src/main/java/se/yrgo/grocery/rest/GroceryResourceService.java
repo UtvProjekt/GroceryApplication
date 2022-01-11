@@ -10,9 +10,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
+import org.jboss.resteasy.annotations.jaxrs.QueryParam;
+
 import se.yrgo.grocery.domain.Grocery;
 import se.yrgo.grocery.service.GroceryManagementImplementation;
 import se.yrgo.grocery.service.GroceryManagementServiceLocal;
+import se.yrgo.grocery.solr.SolrRequest;
 
 
 @Path("/grocery")
@@ -25,6 +28,14 @@ public class GroceryResourceService {
 	
 	public static GroceryResourceService getInstance() {
 		return INSTANCE;
+	}
+	
+	@POST
+	@Path("/searchforgroceries")
+	@Produces("application/JSON")
+	public String searchForSpecificAmountsOfErrors(@QueryParam("rows") int rows, String search){
+		SolrRequest solrRequest = new SolrRequest(search, rows);
+		return service.searchForGroceries(solrRequest);
 	}
 	
 	@GET

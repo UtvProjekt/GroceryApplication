@@ -5,6 +5,7 @@ import java.util.List;
 import se.yrgo.grocery.dataaccess.DataAccess;
 import se.yrgo.grocery.dataaccess.DataAccessProductionVersion;
 import se.yrgo.grocery.domain.Grocery;
+import se.yrgo.grocery.solr.SolrRequest;
 
 public class GroceryManagementImplementation implements GroceryManagementService, GroceryManagementServiceLocal{
 
@@ -33,6 +34,16 @@ public class GroceryManagementImplementation implements GroceryManagementService
 	@Override
 	public Grocery findGroceryById(long id) {
 		return ida.findGroceryById(id);
+	}
+
+	@Override
+	public String searchForGroceries(SolrRequest solrRequest){
+		
+		int rows = solrRequest.getRows();
+		if( rows > 0 && rows < 100)
+			return ida.searchForGroceries(solrRequest.getSearch(), rows);
+		else
+			return ida.searchForGroceries(solrRequest.getSearch(), 100);
 	}
 
 }

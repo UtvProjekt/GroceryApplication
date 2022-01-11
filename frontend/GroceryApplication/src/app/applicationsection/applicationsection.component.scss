@@ -50,6 +50,9 @@ section {
                 outline: 0.1em solid #860086;
                 padding: 0 0.3em;
                 font-size: 1.05rem;
+                &:focus{
+                    outline: 0.15em solid var(--yellow);
+                }
             }
             button {
                 margin-left: auto;
@@ -99,15 +102,21 @@ section {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 3em;
-        background-color: #860086;
+        margin-top: 2em;
+        background-color: var(--yellow);
         width: fit-content;
         border-radius: 0.8em;
         box-shadow: 2px 3px 10px 1px #00000050;
-        font-size: 2rem;
-        transition: box-shadow 300ms;
+        font-size: 1.8rem;
+        transition: all 250ms;
+        a{
+            color: #000000d0;
+        }
         &:hover {
-            box-shadow: 0 0 0.5em 0.1em var(--primary-color-brighter);
+            box-shadow: 0 0 0.5em 0.1em var(--yellow);
+        }
+        &:active{
+            transform: scale(0.95);
         }
     }
 }

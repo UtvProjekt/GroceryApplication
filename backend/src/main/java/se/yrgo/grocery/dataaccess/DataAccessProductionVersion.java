@@ -178,5 +178,10 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 		}
 		
 	}
+	
+	@Override
+	public String searchForGroceries(String search, int rows){
+		return solrService.get(search, rows);
+	}
 
 }

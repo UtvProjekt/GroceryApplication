@@ -14,13 +14,14 @@ public class SolrService {
 	private String updateUrl = baseUrl + "solr/groceryApp/update";
 	private String reloadUrl = baseUrl + "solr/admin/cores?action=RELOAD&core=groceryApp";
 	private String deleteUrl = baseUrl + "solr/groceryApp/update?commit=true";
+	private String baseGetUrl = baseUrl + "solr/groceryApp/select?indent=true&q.op=OR&sort=score%20desc";
 
 	public void addNewGroceryItem(Grocery groceryToAdd) {
 		
-		Grocery[] errorMessageArray = {groceryToAdd};
+		Grocery[] groceryArray = {groceryToAdd};
 		Client client = ClientBuilder.newClient();
 		
-		Response response = client.target(updateUrl).request().buildPost(Entity.json(errorMessageArray)).invoke();
+		Response response = client.target(updateUrl).request().buildPost(Entity.json(groceryArray)).invoke();
 		
 		response.close();
 		client.close();
@@ -52,6 +53,16 @@ public class SolrService {
 			throw new GroceryNotFoundException();
 		}
 
+	}
+	public String get(String search, int rows){
+		Client client = ClientBuilder.newClient();
+		String getUrl = baseGetUrl + "&rows=" + rows + "&q=" + search;
+		Response response = client.target(getUrl).request().buildGet().invoke();
+		String data = response.readEntity(String.class);
+		
+		response.close();
+		client.close();
+		return data;
 	}
 
 }
