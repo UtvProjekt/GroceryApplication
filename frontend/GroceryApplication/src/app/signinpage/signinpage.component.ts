@@ -112,11 +112,9 @@ export class SigninpageComponent implements OnInit {
                   (respons: boolean) => {
                     if (respons) {
                       document.cookie = "admin=true;" + expiresIn30Days + ";path=/"
-                      console.log("sant")
                     }
                     else{
                       document.cookie = "admin=false;" + expiresIn30Days + ";path=/"
-                      console.log("falskt")
                     }
                   }
                 )

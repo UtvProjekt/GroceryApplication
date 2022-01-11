@@ -45,44 +45,12 @@ export class ApplicationsectionComponent implements OnInit {
 
   bindBottomArrow(){
     window.onscroll = function(){
-      if((window.innerHeight + window.scrollY) >= 1600){
+      if((window.innerHeight + window.scrollY) >= 1800){
         document.getElementById('scrolltotoparrow')!.style.visibility = "visible"
       } else{
         document.getElementById('scrolltotoparrow')!.style.visibility = "hidden"
       }
     }
-  }
-  openSettingsMenu() {
-    document.getElementById('settings')!.style.visibility = "visible"
-    document.getElementById('settings')!.style.opacity = "1"
-    document.getElementById('coversonsettingopen')!.style.display = "block"
-  }
-  closeSettingsMenu() {
-    document.getElementById('settings')!.style.visibility = "hidden"
-    document.getElementById('settings')!.style.opacity = "0"
-    document.getElementById('coversonsettingopen')!.style.display = "none"
-  }
-
-  toggleSettingsMenu() {
-      this.headervar.setShowCartFalse()
-      this.headervar.setShowMenuFalse()
-    if (!this.settingsIsOpen) {
-      this.openSettingsMenu()
-    }
-    else {
-      this.closeSettingsMenu()
-    }
-    this.settingsIsOpen = !this.settingsIsOpen
-  }
-
-  darkLightMode(): void {
-    if (this.darkOrLight) {
-      this.globalvar.lightMode()
-    }
-    else {
-      this.globalvar.darkMode()
-    }
-    this.darkOrLight = !this.darkOrLight
   }
 
 }

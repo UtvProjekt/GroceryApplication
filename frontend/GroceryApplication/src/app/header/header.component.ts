@@ -14,10 +14,11 @@ export class HeaderComponent implements OnInit {
   faShoppingCart = faShoppingCart
   faTimes = faTimes
 
-  showCart: boolean = false
-  showMenu: boolean = false
-
   public loggedInHeader: boolean = false
+
+  open: boolean = false
+
+  email: string = ""
 
   constructor(public myacc: MyaccountComponent) { }
 
@@ -25,27 +26,27 @@ export class HeaderComponent implements OnInit {
     if(this.myacc.getCookieValue("isUserLoggedIn") === "true"){
       this.loggedInHeader = true
     }
+    this.email = this.myacc.getCookieValue("email")
   }
 
-  toggleMenu(){
-    this.showMenu = !this.showMenu
-    if(this.showCart){
-      this.showCart = false
+ 
+  public toggleMenu(): void{
+    if(!this.open){
+      this.openMenu()
     }
-  }
-
-  toggleShoppingCart(){
-    this.showCart = !this.showCart
-    if(this.showMenu){
-      this.showMenu = false
+    else{
+      this.closeMenu()
     }
+    this.open = !this.open
   }
 
-  setShowCartFalse(){
-    this.showCart = false
+  openMenu(){
+    document.getElementById('menu')!.style.bottom = "0"
   }
-  setShowMenuFalse(){
-    this.showMenu = false
+
+  closeMenu(){
+    document.getElementById('menu')!.style.bottom = "6em"
   }
+
 
 }

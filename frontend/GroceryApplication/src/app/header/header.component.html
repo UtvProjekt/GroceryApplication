@@ -1,26 +1,19 @@
 <header id="header">
-    <h1 class="maintitle"><a routerLink="">Oasis</a></h1>
-    
+    <div class="maintitle"><h1><a routerLink="">Oasis</a></h1><p *ngIf="this.loggedInHeader">Signed in as "{{ this.email }}"</p></div>
     <div class="icons">
-        <fa-icon [icon]="faShoppingCart" class="pointer" (click)="toggleShoppingCart()"></fa-icon>
-        <ul class="menu" id="shoppingcart" *ngIf="showCart">
-            <div class="menutitle">
-                <h2>Shopping Cart</h2>
-                <fa-icon [icon]="faTimes" class="pointer" (click)="toggleShoppingCart()"></fa-icon>
-            </div>
-        </ul>
-        <div (click)="toggleMenu()" class="menucontainer"><fa-icon [icon]="faUserCircle" class="pointer"></fa-icon>
-            <div *ngIf="this.showMenu" class="menuwrapper">
-                <ul class="menu links">
-                    <div class="menutitle">
-                        <h2 class="menumenu">Menu</h2>
-                        <fa-icon [icon]="faTimes" class="pointer"></fa-icon>
-                    </div>
-                    <a routerLink="/search" class="link"><li class="headeroptions">Search article</li></a>
-                    <a *ngIf="!loggedInHeader" routerLink="/signin" routerLinkActive="activelink" class="link"><li class="headeroptions">Register / Sign in</li></a>
-                    <a *ngIf="loggedInHeader" routerLink="/myaccount" routerLinkActive="activelink" class="link"><li class="headeroptions">My Account</li></a>
-                </ul>
-            </div>
+        <div class="menucontainer">
+            <ul class="links" id="menu">
+                <a routerLink="/search" class="link">
+                    <li class="displaycenter">Search article</li>
+                </a>
+                <a *ngIf="!loggedInHeader" routerLink="/signin" routerLinkActive="activelink" class="link">
+                    <li class="displaycenter">Register / Sign in</li>
+                </a>
+                <a *ngIf="loggedInHeader" routerLink="/myaccount" routerLinkActive="activelink" class="link">
+                    <li class="displaycenter">My Account</li>
+                </a>
+            </ul>
+            <fa-icon [icon]="faUserCircle" class="pointer" (click)="toggleMenu()"></fa-icon>
         </div>
     </div>
 

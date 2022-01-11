@@ -11,6 +11,7 @@
     transition: transform 600ms;
     display: flex;
     align-items: center;
+    z-index: 999;
     &:hover {
         transform: rotate(120deg);
     }
@@ -20,7 +21,10 @@
     }
 }
 #settings{
-    z-index: 300;
+    z-index: 999;
+}
+.settingssection{
+    position: relative;
 }
 .settings {
     display: flex;
@@ -100,6 +104,7 @@
 
 #coversonsettingopen {
     position: fixed;
+    z-index: 998;
     top: 0;
     left: 0;
     width: 100vw;
