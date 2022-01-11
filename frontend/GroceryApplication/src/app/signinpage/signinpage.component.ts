@@ -109,8 +109,8 @@ export class SigninpageComponent implements OnInit {
                 document.cookie = "isUserLoggedIn=true;" + expiresIn30Days + ";path=/"
                 //OM ADMIN ÄR TRUE SKAPA ADMIN-COOKIE
                 this.loginService.checkIfAdmin(iterator.email).subscribe(
-                  (response: boolean) => {
-                    if (response == true) {
+                  (respons: boolean) => {
+                    if (respons) {
                       document.cookie = "admin=true;" + expiresIn30Days + ";path=/"
                       console.log("sant")
                     }
@@ -131,8 +131,8 @@ export class SigninpageComponent implements OnInit {
                 document.cookie = "isUserLoggedIn=true;" + expiresIn30Min + ";path=/"
                 
                 this.loginService.checkIfAdmin(iterator.email).subscribe(
-                  (response: boolean) => {
-                    if (response == true) {
+                  (respon: boolean) => {
+                    if (respon) {
                       document.cookie = "admin=true;" + expiresIn30Min + ";path=/"
                       console.log("sant")
                     }
@@ -215,6 +215,13 @@ export class SigninpageComponent implements OnInit {
   addUser(): void {
     delete this.registerForm.value.conpassword
     this.registerForm.value.password = sha256(this.registerForm.value.password)
+    document.getElementById("returnmessage")!.innerHTML = "You successfully created an account."
+    document.getElementById("returnmessage")!.style.color = "green"
+    this.successmessage = false
+    setTimeout(() => {
+      this.successmessage = true
+      this.loginorregister = true
+    }, 2000);
 
     this.loginService.createUser(this.registerForm.value).subscribe(
       (response: Login) => {

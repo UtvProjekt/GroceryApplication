@@ -67,7 +67,7 @@
                 <div class="buttoncontainer">
                     <button class="btn loginbtn pointer" form="signin" type="submit" *ngIf="loginorregister"
                         [disabled]="signInForm.invalid">Sign in</button>
-                    <button class="btn loginbtn pointer regbtn" form="register" type="submit" *ngIf="!loginorregister"
+                    <button class="btn loginbtn pointer" form="register" type="submit" *ngIf="!loginorregister"
                         [disabled]="registerForm.invalid">Register</button>
                 </div>
                 <div class="successmessage" id="returnmessage" [hidden]="!this.successmessage">Success. Redirecting..</div>
