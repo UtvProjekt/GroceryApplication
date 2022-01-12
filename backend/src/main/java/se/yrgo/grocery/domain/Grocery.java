@@ -27,6 +27,8 @@ public class Grocery implements Serializable {
 	@Size(min = 3, max = 40)
 	private String brand;
 	
+	private String category;
+	
 	@Size(min = 1)
 	private String imageUrl;
 	
@@ -40,17 +42,22 @@ public class Grocery implements Serializable {
 	private int stockOf;
 	
 	public Grocery() {}
-
-	public Grocery(String name, double price, String description, int expiredDate, int stockOf, String brand, String imageUrl) {
+	
+	public Grocery(String name, String brand, String category, String imageUrl, double price, String description,
+			int expiredDate, int stockOf) {
+		super();
 		this.name = name;
+		this.brand = brand;
+		this.category = category;
+		this.imageUrl = imageUrl;
 		this.price = price;
 		this.description = description;
 		this.expiredDate = expiredDate;
 		this.stockOf = stockOf;
-		this.brand = brand;
-		this.imageUrl = imageUrl;
 	}
-	
+
+
+
 	public String getImageUrl() {
 		return imageUrl;
 	}
@@ -115,12 +122,21 @@ public class Grocery implements Serializable {
 		this.stockOf = stockOf;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+	
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	
 	@Override
 	public String toString() {
 		return "Grocery [id=" + id + ", name=" + name + ", brand=" + brand + ", imageUrl=" + imageUrl + ", price="
 				+ price + ", description=" + description + ", expiredDate=" + expiredDate + ", stockOf=" + stockOf
 				+ "]";
 	}
+
 
 	
 	

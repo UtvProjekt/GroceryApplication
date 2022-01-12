@@ -5,7 +5,10 @@
             <h1>Welcome to Oasis!</h1>
         </div>
         <p>A food store known for it's qualities</p>
-        <p class="linkonstart"><a routerLink="/search">Shop Now</a></p>
+        <div class="linkwrapper">
+            <p class="linkonstart"><a routerLink="/search">Start shopping</a></p><span>Or</span>
+            <p class="linkonstart"><a href="#explore">Explore Oasis</a></p>
+        </div>
     </div>
     <div class="notifyme">
         <h2>Notify me about new groceries?</h2>
@@ -16,19 +19,18 @@
             </div>
             <div>
                 <label for="phonenumber">Phone Number (Optional)</label>
-                <input type="tel" name="phonenumber" placeholder="Phone Number">
+                <input type="tel" name="phonenumber" placeholder="Phone Number" autocomplete="off">
             </div>
             <button type="submit" class="pointer">Send</button>
         </form>
     </div>
 </section>
 <!--ABOUT PAGE-->
-<section class="aboutthispage" id="info">
+<section class="aboutthispage" id="explore">
     <div class="rotatedeffect"></div>
     <div class="wrapper-about">
         <section class="describetext">
-            <h1>Hello and welcome</h1>
-            <p>to our wide supply of groceries.</p>
+            <h2>Home of the best selling groceries out there.</h2>
             <p>Our assortment contains some of the most fresh<br>and popular groceries that is out there.</p>
             <p>Check out our lastest additions below, or explore our entire sortiment to the right.</p>
         </section>
@@ -47,9 +49,6 @@
 <!--FOOTER-->
 <app-footer id="footer"></app-footer>
 <!--SETTINGS SECTION-->
-<div id="scrolltotoparrow"><a href="#top">
-        <fa-icon [icon]="faArrowAltCircleUp"></fa-icon>
-    </a></div>
-<app-settings></app-settings>
+<div id="scrolltotoparrow"><a href="#top"><fa-icon [icon]="faArrowAltCircleUp"></fa-icon></a></div>
 <!-- HEADER -->
 <app-header></app-header>

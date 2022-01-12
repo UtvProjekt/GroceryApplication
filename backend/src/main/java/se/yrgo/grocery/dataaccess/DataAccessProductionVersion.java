@@ -55,21 +55,20 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 
 		try {
 			tx.begin();
-			Grocery persistGrocery = new Grocery(gro.getName(), gro.getPrice(), gro.getDescription(),gro.getExpiredDate(), gro.getStockOf(), gro.getBrand(), gro.getImageUrl());
+			Grocery persistGrocery = new Grocery(gro.getName(), gro.getBrand(), gro.getCategory(), gro.getImageUrl(),
+					gro.getPrice(), gro.getDescription(), gro.getExpiredDate(), gro.getStockOf());
 			em.persist(persistGrocery);
 
 			solrService.addNewGroceryItem(persistGrocery);
 			solrService.reload();
-			
+
 			tx.commit();
-		} 
-		catch (GroceryNotFoundException ex) {
-			//logga och ge error message här sen
+		} catch (GroceryNotFoundException ex) {
+			// logga och ge error message här sen
 			tx.rollback();
-		}
-		catch (GroceryCouldNotBeAddedException ex) {
-			//logga och ge error message här sen
-			tx.rollback();		
+		} catch (GroceryCouldNotBeAddedException ex) {
+			// logga och ge error message här sen
+			tx.rollback();
 		}
 
 	}
@@ -88,18 +87,15 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 		try {
 			tx.begin();
 			em.remove(findGroceryById(id));
-			
-			solrService.deleteGroceryItem(id);
-			
-			tx.commit();
-		} 
-		catch (GroceryNotFoundException ex) {
-			tx.rollback();
-		}
-		catch (Exception ex) {
-			tx.rollback();
-		}
 
+			solrService.deleteGroceryItem(id);
+
+			tx.commit();
+		} catch (GroceryNotFoundException ex) {
+			tx.rollback();
+		} catch (Exception ex) {
+			tx.rollback();
+		}
 
 	}
 
@@ -133,7 +129,7 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 		 * credentials.getPassword(), credentials.getFirstname(),
 		 * credentials.getSurname()); em.persist(persistUser); tx.commit();
 		 */
-		
+
 		try {
 			tx.begin();
 			Login persistUser = new Login(credentials.getEmail(), credentials.getPassword(), credentials.getFirstname(),
@@ -166,21 +162,20 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 				.setParameter("email", email);
 		return (String) q.getSingleResult();
 	}
-	
+
 	@Override
 	public boolean checkIfAdmin(String email) {
 		Login adminCheck = findUserByEmail(email);
-		if(adminCheck.isAdmin() == 1) {
+		if (adminCheck.isAdmin() == 1) {
 			return true;
-		}
-		else {	
+		} else {
 			return false;
 		}
-		
+
 	}
-	
+
 	@Override
-	public String searchForGroceries(String search, int rows){
+	public String searchForGroceries(String search, int rows) {
 		return solrService.get(search, rows);
 	}
 

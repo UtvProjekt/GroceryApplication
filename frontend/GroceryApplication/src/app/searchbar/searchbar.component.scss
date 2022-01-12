@@ -1,7 +1,25 @@
 .container{
-    width: min(36vw, 40rem);
+    position: relative;
+    width: 34rem;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    transition: width 300ms;
+    &:focus-within{
+        input{
+            width: calc(95% - 2.7rem);
+        }
+        width: 44rem;
+    }
+    
+    &:hover, &:focus-within{
+        button{
+            border-color: var(--yellow);
+        }
+        input{
+            border-color: var(--yellow);
+        }
+    }
 }
 
 input{
@@ -9,10 +27,12 @@ input{
     height: 2em;
     padding: 0 .5em;
     outline: none; 
-    border: 0.15em solid var(--primary-color-brighter);
+    border: 0.15em solid var(--primary-color);
     font-size: 1.2em;
     border-radius: 4px;
     box-sizing: content-box;
+    background-color: var(--darkmode);
+    color: var(--primary-text-color);
     &:focus{
         border-color: var(--yellow);
     }
@@ -24,15 +44,13 @@ input{
     border-radius: 0.1em;
     font-size: 1.3em;
     font-weight: var(--thickfont);
-    border: 0.1em solid var(--primary-color-brighter);
-    transition: all 200ms;
+    border: 0.1em solid var(--primary-color);
+    transition: background-color 200ms, color 200ms, border-color 200ms, scale 200ms;
     color: var(--primary-text-color);
+    background-color: var(--darkmode);
     &:hover{
         color: #000;
         background-color: var(--yellow);
-        border-color: var(--yellow);
-    }
-    &:focus{
         border-color: var(--yellow);
     }
     &:active{

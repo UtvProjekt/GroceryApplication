@@ -1,15 +1,24 @@
 <main id="search" class="movingbackground">
-    
-    <div class="searchpanecontainer">
-        <app-searchbar id="searchbar"></app-searchbar>
 
-        <div class="allSearches">
-            <div id="resultpane">
-                <app-results *ngFor="let value of jsonString" [dataValue]="value" class="searchResultComponent"></app-results>
-            </div>
+    <section class="searchpanecontainer">
+        <div class="wrapper-searchsec">
+            <app-searchbar id="searchbar" (newItemEvent)="addItem($event)"></app-searchbar>
+
+            <section class="allSearches">
+                <aside class="categories">
+                    <h2>Filter</h2>
+                </aside>
+                <div id="examplepane" class="thisorthat" *ngIf="this.onEntry">
+                    <h2>For you</h2>
+                </div>
+                <div id="resultpane" class="thisorthat" *ngIf="!this.onEntry">
+                    <h2>Your Search. {{ this.emittedItems.length }} Results.</h2>
+                    <app-results *ngFor="let value of emittedItems" [dataValue]="value" class="searchResultComponent"></app-results>
+                </div>
+            </section>
         </div>
-    </div>
-    
+    </section>
+
     <!-- SHOPPING CART 
 <fa-icon [icon]="faShoppingCart" class="pointer" (click)="toggleShoppingCart()"></fa-icon>
         <ul class="menu" id="shoppingcart" *ngIf="showCart">
@@ -20,6 +29,6 @@
         </ul>
 
     -->
-    
+
 </main>
-<app-header></app-header>
+<app-header [viewInit]="this.isOnSearchSection"></app-header>

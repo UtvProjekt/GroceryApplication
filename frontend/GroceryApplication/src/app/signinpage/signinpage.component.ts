@@ -6,6 +6,7 @@ import { Login } from 'src/Login';
 import { sha256 } from 'js-sha256';
 import { MyaccountComponent } from '../myaccount/myaccount.component';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-signinpage',
@@ -50,7 +51,7 @@ export class SigninpageComponent implements OnInit {
   faShoppingBasket = faShoppingBasket
   faSignature = faSignature
 
-  constructor(public loginService: LoginService, private builder: FormBuilder, private myacc: MyaccountComponent, private router: Router) { }
+  constructor(public loginService: LoginService, private builder: FormBuilder, private myacc: MyaccountComponent, private router: Router, public globalvar: AppComponent) { }
 
   ngOnInit(): void {
     this.expiresIn30Min()
@@ -59,7 +60,7 @@ export class SigninpageComponent implements OnInit {
   }
 
   checkIfUserIsSignedIn(): void {
-    if (this.myacc.getCookieValue("isUserLoggedIn") === "true") {
+    if (this.globalvar.getCookieValue("isUserLoggedIn") === "true") {
       this.loggedIn = true
     }
   }
