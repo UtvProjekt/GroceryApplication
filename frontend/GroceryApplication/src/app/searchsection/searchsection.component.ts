@@ -7,7 +7,6 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class SearchsectionComponent implements OnInit {
 
-  @Input() dataValue: any
   @Input() jsonString: any
   
   constructor() { }

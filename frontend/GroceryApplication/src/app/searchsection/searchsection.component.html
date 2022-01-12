@@ -2,7 +2,7 @@
     
     <div class="searchpanecontainer">
         <app-searchbar id="searchbar"></app-searchbar>
-        
+
         <div class="allSearches">
             <div id="resultpane">
                 <app-results *ngFor="let value of jsonString" [dataValue]="value" class="searchResultComponent"></app-results>

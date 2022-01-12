@@ -11,9 +11,6 @@ import { GroceryService } from 'src/Grocery.service';
 export class SearchbarComponent implements OnInit {
   public jsonString: any
 
-  public arr = []
-
-
   /* ICONS */
   faSearch = faSearch
 
@@ -35,7 +32,6 @@ export class SearchbarComponent implements OnInit {
      * Json returnerar flera objekt, för att välja lägg array på jsonString först.
      */
     console.log(this.jsonString[0].name)
-    this.arr = this.jsonString
 
 
     
