@@ -39,12 +39,10 @@ public class Grocery implements Serializable {
 	
 	private int expiredDate;
 	
-	private int stockOf;
-	
 	public Grocery() {}
 	
 	public Grocery(String name, String brand, String category, String imageUrl, double price, String description,
-			int expiredDate, int stockOf) {
+			int expiredDate) {
 		super();
 		this.name = name;
 		this.brand = brand;
@@ -53,7 +51,6 @@ public class Grocery implements Serializable {
 		this.price = price;
 		this.description = description;
 		this.expiredDate = expiredDate;
-		this.stockOf = stockOf;
 	}
 
 
@@ -114,14 +111,6 @@ public class Grocery implements Serializable {
 		this.expiredDate = expiredDate;
 	}
 
-	public int getStockOf() {
-		return stockOf;
-	}
-
-	public void setStockOf(int stockOf) {
-		this.stockOf = stockOf;
-	}
-
 	public String getCategory() {
 		return category;
 	}
@@ -133,8 +122,7 @@ public class Grocery implements Serializable {
 	@Override
 	public String toString() {
 		return "Grocery [id=" + id + ", name=" + name + ", brand=" + brand + ", imageUrl=" + imageUrl + ", price="
-				+ price + ", description=" + description + ", expiredDate=" + expiredDate + ", stockOf=" + stockOf
-				+ "]";
+				+ price + ", description=" + description + ", expiredDate=" + expiredDate + "]";
 	}
 
 

@@ -56,7 +56,7 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 		try {
 			tx.begin();
 			Grocery persistGrocery = new Grocery(gro.getName(), gro.getBrand(), gro.getCategory(), gro.getImageUrl(),
-					gro.getPrice(), gro.getDescription(), gro.getExpiredDate(), gro.getStockOf());
+					gro.getPrice(), gro.getDescription(), gro.getExpiredDate());
 			em.persist(persistGrocery);
 
 			solrService.addNewGroceryItem(persistGrocery);
