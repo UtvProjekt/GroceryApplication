@@ -34,7 +34,6 @@ public class Login implements Serializable {
 	@Size(min = 0)
 	private String lastname;
 
-	
 	@Column(nullable = false, columnDefinition = "BIT")
 	private int admin;
 	

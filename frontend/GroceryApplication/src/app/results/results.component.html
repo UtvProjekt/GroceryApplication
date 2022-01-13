@@ -1,3 +1,20 @@
 <div class="results">
-    <h2 class="name">{{ this.dataValue.name }}</h2>
+    <div class="imagecontainer items">
+        <img src="../../assets/grocerybag.jpg" alt="groceryimage">
+    </div>
+
+    <div class="items name">
+        {{this.dataValue.name.substring(0, 25)}} 
+    </div>
+
+    <div class="items price">
+        {{this.dataValue.price}} kr
+    </div>
+
+    <div class="items">
+        <button class="btn pointer">Add to cart</button>
+    </div>
+
+
+
 </div>

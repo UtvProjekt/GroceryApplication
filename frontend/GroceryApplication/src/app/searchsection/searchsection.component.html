@@ -1,5 +1,4 @@
 <main id="search" class="movingbackground">
-
     <section class="searchpanecontainer">
         <div class="wrapper-searchsec">
             <app-searchbar id="searchbar" (newItemEvent)="addItem($event)"></app-searchbar>
@@ -8,19 +7,24 @@
                 <aside class="categories">
                     <h2>Filter</h2>
                 </aside>
+
                 <div id="examplepane" class="thisorthat" *ngIf="this.onEntry">
-                    <h2>For you</h2>
+                    <h2>Our sortiment</h2>
                 </div>
+
                 <div id="resultpane" class="thisorthat" *ngIf="!this.onEntry">
                     <h2>Your Search. {{ this.emittedItems.length }} Results.</h2>
-                    <app-results *ngFor="let value of emittedItems" [dataValue]="value" class="searchResultComponent"></app-results>
+                    <section class="resultcards">
+                        <app-results *ngFor="let value of emittedItems" [dataValue]="value"
+                            class="searchResultComponent"></app-results>
+                    </section>
                 </div>
             </section>
         </div>
     </section>
 
     <!-- SHOPPING CART 
-<fa-icon [icon]="faShoppingCart" class="pointer" (click)="toggleShoppingCart()"></fa-icon>
+        <fa-icon [icon]="faShoppingCart" class="pointer" (click)="toggleShoppingCart()"></fa-icon>
         <ul class="menu" id="shoppingcart" *ngIf="showCart">
             <div class="menutitle">
                 <h2>Shopping Cart</h2>

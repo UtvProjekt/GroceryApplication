@@ -9,6 +9,9 @@ section {
     .notifyme {
         margin-top: 6em !important;
     }
+    .slider{
+        align-items: center;
+    }
 }
 .intro {
     height: 90vh;
@@ -165,6 +168,7 @@ section {
     background-color: var(--darkmode);
 }
 .wrapper-about {
+    height: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
@@ -238,11 +242,37 @@ section {
             }
         }
     }
-
+    // SLIDER
+    
     .slider {
         width: 100%;
         grid-area: 2 / 1 / 3 / 3;
+        display: flex;
+        justify-content: center;
+        .container-slider{
+            width: 86vw;
+            height: 35vh;
+            overflow: hidden;
+            
+            .as-figure{
+                display: flex;
+                position: relative;
+                right: 0vw;
+                width: 540%;
+                height: 100%;
+                .card{
+                    width: 28vw;
+                    height: 90%;
+                    background-color: var(--darkmode-card);
+                    font-size: 2rem;
+                    margin-inline: .5rem;
+                }
+            }
+        }
     }
+
+
+
 }
 //FOOTER
 #scrolltotoparrow {
