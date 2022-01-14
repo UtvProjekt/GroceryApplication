@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { GroceryService } from 'src/Grocery.service';
 import { SearchsectionComponent } from '../searchsection/searchsection.component';
@@ -21,17 +21,18 @@ export class SearchbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSearch(value: any){
-    this.newItemEvent.emit(value)
+  
+
+  onSearch(value: any): any{
+    this.searchForData(value)
+    this.searchsec.onEntry = false
   }
 
   public async searchForData(input: string): Promise<void> {
-    let response = await this.groceryService.getSearchData(input)
+    let response = this.groceryService.getSearchData(input)
     this.jsonString = await response.toPromise()
     this.jsonString = this.jsonString.response.docs
-
-    this.onSearch(this.jsonString)
-    this.searchsec.onEntry = false
+    this.newItemEvent.emit(this.jsonString)
   }
 
 }

@@ -1,4 +1,6 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { GroceryService } from 'src/Grocery.service';
 
 @Component({
   selector: 'app-searchsection',
@@ -7,26 +9,60 @@ import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 })
 export class SearchsectionComponent implements OnInit, AfterViewInit {
 
-  public emittedItems: any = []
- 
+  addForm = this.builder.group({
+    name: ['', Validators.required],
+    brand: ['', Validators.required],
+    category: ['', Validators.email],
+    description: ['', Validators.required],
+    price: ['', Validators.required],
+    expiredDate: ['', Validators.required]
+  })
+
+  //ARRAYS
+  public searchedItems: any = []
+  public allItems: any = []
+  //BOOLEANS
+  public showFormInSearch: boolean = false
   public onEntry: boolean = true
-
   public isOnSearchSection: boolean = true
+  message: boolean = false;
   
-  constructor() { }
-
+  constructor(private groceryComp: GroceryService, private builder: FormBuilder) { }
+  //ON INITS
   ngAfterViewInit(): void {
     this.isOnSearchSection = false
   }
 
   ngOnInit(): void {
+    this.getAllItems()
+  }
+
+  //METHODS
+
+  addNewGrocery(): void{
+
+  }
+
+  receiveMessage($event: any) {
+    this.message = $event
   }
 
   addItem(newItem: any){
-    this.emittedItems = []
+    this.searchedItems = []
     for (let iterator of newItem) {
-      this.emittedItems.push(iterator)
+      this.searchedItems.push(iterator)
     }
   }
 
+  getAllItems(){
+    this.groceryComp.getGroceryData().subscribe(
+      (response => {
+        this.allItems = response
+      })
+    )
+  }
+
+  
+
 }
+

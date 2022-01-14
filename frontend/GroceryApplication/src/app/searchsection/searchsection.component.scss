@@ -35,17 +35,16 @@ main{
     width: 80%;
     border-radius: 0.5rem;
     margin-left: 1rem;
-    h2{
-        margin-left: 1rem;
-    }
+    
     &:hover{
         h2{
             border-color: var(--yellow);
         }
     }
     h2{
+        margin-left: 1rem;
         transition: all 200ms;
-        color: var(--primary-text-color);
+        color: #111;
         padding-inline: 0.1rem;
         display: inline-block;
         border-bottom: 0.15rem solid var(--primary-color-brighter);
@@ -84,4 +83,66 @@ main{
         text-align: center;
     }
 
+}
+
+//ADDFORM
+
+.addform{
+    position: absolute;
+    top: 10vh;
+    height: 90vh;
+    width: 100vw;
+    background-color: #161616e0;
+    form{
+        position: relative;
+        z-index: 1;
+        background-color: var(--darkmode);
+        width: 40vw;
+        height: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 2rem;
+
+        //File input
+        input[type="file"]{
+            display: none;
+        }
+        
+        .buttonsinform{
+            position: relative;
+            outline: 0.15rem solid var(--primary-color-brighter);
+            padding: .8rem 1.4rem;
+            color: var(--primary-text-color);
+            border-radius: 0.1rem;
+            transition: 200ms;
+            will-change: transform;
+            &:hover{
+                transform: scale(1.03);
+                background-color: var(--primary-color-brighter);
+            }
+            &:active{
+                transform: scale(1.00);
+            }
+            
+        }
+
+        button{
+            font-size: 1rem;
+            background-color: var(--primary-color-brighter);
+            &:disabled, &:disabled:hover{
+                transform: scale(1.00);
+                background-color: var(--darkmode);
+                cursor: not-allowed;
+            }
+            &:disabled::before{
+                height: 0 !important;
+            }
+        }
+
+        .lasttwo{
+            display: flex;
+            justify-content: space-between;
+        }
+    }
 }

@@ -27,8 +27,14 @@
                 <span></span>
             </div>
         </nav>
+
+        <div class="addgrocery" *ngIf="!this.viewInit && this.loggedInAsAdmin">
+            <fa-icon [icon]="faPlus" class="pointer" (click)="alterForm()"></fa-icon>
+        </div>
+
         <div class="shoppingcart" *ngIf="!this.viewInit">
             <fa-icon [icon]="faShoppingCart" class="pointer"></fa-icon>
         </div>
+
     </div>
 </header>

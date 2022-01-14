@@ -9,7 +9,6 @@ import { SearchbarComponent } from './searchbar/searchbar.component';
 import { ResultsComponent } from './results/results.component';
 import { SigninpageComponent } from './signinpage/signinpage.component';
 import { FooterComponent } from './footer/footer.component';
-import { AddsectionComponent } from './addsection/addsection.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MyaccountComponent } from './myaccount/myaccount.component';
 import { SearchsectionComponent } from './searchsection/searchsection.component';
@@ -26,7 +25,6 @@ import { SettingsComponent } from './settings/settings.component';
     ResultsComponent,
     SigninpageComponent,
     FooterComponent,
-    AddsectionComponent,
     MyaccountComponent,
     SearchsectionComponent,
     SettingsComponent,

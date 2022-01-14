@@ -51,7 +51,7 @@ export class SigninpageComponent implements OnInit {
   faShoppingBasket = faShoppingBasket
   faSignature = faSignature
 
-  constructor(public loginService: LoginService, private builder: FormBuilder, private myacc: MyaccountComponent, private router: Router, public globalvar: AppComponent) { }
+  constructor(public loginService: LoginService, private builder: FormBuilder, private router: Router, public globalvar: AppComponent) { }
 
   ngOnInit(): void {
     this.expiresIn30Min()
@@ -178,7 +178,9 @@ export class SigninpageComponent implements OnInit {
   }
 
  
-
+  /**
+   * Change alert to onscreen notification
+   */
   registerToApp(): void {
     try {
       if (this.passwordIsNotEqual()) {

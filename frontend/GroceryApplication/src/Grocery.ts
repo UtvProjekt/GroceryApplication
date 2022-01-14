@@ -3,9 +3,8 @@ export interface Grocery{
     brand: string
     category: string
     description: string
-    expiredDate: string
+    expiredDate: number
     imageUrl: string
     name: string
     price: number
-    stockOf: number
 }

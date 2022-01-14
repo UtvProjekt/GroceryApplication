@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { Grocery } from "./Grocery";
 
 @Injectable({providedIn: 'root'})
 export class GroceryService {
@@ -9,5 +10,9 @@ export class GroceryService {
 
     public getSearchData(searchString: String): Observable<String> {
         return this.httpClient.post<String>(`http://localhost:25000/grocery/page/grocery/searchforgroceries/`, searchString)
+    }
+
+    public getGroceryData(): Observable<Grocery[]> {
+        return this.httpClient.get<Grocery[]>('http://localhost:25000/grocery/page/grocery/getallgroceries')
     }
 }

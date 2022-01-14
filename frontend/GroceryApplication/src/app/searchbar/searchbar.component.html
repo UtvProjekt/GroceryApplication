@@ -1,4 +1,4 @@
 <div class="container">
-    <input type="search" placeholder="Search here.." id="searchbar" #searchbar (keyup.enter)="searchForData(searchbar.value)" autocomplete="off">
-    <button class="btn searchbtn pointer" (click)="searchForData(searchbar.value)"><fa-icon [icon]="faSearch"></fa-icon></button>
+    <input type="search" placeholder="Search here.." id="searchbar" #searchbar (keyup.enter)="onSearch(searchbar.value)" autocomplete="off">
+    <button class="btn searchbtn pointer" (click)="onSearch(searchbar.value)"><fa-icon [icon]="faSearch"></fa-icon></button>
 </div>
