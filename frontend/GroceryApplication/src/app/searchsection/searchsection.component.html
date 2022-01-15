@@ -16,9 +16,9 @@
                     </section>
                 </div>
 
-                <div id="resultpane" class="thisorthat" *ngIf="!this.onEntry">
+                <div id="resultpane" class="thisorthat">
                     <h2>Your Search. {{ this.searchedItems.length }} Results.</h2>
-                    <section class="resultcards">
+                    <section class="resultcards" id="results">
                         <app-results *ngFor="let value of searchedItems" [dataValue]="value"
                             class="searchResultComponent"></app-results>
                     </section>
@@ -27,25 +27,48 @@
         </div>
     </section>
 
-    <section class="addform displaycenter" *ngIf="!this.message">
-        <form class="formcontent" (ngSubmit)="addNewGrocery()" id="addform" [formGroup]="addForm"> 
-            <h2>Add a new grocery</h2>
+    <section class="addform displaycenter" id="addformcontainer">
+        <form class="formcontent" (ngSubmit)="addNewGrocery()" id="addForm" [formGroup]="addForm"> 
+            <header class="formheading">
+                <h2>ADD A NEW GROCERY</h2>
+                <fa-icon [icon]="faTimes" class="pointer" (click)="formCloseStyling()"></fa-icon>
+            </header>
+            
+            <div class="inputsinforms">
+                <label for="name">NAME</label>
+                <input type="text" name="name" id="name" formControlName="name" autocomplete="off">
+            </div>
+            
+            
+            <div class="inputsinforms">
+                <label for="brand">BRAND</label>
+                <input type="text" name="brand" id="brand" formControlName="brand" autocomplete="off">
+            </div>
+            
+            
+            <div class="inputsinforms">
+                <label for="category">CATEGORY</label>
+                <input type="text" name="category" id="category" formControlName="category" autocomplete="off">
+            </div>
 
-            <input type="text" name="name" id="name" formControlName="name">
+            <div class="inputsinforms">
+                <label for="description">DESCRIPTION</label>
+                <textarea name="description" id="description" formControlName="description" autocomplete="off"></textarea>
+            </div>
 
-            <input type="text" name="brand" id="brand" formControlName="brand">
-
-            <input type="text" name="category" id="category" formControlName="category">
-
-            <input type="text" name="description" id="description" formControlName="description">
-
-            <input type="number" name="price" id="price" formControlName="price">
-
-            <input type="number" name="expiredDate" id="expiredDate" formControlName="expiredDate">
+            <div class="inputsinforms">
+                <label for="price">PRICE</label>
+                <input type="number" name="price" id="price" formControlName="price" autocomplete="off">
+            </div>
+            
+            <div class="inputsinforms">
+                <label for="expiredDate">EXIPIRES IN (DAYS)</label>
+                <input type="number" name="expiredDate" id="expiredDate" formControlName="expiredDate" autocomplete="off">
+            </div>
 
             <div class="lasttwo">
                 <label for="imageUrl" class="buttonsinform pointer">Image file</label>
-                <input type="file" name="imageUrl" id="imageUrl">
+                <input type="file" name="imageUrl" id="imageUrl" formControlName="imageUrl">
                 <button type="submit" class="btn buttonsinform pointer" [disabled]="addForm.invalid">Create</button>
             </div>
         </form>

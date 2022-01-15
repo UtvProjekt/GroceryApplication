@@ -1,8 +1,13 @@
-main{
+main {
     min-height: 100vh;
 }
 
-.searchpanecontainer{
+#resultpane{
+    display: none;
+}
+
+
+.searchpanecontainer {
     position: relative;
     top: 10vh;
     height: 88vh;
@@ -13,10 +18,10 @@ main{
     align-items: center;
 }
 
-.wrapper-searchsec{
+.wrapper-searchsec {
     background: url(../../assets/background.png) no-repeat;
     background-size: 100% 100%;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     width: 80%;
     height: 100%;
     display: flex;
@@ -25,23 +30,23 @@ main{
     padding-inline: 2.5rem;
 }
 
-.allSearches{
+.allSearches {
     display: flex;
     width: 100%;
     height: 70vh;
 }
 
-.thisorthat{
+.thisorthat {
     width: 80%;
     border-radius: 0.5rem;
     margin-left: 1rem;
-    
-    &:hover{
-        h2{
+
+    &:hover {
+        h2 {
             border-color: var(--yellow);
         }
     }
-    h2{
+    h2 {
         margin-left: 1rem;
         transition: all 200ms;
         color: #111;
@@ -51,7 +56,12 @@ main{
     }
 }
 
-.resultcards{
+#results{
+    opacity: 0;
+    transition: opacity 2s 1s;
+}
+
+.resultcards {
     width: 100%;
     padding-block: 1rem;
     padding-left: 1rem;
@@ -61,7 +71,7 @@ main{
     grid-column-gap: 0.75rem;
 }
 
-.categories{
+.categories {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -69,32 +79,36 @@ main{
     width: 25%;
     padding: 1rem;
     border-radius: 0.5rem;
-    &:hover{
-        h2{
+    &:hover {
+        h2 {
             border-color: var(--yellow);
         }
     }
-    h2{
+    h2 {
         transition: all 200ms;
         color: var(--primary-text-color);
         display: inline-block;
         padding-inline: 0.1rem;
-        border-bottom: .15rem solid var(--primary-color-brighter);
+        border-bottom: 0.15rem solid var(--primary-color-brighter);
         text-align: center;
     }
-
 }
 
 //ADDFORM
 
-.addform{
+.addform {
+    visibility: hidden;
     position: absolute;
     top: 10vh;
     height: 90vh;
     width: 100vw;
     background-color: #161616e0;
-    form{
+
+    form {
         position: relative;
+        transition: transform 600ms 100ms, opacity 200ms;
+        transform: translateY(-5rem);
+        opacity: 0;
         z-index: 1;
         background-color: var(--darkmode);
         width: 40vw;
@@ -103,44 +117,117 @@ main{
         flex-direction: column;
         justify-content: space-between;
         padding: 2rem;
+        border-radius: .5rem;
+        outline: 0.1rem solid var(--primary-color-brighter);
+        .formheading{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            fa-icon{
+                font-size: 2rem;
+                color: var(--primary-text-color);
+                transition: color 200ms;
+                &:hover{
+                    color: red;
+                }
+            }
+        }
+        .inputsinforms {
+            width: 100%;
+            
+            input,
+            label, textarea {
+                width: 100%;
+
+            }
+            label{
+                color: var(--primary-text-color);
+                position: relative;
+                bottom: .2rem;
+            }
+            input, textarea{
+                border-radius: 0.15rem;
+                border: none;
+                outline: 0.125rem solid var(--primary-color-brighter);
+                transition: 200ms;
+                &:focus{
+                    transform: scale(1.02);
+                    outline-color: var(--yellow);
+                }
+                font-size: 1.1rem;
+            }
+            input{
+                height: 1.8rem;
+                padding-inline: .2rem;
+                
+            }
+            textarea{
+                padding: .2rem;
+                resize: none;
+            }
+
+
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+            }
+            input[type=number] {
+                -moz-appearance: textfield;
+            }
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--primary-text-color);
+            border-bottom: var(--primary-color-brighter) 0.15rem solid;
+            width: max-content;
+        }
 
         //File input
-        input[type="file"]{
+        input[type="file"] {
             display: none;
         }
-        
-        .buttonsinform{
+
+        .buttonsinform {
             position: relative;
             outline: 0.15rem solid var(--primary-color-brighter);
-            padding: .8rem 1.4rem;
+            padding: 1rem 1.3rem;
             color: var(--primary-text-color);
             border-radius: 0.1rem;
-            transition: 200ms;
+            transition: 300ms;
+            font-weight: var(--regularfont);
+            text-transform: uppercase;
+            letter-spacing: 0.05rem;
             will-change: transform;
-            &:hover{
-                transform: scale(1.03);
+            &:hover {
+                transform: scale(1.05);
                 background-color: var(--primary-color-brighter);
+                color: #fff;
             }
-            &:active{
-                transform: scale(1.00);
+            &:disabled:hover{
+                color: var(--primary-text-color);
             }
-            
+            &:active {
+                transform: scale(0.95);
+            }
         }
 
-        button{
+        button {
             font-size: 1rem;
             background-color: var(--primary-color-brighter);
-            &:disabled, &:disabled:hover{
-                transform: scale(1.00);
+            &:disabled,
+            &[disabled],
+            &:disabled:hover {
+                transform: scale(1);
                 background-color: var(--darkmode);
                 cursor: not-allowed;
             }
-            &:disabled::before{
+            &:disabled::before {
                 height: 0 !important;
             }
         }
 
-        .lasttwo{
+        .lasttwo {
             display: flex;
             justify-content: space-between;
         }

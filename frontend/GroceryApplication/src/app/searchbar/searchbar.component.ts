@@ -25,6 +25,7 @@ export class SearchbarComponent implements OnInit {
 
   onSearch(value: any): any{
     this.searchForData(value)
+    this.searchsec.searchStyle()
     this.searchsec.onEntry = false
   }
 

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Injectable, Input, OnInit, Output } from '@ang
 import { faBars, faBrain, faDna, faPlus, faSearch, faShoppingCart, faSignInAlt, faTimes, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { AppComponent } from '../app.component';
 import { MyaccountComponent } from '../myaccount/myaccount.component';
+import { SearchsectionComponent } from '../searchsection/searchsection.component';
 
 @Component({
   selector: 'app-header',
@@ -28,14 +29,14 @@ export class HeaderComponent implements OnInit {
   @Output() messageEvent = new EventEmitter<boolean>();
 
   open: boolean = false
-  public showForm: boolean = true
+  public showForm: boolean = false
 
   email: string = ""
   firstname: string = ""
   lastname: string = ""
   admin: string = ""
 
-  constructor(public myacc: MyaccountComponent, public globalvar: AppComponent) { }
+  constructor(public myacc: MyaccountComponent, public globalvar: AppComponent, private searchcomp: SearchsectionComponent) { }
 
   ngOnInit(): void {
     this.email = this.globalvar.getCookieValue("email")
@@ -49,7 +50,14 @@ export class HeaderComponent implements OnInit {
 
   alterForm(): void{
     this.messageEvent.emit(this.showForm)
-    this.showForm = !this.showForm
+    if(this.searchcomp.formController){
+      this.searchcomp.formCloseStyling()
+      this.searchcomp.formController = false
+    }
+    else{
+      this.searchcomp.formOpenStyling()
+      this.searchcomp.formController = true
+    }
   }
 
   setHeaderChangeOnScroll(): void {
