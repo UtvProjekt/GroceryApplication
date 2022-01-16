@@ -92,12 +92,13 @@ section {
                 outline: 0.15em solid #860086;
                 padding: 0 0.3em;
                 font-size: 1.05rem;
-                transition: outline-color 200ms;
+                transition: outline-color 200ms, transform 200ms;
                 &:hover {
                     outline-color: var(--yellow);
                 }
                 &:focus {
                     outline: 0.15em solid var(--yellow);
+                    transform: scale(1.03);
                 }
             }
             button {

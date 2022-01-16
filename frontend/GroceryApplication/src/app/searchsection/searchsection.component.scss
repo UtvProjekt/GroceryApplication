@@ -2,8 +2,14 @@ main {
     min-height: 100vh;
 }
 
+#examplepane{
+    visibility: visible;
+}
+
 #resultpane{
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 600ms 500ms;
 }
 
 
@@ -36,11 +42,17 @@ main {
     height: 70vh;
 }
 
-.thisorthat {
+.pane-container{
+    position: relative;
     width: 80%;
-    border-radius: 0.5rem;
     margin-left: 1rem;
+}
 
+.thisorthat {
+    position: absolute;
+    width: 100%;
+    border-radius: 0.5rem;
+    overflow-y: scroll;
     &:hover {
         h2 {
             border-color: var(--yellow);
@@ -48,7 +60,7 @@ main {
     }
     h2 {
         margin-left: 1rem;
-        transition: all 200ms;
+        transition: 200ms;
         color: #111;
         padding-inline: 0.1rem;
         display: inline-block;
@@ -56,10 +68,6 @@ main {
     }
 }
 
-#results{
-    opacity: 0;
-    transition: opacity 2s 1s;
-}
 
 .resultcards {
     width: 100%;
@@ -103,6 +111,13 @@ main {
     height: 90vh;
     width: 100vw;
     background-color: #161616e0;
+    .closeform{
+        position: absolute;
+        width: 100vw;
+        height: 90vh;
+        top: 0;
+        left: 0;
+    }
 
     form {
         position: relative;
@@ -119,6 +134,9 @@ main {
         padding: 2rem;
         border-radius: .5rem;
         outline: 0.1rem solid var(--primary-color-brighter);
+        h2{
+            transition: 300ms;
+        }
         .formheading{
             width: 100%;
             display: flex;
@@ -159,9 +177,9 @@ main {
             input{
                 height: 1.8rem;
                 padding-inline: .2rem;
-                
             }
             textarea{
+                height: 6rem;
                 padding: .2rem;
                 resize: none;
             }
@@ -200,7 +218,7 @@ main {
             letter-spacing: 0.05rem;
             will-change: transform;
             &:hover {
-                transform: scale(1.05);
+                transform: scale(1.03);
                 background-color: var(--primary-color-brighter);
                 color: #fff;
             }
@@ -208,7 +226,7 @@ main {
                 color: var(--primary-text-color);
             }
             &:active {
-                transform: scale(0.95);
+                transform: scale(0.97);
             }
         }
 
@@ -222,14 +240,14 @@ main {
                 background-color: var(--darkmode);
                 cursor: not-allowed;
             }
-            &:disabled::before {
-                height: 0 !important;
-            }
         }
 
         .lasttwo {
             display: flex;
             justify-content: space-between;
+            .inputsinforms{
+                width: 45%;
+            }
         }
     }
 }

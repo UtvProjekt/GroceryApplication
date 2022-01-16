@@ -7,45 +7,48 @@
                 <aside class="categories">
                     <h2>Filter</h2>
                 </aside>
-
-                <div id="examplepane" class="thisorthat" *ngIf="this.onEntry">
-                    <h2>Our sortiment</h2>
-                    <section class="resultcards">
-                        <app-results *ngFor="let value of allItems" [dataValue]="value" class="searchResultComponent">
-                        </app-results>
-                    </section>
-                </div>
-
-                <div id="resultpane" class="thisorthat">
-                    <h2>Your Search. {{ this.searchedItems.length }} Results.</h2>
-                    <section class="resultcards" id="results">
-                        <app-results *ngFor="let value of searchedItems" [dataValue]="value"
-                            class="searchResultComponent"></app-results>
-                    </section>
-                </div>
+                
+                <section class="pane-container">
+                    <div id="examplepane" class="thisorthat">
+                        <h2>Our sortiment</h2>
+                        <section class="resultcards">
+                            <app-results *ngFor="let value of allItems" [dataValue]="value" class="searchResultComponent">
+                            </app-results>
+                        </section>
+                    </div>
+    
+                    <div id="resultpane" class="thisorthat">
+                        <h2>Your Search. {{ this.searchedItems.length }} Results.</h2>
+                        <section class="resultcards">
+                            <app-results *ngFor="let value of searchedItems" [dataValue]="value"
+                                class="searchResultComponent"></app-results>
+                        </section>
+                    </div>
+                </section>
             </section>
         </div>
     </section>
 
     <section class="addform displaycenter" id="addformcontainer">
-        <form class="formcontent" (ngSubmit)="addNewGrocery()" id="addForm" [formGroup]="addForm"> 
+        <div class="closeform" (click)="formCloseStyling()"></div>
+        <form class="formcontent" (ngSubmit)="addNewGrocery()" id="addForm" [formGroup]="addForm">
             <header class="formheading">
                 <h2>ADD A NEW GROCERY</h2>
                 <fa-icon [icon]="faTimes" class="pointer" (click)="formCloseStyling()"></fa-icon>
             </header>
-            
+
             <div class="inputsinforms">
                 <label for="name">NAME</label>
                 <input type="text" name="name" id="name" formControlName="name" autocomplete="off">
             </div>
-            
-            
+
+
             <div class="inputsinforms">
                 <label for="brand">BRAND</label>
                 <input type="text" name="brand" id="brand" formControlName="brand" autocomplete="off">
             </div>
-            
-            
+
+
             <div class="inputsinforms">
                 <label for="category">CATEGORY</label>
                 <input type="text" name="category" id="category" formControlName="category" autocomplete="off">
@@ -53,17 +56,21 @@
 
             <div class="inputsinforms">
                 <label for="description">DESCRIPTION</label>
-                <textarea name="description" id="description" formControlName="description" autocomplete="off"></textarea>
+                <textarea name="description" id="description" formControlName="description"
+                    autocomplete="off"></textarea>
             </div>
 
-            <div class="inputsinforms">
-                <label for="price">PRICE</label>
-                <input type="number" name="price" id="price" formControlName="price" autocomplete="off">
-            </div>
-            
-            <div class="inputsinforms">
-                <label for="expiredDate">EXIPIRES IN (DAYS)</label>
-                <input type="number" name="expiredDate" id="expiredDate" formControlName="expiredDate" autocomplete="off">
+            <div class="lasttwo">
+                <div class="inputsinforms">
+                    <label for="price">PRICE</label>
+                    <input type="number" name="price" id="price" formControlName="price" autocomplete="off">
+                </div>
+
+                <div class="inputsinforms">
+                    <label for="expiredDate">EXIPIRES IN (DAYS)</label>
+                    <input type="number" name="expiredDate" id="expiredDate" formControlName="expiredDate"
+                        autocomplete="off">
+                </div>
             </div>
 
             <div class="lasttwo">

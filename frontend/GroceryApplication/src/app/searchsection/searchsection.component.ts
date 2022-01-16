@@ -34,7 +34,7 @@ export class SearchsectionComponent implements OnInit{
   //FA ICONS
   faTimes = faTimes
   
-  constructor(private groceryComp: GroceryService, private builder: FormBuilder) { }
+  constructor(private groceryService: GroceryService, private builder: FormBuilder) { }
   //ON INITS
   
   ngOnInit(): void {
@@ -46,6 +46,26 @@ export class SearchsectionComponent implements OnInit{
 
   addNewGrocery(): void{
     console.log("added new grocery")
+    console.log(this.addForm.value.imageUrl)
+    const reader = new FileReader();
+    
+
+    let fileinput = document.getElementById("expiredDate")
+
+    fileinput?.addEventListener('change', () => {
+      const file = this.addForm.value.imageUrl[0]
+    })
+
+    reader.addEventListener('load', () => {
+
+    })
+
+    
+    //RESPONSE MESSAGE THEN RUN CLOSE
+
+    setTimeout(() => {
+      this.formCloseStyling()
+    }, 3000);
   }
 
   receiveMessage($event: any) {
@@ -60,7 +80,7 @@ export class SearchsectionComponent implements OnInit{
   }
 
   getAllItems(){
-    this.groceryComp.getGroceryData().subscribe(
+    this.groceryService.getGroceryData().subscribe(
       (response => {
         this.allItems = response
       })
@@ -68,8 +88,9 @@ export class SearchsectionComponent implements OnInit{
   }
 
   searchStyle(){
-      document.getElementById("resultpane")!.style.display = "block"
-      document.getElementById("results")!.style.opacity = "1"
+    document.getElementById("examplepane")!.style.visibility = "hidden"
+    document.getElementById("resultpane")!.style.visibility = "visible"
+    document.getElementById("resultpane")!.style.opacity = "1"
   }
 
   formOpenStyling(){
@@ -85,10 +106,6 @@ export class SearchsectionComponent implements OnInit{
     document.getElementById("addForm")!.style.opacity = "0";
   }
 
-  @HostListener("click", ["$event"])
-  public onClick(event: any): void{
-      event.stopPropagation();
-  }
 
 }
 

@@ -15,4 +15,8 @@ export class GroceryService {
     public getGroceryData(): Observable<Grocery[]> {
         return this.httpClient.get<Grocery[]>('http://localhost:25000/grocery/page/grocery/getallgroceries')
     }
+
+    public createGrocery(grocery: Grocery): Observable<Grocery>{
+        return this.httpClient.post<Grocery>('http://localhost:25000/grocery/page/grocery/addgrocery', grocery)
+    }
 }
