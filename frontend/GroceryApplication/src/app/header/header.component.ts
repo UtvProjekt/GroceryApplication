@@ -37,6 +37,9 @@ export class HeaderComponent implements OnInit {
   lastname: string = ""
   admin: string = ""
 
+  totalPrice: number = 0;
+
+
   constructor(public myacc: MyaccountComponent, public globalvar: AppComponent, private searchcomp: SearchsectionComponent) { }
 
   ngOnInit(): void {
@@ -109,9 +112,13 @@ export class HeaderComponent implements OnInit {
 
     if(!this.shoppingcartOpen){
       document.getElementById('shoppingcart')!.style.left = "75vw"
+      document.getElementById('hideShoppingCart')!.style.visibility = "visible"
+      document.getElementById('hideShoppingCart')!.style.opacity = "1"
     }
     else{
       document.getElementById('shoppingcart')!.style.left = "126vw"
+      document.getElementById('hideShoppingCart')!.style.visibility = "hidden"
+      document.getElementById('hideShoppingCart')!.style.opacity = "0"
     }
 
     this.shoppingcartOpen = !this.shoppingcartOpen
