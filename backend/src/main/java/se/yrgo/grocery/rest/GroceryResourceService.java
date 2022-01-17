@@ -39,14 +39,6 @@ public class GroceryResourceService {
 	}
 	
 	@GET
-	@Path("/filtergroceries/{filter}")
-	@Produces("application/JSON")
-	public List<Grocery> searchWithFilter(@PathParam("filter") String filter){
-		System.out.println("kommer in rätt");
-		return service.searchWithFilter(filter);
-	}
-	
-	@GET
 	@Path("/getallgroceries")
 	@Produces("application/json")
 	public List<Grocery> allGroceries(){

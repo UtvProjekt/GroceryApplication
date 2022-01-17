@@ -12,11 +12,6 @@ public class GroceryManagementImplementation implements GroceryManagementService
 	private DataAccess ida = new DataAccessProductionVersion();
 	
 	@Override
-	public List<Grocery> searchWithFilter(String filter){
-		return ida.searchWithFilter(filter);
-	}
-	
-	@Override
 	public List<Grocery> findAll() {
 		return ida.findAll();
 	}

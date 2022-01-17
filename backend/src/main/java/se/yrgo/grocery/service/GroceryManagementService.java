@@ -10,5 +10,4 @@ public interface GroceryManagementService {
 	public void deleteGrocery(int id);
 	public void updateGrocery(Grocery gro);
 	public Grocery findGroceryById(long id);
-	public List<Grocery> searchWithFilter(filter);
 }

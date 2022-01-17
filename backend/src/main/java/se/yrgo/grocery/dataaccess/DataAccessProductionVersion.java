@@ -42,12 +42,6 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 		return q.getResultList();
 	}
 
-	public List<Grocery> searchWithFilter(String filter){
-		Query q = em.createQuery("select grocery from Grocery grocery where grocery.category = :filter");
-		q.setParameter("filter", filter);
-		return q.getResultList();
-	}
-	
 	/**
 	 * @param gro - Grocery object Adding a Grocery to the database
 	 * @throws JsonProcessingException

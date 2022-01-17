@@ -19,8 +19,4 @@ export class GroceryService {
     public createGrocery(grocery: Grocery): Observable<Grocery>{
         return this.httpClient.post<Grocery>('http://localhost:25000/grocery/page/grocery/addgrocery', grocery)
     }
-
-    public filterGrocery(filter: String): Observable<Grocery[]> {
-        return  this.httpClient.get<Grocery[]>("http://localhost:25000/grocery/page/grocery/filtergroceries/" + filter)
-    }
 }
