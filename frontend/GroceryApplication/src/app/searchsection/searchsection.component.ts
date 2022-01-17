@@ -30,7 +30,7 @@ export class SearchsectionComponent implements OnInit{
   public isOnSearchSection: boolean = true
   message: boolean = false;
   public formController: boolean = false
-
+  fileString: string = ""
   //FA ICONS
   faTimes = faTimes
   
@@ -44,21 +44,18 @@ export class SearchsectionComponent implements OnInit{
 
   //METHODS
 
+  getFiles(event: any){
+    this.fileString = event.target.files[0].name
+  }
+
   addNewGrocery(): void{
-    console.log("added new grocery")
-    console.log(this.addForm.value.imageUrl)
-    const reader = new FileReader();
-    
-
-    let fileinput = document.getElementById("expiredDate")
-
-    fileinput?.addEventListener('change', () => {
-      const file = this.addForm.value.imageUrl[0]
-    })
-
-    reader.addEventListener('load', () => {
-
-    })
+    delete this.addForm.value.imageUrl
+    this.addForm.value.imageUrl = this.fileString
+    this.groceryService.createGrocery(this.addForm.value).subscribe(
+      (response => {
+        console.log("Creation successful", response)
+      })
+    )
 
     
     //RESPONSE MESSAGE THEN RUN CLOSE

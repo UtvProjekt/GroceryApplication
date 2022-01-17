@@ -12,16 +12,14 @@
                     <div id="examplepane" class="thisorthat">
                         <h2>Our sortiment</h2>
                         <section class="resultcards">
-                            <app-results *ngFor="let value of allItems" [dataValue]="value" class="searchResultComponent">
-                            </app-results>
+                            <app-results *ngFor="let value of allItems" [dataValue]="value" class="searchResultComponent"></app-results>
                         </section>
                     </div>
     
                     <div id="resultpane" class="thisorthat">
                         <h2>Your Search. {{ this.searchedItems.length }} Results.</h2>
                         <section class="resultcards">
-                            <app-results *ngFor="let value of searchedItems" [dataValue]="value"
-                                class="searchResultComponent"></app-results>
+                            <app-results *ngFor="let value of searchedItems" [dataValue]="value" class="searchResultComponent"></app-results>
                         </section>
                     </div>
                 </section>
@@ -75,7 +73,7 @@
 
             <div class="lasttwo">
                 <label for="imageUrl" class="buttonsinform pointer">Image file</label>
-                <input type="file" name="imageUrl" id="imageUrl" formControlName="imageUrl">
+                <input type="file" name="imageUrl" id="imageUrl" formControlName="imageUrl" (change)="getFiles($event)">
                 <button type="submit" class="btn buttonsinform pointer" [disabled]="addForm.invalid">Create</button>
             </div>
         </form>
