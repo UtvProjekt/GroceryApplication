@@ -116,5 +116,4 @@ export class SearchsectionComponent implements OnInit{
   }
 
 
-}
-
+  }
