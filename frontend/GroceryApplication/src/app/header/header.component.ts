@@ -29,6 +29,7 @@ export class HeaderComponent implements OnInit {
   @Output() messageEvent = new EventEmitter<boolean>();
 
   open: boolean = false
+  shoppingcartOpen: boolean = false
   public showForm: boolean = false
 
   email: string = ""
@@ -104,6 +105,17 @@ export class HeaderComponent implements OnInit {
     document.getElementById("nav-icon")!.classList.remove("open")
   }
 
+  toggleShoppingCart(){
+
+    if(!this.shoppingcartOpen){
+      document.getElementById('shoppingcart')!.style.left = "75vw"
+    }
+    else{
+      document.getElementById('shoppingcart')!.style.left = "126vw"
+    }
+
+    this.shoppingcartOpen = !this.shoppingcartOpen
+  }
 
 
 }

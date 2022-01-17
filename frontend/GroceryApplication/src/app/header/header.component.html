@@ -33,8 +33,16 @@
         </div>
 
         <div class="shoppingcart" *ngIf="!this.viewInit">
-            <fa-icon [icon]="faShoppingCart" class="pointer"></fa-icon>
+            <fa-icon [icon]="faShoppingCart" class="pointer" (click)="toggleShoppingCart()"></fa-icon>
         </div>
 
     </div>
+
+        <!-- SHOPPING CART -->
+        <div class="menuShoppingcart" id="shoppingcart">
+            <div class="menutitle">
+                <h1>Shopping Cart</h1>
+                <fa-icon [icon]="faTimes" class="pointer" (click)="toggleShoppingCart()"></fa-icon>
+            </div>
+        </div>
 </header>
