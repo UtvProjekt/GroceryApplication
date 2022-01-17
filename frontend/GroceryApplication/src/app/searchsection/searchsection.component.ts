@@ -43,27 +43,35 @@ export class SearchsectionComponent implements OnInit{
   }
 
   //METHODS
-
-  getFiles(event: any){
-    this.fileString = event.target.files[0].name
-  }
-
-  addNewGrocery(): void{
-    delete this.addForm.value.imageUrl
-    this.addForm.value.imageUrl = this.fileString
-    this.groceryService.createGrocery(this.addForm.value).subscribe(
+  categoryFilter(filter: String): void{
+    console.log(filter)
+    this.groceryService.filterGrocery(filter).subscribe(
       (response => {
-        console.log("Creation successful", response)
+        this.allItems = response
+        this.searchedItems = response;
       })
     )
 
-    
-    //RESPONSE MESSAGE THEN RUN CLOSE
-
-    setTimeout(() => {
-      this.formCloseStyling()
-    }, 3000);
-  }
+    getFiles(event: any){
+      this.fileString = event.target.files[0].name
+    }
+  
+    addNewGrocery(): void{
+      delete this.addForm.value.imageUrl
+      this.addForm.value.imageUrl = this.fileString
+      this.groceryService.createGrocery(this.addForm.value).subscribe(
+        (response => {
+          console.log("Creation successful", response)
+        })
+      )
+  
+      
+      //RESPONSE MESSAGE THEN RUN CLOSE
+  
+      setTimeout(() => {
+        this.formCloseStyling()
+      }, 3000);
+    }
 
   receiveMessage($event: any) {
     this.message = $event
@@ -82,6 +90,10 @@ export class SearchsectionComponent implements OnInit{
         this.allItems = response
       })
     )
+  }
+
+  getFilteredItems(filter: String){
+
   }
 
   searchStyle(){
