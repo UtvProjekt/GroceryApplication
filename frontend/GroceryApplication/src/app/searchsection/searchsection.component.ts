@@ -43,7 +43,16 @@ export class SearchsectionComponent implements OnInit{
   }
 
   //METHODS
+  categoryFilter(filter: String): void{
+    console.log(filter)
+    this.groceryService.filterGrocery(filter).subscribe(
+      (response => {
+        this.allItems = response
+        this.searchedItems = response;
+      })
+    )
 
+  }
   addNewGrocery(): void{
     console.log("added new grocery")
     console.log(this.addForm.value.imageUrl)
@@ -85,6 +94,10 @@ export class SearchsectionComponent implements OnInit{
         this.allItems = response
       })
     )
+  }
+
+  getFilteredItems(filter: String){
+
   }
 
   searchStyle(){
