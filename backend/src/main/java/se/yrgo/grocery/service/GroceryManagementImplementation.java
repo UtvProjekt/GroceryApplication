@@ -46,4 +46,8 @@ public class GroceryManagementImplementation implements GroceryManagementService
 			return ida.searchForGroceries(solrRequest.getSearch(), 100);
 	}
 
+	@Override
+	public List<Grocery> searchWithFilter(String filter){
+		return ida.searchWithFilter(filter);
+	}
 }

@@ -58,6 +58,7 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 			Grocery persistGrocery = new Grocery(gro.getName(), gro.getBrand(), gro.getCategory(), gro.getImageUrl(),
 					gro.getPrice(), gro.getDescription(), gro.getExpiredDate());
 			em.persist(persistGrocery);
+			
 
 			solrService.addNewGroceryItem(persistGrocery);
 			solrService.reload();
@@ -178,5 +179,12 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 	public String searchForGroceries(String search, int rows) {
 		return solrService.get(search, rows);
 	}
+	
+	public List<Grocery> searchWithFilter(String filter){
+		Query q = em.createQuery("select grocery from Grocery grocery where grocery.category = :filter");
+		q.setParameter("filter", filter);
+		return q.getResultList();
+	}
+
 
 }
