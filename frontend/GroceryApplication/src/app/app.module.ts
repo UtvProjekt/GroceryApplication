@@ -15,6 +15,15 @@ import { SearchsectionComponent } from './searchsection/searchsection.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SettingsComponent } from './settings/settings.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+  { path: '', component: ApplicationsectionComponent },
+  { path: 'search', component: SearchsectionComponent },
+  { path: 'signin', component: SigninpageComponent },
+  { path: 'myaccount', component: MyaccountComponent },
+  { path: '**', redirectTo: '', pathMatch: 'full' },
+];
 
 @NgModule({
   declarations: [
@@ -34,9 +43,14 @@ import { SettingsComponent } from './settings/settings.component';
     AppRoutingModule,
     FontAwesomeModule,
     FormsModule, ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule, 
+    [RouterModule.forRoot(routes, {
+      onSameUrlNavigation: 'reload',
+    })],
+
   ],
   providers: [HeaderComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [RouterModule]
 })
 export class AppModule { }

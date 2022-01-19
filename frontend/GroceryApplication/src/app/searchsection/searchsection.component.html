@@ -17,7 +17,7 @@
                     </div>
     
                     <div id="resultpane" class="thisorthat">
-                        <h2>Your Search. {{ this.searchedItems.length }} Results.</h2>
+                        <h2>Your Search. {{ this.searchedItems.length }} Results.</h2><button routerLink="/search">Go back</button>
                         <section class="resultcards">
                             <app-results *ngFor="let value of searchedItems" [dataValue]="value" class="searchResultComponent"></app-results>
                         </section>

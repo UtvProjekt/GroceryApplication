@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
-import { faAt, faCog, faLongArrowAltDown, faPen, faPlus, faSignInAlt, faUser, faSearch, faUserCircle, faArrowAltCircleUp, faKey } from '@fortawesome/free-solid-svg-icons';
+import { faAt, faCog, faLongArrowAltDown, faPen, faPlus, faSignInAlt, faUser, faSearch, faUserCircle, faArrowAltCircleUp, faKey, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { HeaderComponent } from '../header/header.component';
 import { MyaccountComponent } from '../myaccount/myaccount.component';
 import { SettingsComponent } from '../settings/settings.component';
@@ -23,12 +23,14 @@ export class ApplicationsectionComponent implements OnInit {
   faUserCircle = faUserCircle
   faArrowAltCircleUp = faArrowAltCircleUp
   faKey = faKey
+  faArrowRight = faArrowRight
   //BOOLEANS
   darkOrLight: boolean = true
   settingsIsOpen: boolean = false
 
   public firstnameForApp: string = ""
   public loggedInApp: boolean = false
+  public slideLogic: number = 1
 
   constructor(public globalvar: AppComponent, public headervar: HeaderComponent, public myacc: MyaccountComponent, public headercomp: HeaderComponent, public settings: SettingsComponent) { }
 
@@ -55,6 +57,27 @@ export class ApplicationsectionComponent implements OnInit {
       } else{
         document.getElementById('scrolltotoparrow')!.style.visibility = "hidden"
       }
+    }
+  }
+
+  // Math is 84vw + 3rem
+  slideMenuLeft(){
+    if(this.slideLogic == 1){
+      document.getElementById("slider")!.style.transform = "translateX(calc(-78vw - 3rem))"
+      this.slideLogic++
+    } else if(this.slideLogic == 2){
+      document.getElementById("slider")!.style.transform = "translateX(calc(-156vw - 6rem))"
+      this.slideLogic++
+    }
+  }
+  
+  slideMenuRight(){
+    if(this.slideLogic == 2){
+      document.getElementById("slider")!.style.transform = "translateX(0)"
+      this.slideLogic--
+    } else if(this.slideLogic == 3){
+      document.getElementById("slider")!.style.transform = "translateX(calc(-78vw - 3rem))"
+      this.slideLogic--
     }
   }
 

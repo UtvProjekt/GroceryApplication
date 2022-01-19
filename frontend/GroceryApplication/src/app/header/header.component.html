@@ -3,7 +3,7 @@
         <h1><a routerLink="">Oasis</a></h1>
         <div *ngIf="this.loggedInHeader">
             <fa-icon [icon]="faDna"></fa-icon>
-            <h3>Signed in as "{{ this.firstname }} {{ this.lastname }}"</h3>
+            <h3>Signed in as {{ this.firstname }} {{ this.lastname }}</h3>
         </div>
     </div>
     <div class="icons">

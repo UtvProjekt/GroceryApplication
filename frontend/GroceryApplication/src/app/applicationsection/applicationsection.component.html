@@ -42,8 +42,9 @@
             </div>
         </section>
         <section class="slider">
+            <fa-icon [icon]="faArrowRight" class="pointer" (click)="slideMenuRight()"></fa-icon>
             <div class="container-slider">
-                <div class="as-figure">
+                <div class="as-figure" id="slider">
                     <div class="card">Card 1</div>
                     <div class="card">Card 2</div>
                     <div class="card">Card 3</div>
@@ -55,6 +56,7 @@
                     <div class="card">Card 9</div>
                 </div>
             </div>
+            <fa-icon [icon]="faArrowRight" class="pointer" (click)="slideMenuLeft()"></fa-icon>
         </section>
     </div>
 </section>
