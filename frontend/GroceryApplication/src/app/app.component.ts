@@ -29,19 +29,20 @@ export class AppComponent implements OnInit{
     document.documentElement.style.setProperty('--darktowhite', '#f4f4f4')
     document.documentElement.style.setProperty('--darktopurple', '#860086')
     document.documentElement.style.setProperty('--primarytopurple', '#570057')
+    document.documentElement.style.setProperty('--darkmode-card', '#fff')
     this.setAppearanceCookieLight()
-    
   }
   
   darkMode(): void{
     document.documentElement.style.setProperty('--darkmode', '#181818')
     document.documentElement.style.setProperty('--primary-text-color', '#fff')
     document.documentElement.style.setProperty('--primary-color-brighter', '#860086')
-    document.documentElement.style.setProperty('--darkmode-darker', '#111111')
+    document.documentElement.style.setProperty('--darkmode-darker', '#111')
     document.documentElement.style.setProperty('--box-shadow-color', '#860086')
-    document.documentElement.style.setProperty('--darktowhite', '#111111')
-    document.documentElement.style.setProperty('--darktopurple', '#111111')
+    document.documentElement.style.setProperty('--darktowhite', '#111')
+    document.documentElement.style.setProperty('--darktopurple', '#111')
     document.documentElement.style.setProperty('--primarytopurple', '#fff')
+    document.documentElement.style.setProperty('--darkmode-card', '#111')
     this.setAppearanceCookieDark()
   }
 

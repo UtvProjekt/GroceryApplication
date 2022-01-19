@@ -67,7 +67,7 @@ export class HeaderComponent implements OnInit {
   setHeaderChangeOnScroll(): void {
     window.addEventListener("scroll", () => {
       if (window.scrollY > 200) {
-        document.getElementById("header")!.style.backgroundColor = "var(--darkmode-darker)"
+        document.getElementById("header")!.style.backgroundColor = "#111"
         document.getElementById("header")!.style.outline = ".15em solid var(--primary-color-brighter)"
       } else {
         document.getElementById("header")!.style.backgroundColor = "transparent"
