@@ -45,15 +45,7 @@
             <fa-icon [icon]="faArrowRight" class="pointer" (click)="slideMenuRight()"></fa-icon>
             <div class="container-slider">
                 <div class="as-figure" id="slider">
-                    <div class="card">Card 1</div>
-                    <div class="card">Card 2</div>
-                    <div class="card">Card 3</div>
-                    <div class="card">Card 4</div>
-                    <div class="card">Card 5</div>
-                    <div class="card">Card 6</div>
-                    <div class="card">Card 7</div>
-                    <div class="card">Card 8</div>
-                    <div class="card">Card 9</div>
+                    <app-card *ngFor="let value of lastNine" [cardValue]="value"></app-card>
                 </div>
             </div>
             <fa-icon [icon]="faArrowRight" class="pointer" (click)="slideMenuLeft()"></fa-icon>
