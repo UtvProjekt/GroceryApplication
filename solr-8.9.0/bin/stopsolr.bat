@@ -1,5 +1,10 @@
-cd Documents\GitHub\GroceryApplication\solr-8.9.0\bin
+@ECHO OFF
+ECHO =============
+ECHO SHUTING SOLR DOWN!
+ECHO =============
 
-solr stop -p 8983
+ECHO ==================================
+ECHO STOPING SOLR ON PORT: 8983
+ECHO ==================================
 
-cd ..\..\..\..\..
+solr stop -all

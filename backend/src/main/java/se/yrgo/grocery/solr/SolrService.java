@@ -26,6 +26,7 @@ public class SolrService {
 		response.close();
 		client.close();
 		
+		
 		if (response.getStatus() != 200) {
 			throw new GroceryCouldNotBeAddedException();
 		}	

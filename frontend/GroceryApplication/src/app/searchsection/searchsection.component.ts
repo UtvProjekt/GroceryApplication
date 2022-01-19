@@ -44,6 +44,16 @@ export class SearchsectionComponent implements OnInit {
 
   //METHODS
 
+  categoryFilter(filter: String): void{
+    console.log(filter)
+    this.groceryService.filterGrocery(filter).subscribe(
+      (response => {
+        this.allItems = response
+        this.searchedItems = response;
+      })
+    )
+  }
+  
   getFiles(event: any) {
     this.fileString = event.target.files[0].name
   }
