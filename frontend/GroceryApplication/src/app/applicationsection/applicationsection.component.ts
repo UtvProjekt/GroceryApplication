@@ -4,6 +4,8 @@ import { faAt, faCog, faLongArrowAltDown, faPen, faPlus, faSignInAlt, faUser, fa
 import { HeaderComponent } from '../header/header.component';
 import { MyaccountComponent } from '../myaccount/myaccount.component';
 import { SettingsComponent } from '../settings/settings.component';
+import { GroceryService } from 'src/Grocery.service';
+import { Grocery } from 'src/Grocery';
 
 @Component({
   selector: 'app-applicationsection',
@@ -32,11 +34,14 @@ export class ApplicationsectionComponent implements OnInit {
   public loggedInApp: boolean = false
   public slideLogic: number = 1
 
-  constructor(public globalvar: AppComponent, public headervar: HeaderComponent, public myacc: MyaccountComponent, public headercomp: HeaderComponent, public settings: SettingsComponent) { }
+  public lastNine: Grocery[] = []
+
+  constructor(public globalvar: AppComponent, public headervar: HeaderComponent, public myacc: MyaccountComponent, public headercomp: HeaderComponent, public settings: SettingsComponent, public groceryService: GroceryService) { }
 
   ngOnInit(): void {
     this.isUserSignedIn()
     this.bindBottomArrow()
+    this.getLastNineItems()
 
     if(this.globalvar.getCookieValue("appearance") == "light"){
       this.settings.darkLightMode()
@@ -79,6 +84,18 @@ export class ApplicationsectionComponent implements OnInit {
       document.getElementById("slider")!.style.transform = "translateX(calc(-78vw - 3rem))"
       this.slideLogic--
     }
+  }
+
+  getLastNineItems(): Grocery[]{
+    this.groceryService.getGroceryData().subscribe(
+      (response => {
+        this.lastNine = response
+        for(let i = 0; this.lastNine.length !== 9; i++){
+          this.lastNine.shift()
+        }
+      })
+    )
+    return this.lastNine
   }
 
 }

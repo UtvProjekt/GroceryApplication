@@ -1,0 +1,40 @@
+.card{
+    position: relative;
+    top: 5%;
+    width: 26vw;
+    height: 90%;
+    background-color: var(--darkmode-card);
+    margin-inline: .5rem;
+    &:hover{
+        .top-of-card{
+            img{
+                position: relative;
+                bottom: 3rem;
+            }
+        }
+    }
+}
+
+.top-of-card{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem;
+    h1{
+        font-size: 2rem;
+        color: var(--primary-text-color);
+    }
+    img{
+        width: 20%;
+        transition: 200ms;
+    }
+}
+
+.rest-of-card{
+    position: absolute;
+    width: 100%;
+    height: 75%;
+    bottom: 0;
+    left: 0;
+    background-color: var(--darkmode-card);
+}

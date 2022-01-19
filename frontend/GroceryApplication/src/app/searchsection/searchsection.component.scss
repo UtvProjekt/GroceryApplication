@@ -63,6 +63,21 @@ main {
             border-color: var(--yellow);
         }
     }
+    button{
+        background-color: var(--primary-color);
+        border: none;
+        padding: .5rem 1rem;
+        margin-left: 2rem;
+        font-size: 1.2rem;
+        border-radius: 0.15rem;
+        color: var(--primary-text-color);
+        transition: 250ms;
+        &:hover{
+            background-color: var(--yellow);
+            color: #111;
+        }
+
+    }
     h2 {
         margin-left: 1rem;
         transition: 200ms;

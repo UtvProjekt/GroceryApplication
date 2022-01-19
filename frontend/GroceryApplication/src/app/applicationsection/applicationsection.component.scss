@@ -178,7 +178,7 @@ section {
     }
     .describetext {
         width: min(100%, 65rem);
-        margin-top: 3rem;
+        margin-top: 6vh;
         grid-area: 1 / 1 / 2 / 2;
         h1,
         h2,
@@ -264,7 +264,7 @@ section {
             }
         }
         .container-slider{
-            width: 80vw;
+            width: calc(78vw + 3rem);
             height: 35vh;
             overflow: hidden;
             
@@ -273,17 +273,6 @@ section {
                 width: 540%;
                 height: 100%;
                 transition: transform 1.6s ease-in-out;
-                .card{
-                    position: relative;
-                    top: 5%;
-                    width: 26vw;
-                    height: 90%;
-                    background-color: var(--darkmode-card);
-                    margin-inline: .5rem;
-
-                    
-
-                }
             }
         }
     }

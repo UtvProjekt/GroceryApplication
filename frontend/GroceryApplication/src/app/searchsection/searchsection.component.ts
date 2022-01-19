@@ -8,8 +8,8 @@ import { GroceryService } from 'src/Grocery.service';
   templateUrl: './searchsection.component.html',
   styleUrls: ['./searchsection.component.scss']
 })
-@Injectable({providedIn:'root'})
-export class SearchsectionComponent implements OnInit{
+@Injectable({ providedIn: 'root' })
+export class SearchsectionComponent implements OnInit {
 
   addForm = this.builder.group({
     name: ['', Validators.required],
@@ -33,10 +33,10 @@ export class SearchsectionComponent implements OnInit{
   fileString: string = ""
   //FA ICONS
   faTimes = faTimes
-  
+
   constructor(private groceryService: GroceryService, private builder: FormBuilder) { }
   //ON INITS
-  
+
   ngOnInit(): void {
     this.isOnSearchSection = false
     this.getAllItems()
@@ -53,11 +53,12 @@ export class SearchsectionComponent implements OnInit{
       })
     )
   }
-  getFiles(event: any){
+  
+  getFiles(event: any) {
     this.fileString = event.target.files[0].name
   }
 
-  addNewGrocery(): void{
+  addNewGrocery(): void {
     delete this.addForm.value.imageUrl
     this.addForm.value.imageUrl = this.fileString
     this.groceryService.createGrocery(this.addForm.value).subscribe(
@@ -66,26 +67,32 @@ export class SearchsectionComponent implements OnInit{
       })
     )
 
-    
+
     //RESPONSE MESSAGE THEN RUN CLOSE
 
     setTimeout(() => {
-      this.formCloseStyling()
-    }, 3000);
+      this.formCloseStyling();
+      (<HTMLInputElement>document.getElementById("name")).value = "";
+      (<HTMLInputElement>document.getElementById("brand")).value = "";
+      (<HTMLInputElement>document.getElementById("category")).value = "";
+      (<HTMLInputElement>document.getElementById("description")).value = "";
+      (<HTMLInputElement>document.getElementById("price")).value = "";
+      (<HTMLInputElement>document.getElementById("expiredDate")).value = "";
+    }, 2000);
   }
 
   receiveMessage($event: any) {
     this.message = $event
   }
 
-  addItem(newItem: any){
+  addItem(newItem: any) {
     this.searchedItems = []
     for (let iterator of newItem) {
       this.searchedItems.push(iterator)
     }
   }
 
-  getAllItems(){
+  getAllItems() {
     this.groceryService.getGroceryData().subscribe(
       (response => {
         this.allItems = response
@@ -93,24 +100,28 @@ export class SearchsectionComponent implements OnInit{
     )
   }
 
-  searchStyle(){
+  searchStyle() {
     document.getElementById("examplepane")!.style.visibility = "hidden"
     document.getElementById("resultpane")!.style.visibility = "visible"
     document.getElementById("resultpane")!.style.opacity = "1"
   }
 
-  formOpenStyling(){
+  formOpenStyling() {
     this.formController = true
     document.getElementById("addformcontainer")!.style.visibility = "visible";
     document.getElementById("addForm")!.style.transform = "translateY(0)";
     document.getElementById("addForm")!.style.opacity = "1";
   }
-  formCloseStyling(){
+  formCloseStyling() {
     this.formController = false
     document.getElementById("addformcontainer")!.style.visibility = "hidden";
     document.getElementById("addForm")!.style.transform = "translateY(-5rem)";
     document.getElementById("addForm")!.style.opacity = "0";
   }
 
-
+  reloadWindow(){
+    window.location.reload()
   }
+
+
+}
