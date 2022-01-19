@@ -5,11 +5,30 @@
     height: 90%;
     background-color: var(--darkmode-card);
     margin-inline: .5rem;
+    border-radius: 0.3rem;
+    .top-of-card{
+        img{
+            transition: 400ms;
+        }
+    }
+    .rest-of-card{
+        .bottomlayer{
+            button{
+                transition: 300ms;
+            }
+        }
+    }
     &:hover{
         .top-of-card{
             img{
-                position: relative;
-                bottom: 3rem;
+                transform: translateY(-2rem);
+            }
+        }
+        .rest-of-card{
+            .bottomlayer{
+                button{
+                    box-shadow: 0 0 0.5em 0.1em var(--yellow);
+                }
             }
         }
     }
@@ -25,16 +44,39 @@
         color: var(--primary-text-color);
     }
     img{
-        width: 20%;
-        transition: 200ms;
+        width: 25%;
     }
 }
 
 .rest-of-card{
     position: absolute;
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    height: 75%;
+    height: 70%;
     bottom: 0;
     left: 0;
     background-color: var(--darkmode-card);
+    box-shadow: 0 10px 10px -10px var(--primary-color-brighter) inset;    
+    border-radius: 0 0 25% 25%;
+    color: var(--primary-text-color);
+    .description, .bottomlayer{
+        width: 100%;
+
+    }
+    .description{
+        height: 80%;
+        padding: 1rem;
+    }
+    .pricetag{
+        font-size: 1.4rem;
+    }
+    .bottomlayer{
+        height: 20%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-inline: 1rem;
+        margin-bottom: .5rem;
+    }
 }

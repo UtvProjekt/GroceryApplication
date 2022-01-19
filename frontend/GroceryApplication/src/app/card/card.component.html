@@ -1,6 +1,10 @@
 <section class="card">
     <div class="top-of-card"><h1>{{this.cardValue.name}}</h1><img src="../../assets/{{this.cardValue.imageUrl}}"></div>
     <main class="rest-of-card">
-        
+        <span class="description">{{this.cardValue.description}}</span>
+        <div class="bottomlayer">
+            <span class="pricetag">{{this.cardValue.price}}kr</span>
+            <button class="btn pointer addtocart">Add to cart</button>
+        </div>
     </main>
 </section>

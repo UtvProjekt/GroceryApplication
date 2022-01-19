@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
-:root{
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+:root {
     --primary-color: #570057;
     --primary-color-brighter: #860086;
     --darkmode: #181818;
@@ -8,7 +8,7 @@
     --primary-text-color: #fff;
     --box-shadow-color: #860086;
     --darktowhite: #111;
-    --darktopurple: #111; 
+    --darktopurple: #111;
     --primarytopurple: #fff;
     --thinfont: 100;
     --regularfont: 400;
@@ -16,79 +16,80 @@
     --yellow: #b3b030;
     --standard-padding: 1.1em;
 }
-::-webkit-scrollbar{
+::-webkit-scrollbar {
     display: none;
 }
 
-*, html{
+*,
+html {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
-html{
+html {
     scroll-behavior: smooth;
     scroll-snap-align: start;
 }
-body{
+body {
     overflow-x: hidden;
 }
 
-main{
+main {
     width: 100vw;
     height: 100vh;
 }
 
-img{
+img {
     width: 100%;
 }
 
-ul{
+ul {
     list-style-type: none;
 }
 
-a{
+a {
     text-decoration: none;
     border: none;
     color: var(--primary-color-brighter);
 }
 
-.pointer{
+.pointer {
     cursor: pointer;
 }
 
-.lightordark{
+.lightordark {
     background-color: var(--darkmode);
     color: var(--primary-color-brighter);
 }
 
 .movingbackground {
-	background: linear-gradient(60deg, #181818, #860086);
-	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
+    background: linear-gradient(60deg, #181818, #860086);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
 }
 
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 50% 100%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 50% 100%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
-.btn{
+.btn {
     background-color: transparent;
     border: none;
 }
 
-.lesserheader{
+.lesserheader {
     display: flex;
     align-items: center;
     padding-inline: 1em;
@@ -96,17 +97,33 @@ a{
     height: 10vh;
     width: 100vw;
     font-size: 2em;
-    a{
+    a {
         color: #fff;
     }
 }
 
-.text-align{
+.text-align {
     text-align: center;
 }
 
-.displaycenter{
+.displaycenter {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.addtocart {
+    padding: 0.4rem 0.8rem;
+    background-color: var(--yellow);
+    font-size: 1.1rem;
+    font-weight: var(--thickfont);
+    transition: transform 200ms;
+    will-change: transform;
+    border-radius: 0.2rem;
+    &:hover {
+        transform: scale(1.04);
+    }
+    &:active {
+        transform: scale(0.95);
+    }
 }

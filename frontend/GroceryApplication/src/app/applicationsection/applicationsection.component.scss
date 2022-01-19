@@ -256,8 +256,9 @@ section {
         fa-icon{
             color: var(--primary-text-color);
             font-size: 2.5rem;
+            transition: 300ms;
             &:hover{
-                
+                color: var(--yellow);
             }
             &:first-child{
                 transform: rotate(180deg);
@@ -266,13 +267,14 @@ section {
         .container-slider{
             width: calc(78vw + 3rem);
             height: 35vh;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: visible;
             
             .as-figure{
                 display: flex;
                 width: 540%;
                 height: 100%;
-                transition: transform 1.6s ease-in-out;
+                transition: transform 1.3s ease-in-out;
             }
         }
     }
@@ -288,6 +290,10 @@ section {
     visibility: hidden;
     right: 7vw;
     fa-icon {
+        transition: 300ms;
         color: var(--primary-text-color);
+        &:hover{
+            color: var(--yellow);
+        }
     }
 }
