@@ -1,18 +1,20 @@
+@import "bourbon";
+
 main {
     min-height: 100vh;
 }
 
-#examplepane{
+#examplepane {
     visibility: visible;
 }
 
-#resultpane{
+#resultpane {
     visibility: hidden;
     opacity: 0;
     transition: opacity 600ms 500ms;
 }
 
-.test{
+.test {
     width: 30px;
     height: 30px;
     background-color: blue;
@@ -47,7 +49,7 @@ main {
     height: 70vh;
 }
 
-.pane-container{
+.pane-container {
     position: relative;
     width: 80%;
     margin-left: 1rem;
@@ -63,20 +65,19 @@ main {
             border-color: var(--yellow);
         }
     }
-    button{
+    button {
         background-color: var(--primary-color);
         border: none;
-        padding: .5rem 1rem;
+        padding: 0.5rem 1rem;
         margin-left: 2rem;
         font-size: 1.2rem;
         border-radius: 0.15rem;
         color: var(--primary-text-color);
         transition: 250ms;
-        &:hover{
+        &:hover {
             background-color: var(--yellow);
             color: #111;
         }
-
     }
     h2 {
         margin-left: 1rem;
@@ -88,12 +89,11 @@ main {
     }
 }
 
-
 .resultcards {
-    height: calc(70vh - 3rem);
+    height: calc(70vh - 2.5rem);
     width: 100%;
-    margin-top: 1rem;
-    padding-left: 1rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(1n, 1fr);
@@ -134,7 +134,7 @@ main {
     height: 90vh;
     width: 100vw;
     background-color: #161616e0;
-    .closeform{
+    .closeform {
         position: absolute;
         width: 100vw;
         height: 90vh;
@@ -155,64 +155,64 @@ main {
         flex-direction: column;
         justify-content: space-between;
         padding: 2rem;
-        border-radius: .5rem;
+        border-radius: 0.5rem;
         outline: 0.1rem solid var(--primary-color-brighter);
-        h2{
+        h2 {
             transition: 300ms;
         }
-        .formheading{
+        .formheading {
             width: 100%;
             display: flex;
             justify-content: space-between;
-            fa-icon{
+            fa-icon {
                 font-size: 2rem;
                 color: var(--primary-text-color);
                 transition: color 200ms;
-                &:hover{
+                &:hover {
                     color: red;
                 }
             }
         }
         .inputsinforms {
             width: 100%;
-            
-            input,
-            label, textarea {
-                width: 100%;
 
+            input,
+            label,
+            textarea {
+                width: 100%;
             }
-            label{
+            label {
                 color: var(--primary-text-color);
                 position: relative;
-                bottom: .2rem;
+                bottom: 0.2rem;
             }
-            input, textarea{
+            input,
+            textarea {
                 border-radius: 0.15rem;
                 border: none;
                 outline: 0.125rem solid var(--primary-color-brighter);
                 transition: 200ms;
-                &:focus{
+                &:focus {
                     transform: scale(1.02);
                     outline-color: var(--yellow);
                 }
                 font-size: 1.1rem;
             }
-            input{
+            input {
                 height: 1.8rem;
-                padding-inline: .2rem;
+                padding-inline: 0.2rem;
             }
-            textarea{
+            textarea {
                 height: 6rem;
-                padding: .2rem;
+                padding: 0.2rem;
                 resize: none;
             }
-
 
             input::-webkit-outer-spin-button,
             input::-webkit-inner-spin-button {
                 -webkit-appearance: none;
             }
-            input[type=number] {
+            input[type="number"] {
                 -moz-appearance: textfield;
             }
         }
@@ -245,7 +245,7 @@ main {
                 background-color: var(--primary-color-brighter);
                 color: #fff;
             }
-            &:disabled:hover{
+            &:disabled:hover {
                 color: var(--primary-text-color);
             }
             &:active {
@@ -268,9 +268,74 @@ main {
         .lasttwo {
             display: flex;
             justify-content: space-between;
-            .inputsinforms{
+            .inputsinforms {
                 width: 45%;
             }
         }
+    }
+}
+//CHECKMARK
+.successmessage {
+    position: absolute;
+    z-index: 999;
+    width: 26vw;
+    height: 26vw;
+    border-radius: 0.75rem;
+    outline: 0.15rem solid var(--primary-color-brighter);
+    background-color: var(--darkmode-darker);
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 100ms;
+    span {
+        font-size: 1.3rem;
+        color: var(--primary-text-color);
+    }
+}
+.checkmark {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 2;
+    stroke: #fff; // DARKMODEDARKER
+    stroke-miterlimit: 10;
+    box-shadow: inset 0px 0px 0px var(--primary-color-brighter);
+}
+.checkmark__circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: var(--primary-color-brighter);
+    fill: none;
+    
+}
+.checkmark__check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+}
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+@keyframes scale {
+    0%,
+    100% {
+        transform: none;
+    }
+    50% {
+        transform: scale3d(1.1, 1.1, 1);
+    }
+}
+@keyframes fill {
+    100% {
+        box-shadow: inset 0px 0px 0px 10rem var(--primary-color-brighter);
     }
 }

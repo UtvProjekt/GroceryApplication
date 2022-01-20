@@ -6,6 +6,8 @@
     border-radius: 0.25rem;
     padding: 0.8rem;
     height: fit-content;
+    will-change: transform;
+    transition: 300ms;
     .name{
         font-size: 1.6rem;
         letter-spacing: 0.05rem;
@@ -13,6 +15,9 @@
     .price{
         font-size: 1.3;
         font-weight: var(--thickfont);
+    }
+    &:hover{
+        transform: scale(1.02);
     }
 }
 .items{
