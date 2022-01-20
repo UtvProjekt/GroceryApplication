@@ -14,7 +14,7 @@ main {
     transition: opacity 600ms 500ms;
 }
 
-.test {
+.test{
     width: 30px;
     height: 30px;
     background-color: blue;
@@ -338,4 +338,19 @@ main {
     100% {
         box-shadow: inset 0px 0px 0px 10rem var(--primary-color-brighter);
     }
+}
+  
+ .categoryfilter{
+    width: 80%;
+    color: white;
+    font-size: 1.2rem;
+    p{
+        padding-top: 2rem;
+        font-size: 1.7rem;
+    }
+}
+
+.singlefilter{
+    cursor: pointer;
+    padding-top: 1rem;
 }

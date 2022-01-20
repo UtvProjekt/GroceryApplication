@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-results',
@@ -9,7 +10,7 @@ export class ResultsComponent implements OnInit {
 
   @Input() dataValue: any
 
-  constructor() { }
+  constructor(public headerComp: HeaderComponent) { }
 
   ngOnInit(): void {
   }

@@ -116,3 +116,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Solr
+solr-8.9.0/server

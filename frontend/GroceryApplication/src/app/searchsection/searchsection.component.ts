@@ -24,12 +24,18 @@ export class SearchsectionComponent implements OnInit {
   //ARRAYS
   public searchedItems: any = []
   public allItems: any = []
+  public nonAlphabeticallySearchedItems: any = []
+  public nonAlphabeticallyAllItems: any = []
+  public nonNumericalSearchedItems: any = []
+  public nonNumericalAllItems: any = []
   //BOOLEANS
   public showFormInSearch: boolean = false
   public onEntry: boolean = true
   public isOnSearchSection: boolean = true
   message: boolean = false;
   public formController: boolean = false
+  public sortedAlphabetically: number = 0
+  public sortedNumerically: number = 0
   fileString: string = ""
   //FA ICONS
   faTimes = faTimes
@@ -53,7 +59,6 @@ export class SearchsectionComponent implements OnInit {
       })
     )
   }
-
   getFiles(event: any) {
     this.fileString = event.target.files[0].name
   }
@@ -135,6 +140,105 @@ export class SearchsectionComponent implements OnInit {
 
   reloadWindow() {
     window.location.reload()
+  }
+
+ sortByName(){
+    if(this.sortedNumerically == 0){
+
+      if(this.sortedAlphabetically == 0){
+        console.log("sorting from A-Z")
+       
+        this.nonAlphabeticallySearchedItems = []
+        this.searchedItems.forEach((element: { value: any; }) => {
+          this.nonAlphabeticallySearchedItems.unshift(element)
+        });
+        this.searchedItems.sort(function(a: { name: String; }, b: { name: String; }){
+          if(a.name < b.name) { return -1; }
+          if(a.name > b.name) { return 1; }
+          return 0;
+        })
+        
+        this.nonAlphabeticallyAllItems = []
+        this.allItems.forEach((element: { value: any; }) => {
+          this.nonAlphabeticallyAllItems.unshift(element)
+        });
+        
+        this.allItems.sort(function(a: { name: String; }, b: { name: String; }){
+          if(a.name < b.name) { return -1; }
+          if(a.name > b.name) { return 1; }
+          return 0;
+        })
+        this.sortedAlphabetically++
+        return
+      }
+      if(this.sortedAlphabetically == 1){
+        console.log("Sorting from Z-A")
+        this.allItems.reverse()
+        this.searchedItems.reverse()
+        this.sortedAlphabetically++
+        return
+      }
+      if(this.sortedAlphabetically == 2){
+        console.log("going back to non alphabetically")
+        this.allItems = []
+        this.nonAlphabeticallyAllItems.forEach((element: { value: any; }) => {
+          this.allItems.unshift(element)
+        });
+       
+        this.searchedItems = []
+        this.nonAlphabeticallySearchedItems.forEach((element: { value: any; }) => {
+          this.searchedItems.unshift(element)
+        });
+        this.sortedAlphabetically = 0;
+        return
+      }
+    }
+  }
+
+  sortByPrice(){
+    if(this.sortedAlphabetically == 0){
+
+      if(this.sortedNumerically == 0){
+        this.nonNumericalSearchedItems = []
+          this.searchedItems.forEach((element: { value: any; }) => {
+            this.nonNumericalSearchedItems.unshift(element)
+          });
+        this.searchedItems.sort(function(a: {price: number}, b: {price: number}){
+          return a.price-b.price
+        })
+    
+        this.nonNumericalAllItems = []
+          this.allItems.forEach((element: { value: any; }) => {
+            this.nonNumericalAllItems.unshift(element)
+          });
+          
+        this.allItems.sort(function(a: {price: number}, b: {price: number}){
+          return a.price-b.price
+        })
+        this.sortedNumerically++
+        return
+      }
+      if(this.sortedNumerically == 1){
+        this.allItems.reverse()
+        this.searchedItems.reverse()
+        this.sortedNumerically++
+        return
+      }
+      if(this.sortedNumerically == 2){
+        this.allItems = []
+        this.nonNumericalAllItems.forEach((element: { value: any; }) => {
+          this.allItems.unshift(element)
+        });
+       
+        this.searchedItems = []
+        this.nonNumericalSearchedItems.forEach((element: { value: any; }) => {
+          this.searchedItems.unshift(element)
+        });
+        this.sortedNumerically = 0;
+        return
+      }
+      
+    }
   }
 
 

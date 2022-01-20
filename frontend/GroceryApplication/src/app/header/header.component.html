@@ -48,9 +48,12 @@
                     <fa-icon [icon]="faTimes" class="pointer" (click)="toggleShoppingCart()"></fa-icon>
                 </div>
 
-
                 <section>
-                    <!-- lägg till for loop som loopar en lista med varor man har addat -->
+                    
+                    <div id="shoppingCartSection" *ngFor="let value of this.listOfShoppingCart">
+                        Hello Hello
+
+                    </div>
 
                 </section>
 

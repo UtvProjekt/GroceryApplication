@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Injectable, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Injectable, Input, OnInit, Output} from '@angular/core';
 import { faBars, faBrain, faDna, faPlus, faSearch, faShoppingCart, faSignInAlt, faTimes, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { Grocery } from 'src/Grocery';
 import { AppComponent } from '../app.component';
 import { MyaccountComponent } from '../myaccount/myaccount.component';
 import { SearchsectionComponent } from '../searchsection/searchsection.component';
@@ -38,6 +39,8 @@ export class HeaderComponent implements OnInit {
   admin: string = ""
 
   totalPrice: number = 0;
+
+  listOfShoppingCart: Array<any> = ["hej hopp", "hha", "okok"]
 
 
   constructor(public myacc: MyaccountComponent, public globalvar: AppComponent, private searchcomp: SearchsectionComponent) { }
@@ -122,6 +125,12 @@ export class HeaderComponent implements OnInit {
     }
 
     this.shoppingcartOpen = !this.shoppingcartOpen
+  }
+
+  public addToShoppingCart(grocery: Grocery){
+    console.log("Kommer in, Listan:" + grocery.name)
+    this.listOfShoppingCart.unshift(grocery)
+
   }
 
 
