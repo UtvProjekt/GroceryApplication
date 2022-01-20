@@ -41,7 +41,7 @@ export class ApplicationsectionComponent implements OnInit {
   ngOnInit(): void {
     this.isUserSignedIn()
     this.bindBottomArrow()
-   // this.getLastNineItems()
+    this.getLastNineItems()
 
     if(this.globalvar.getCookieValue("appearance") == "light"){
       this.settings.darkLightMode()
@@ -68,10 +68,10 @@ export class ApplicationsectionComponent implements OnInit {
   // Math is 84vw + 3rem
   slideMenuLeft(){
     if(this.slideLogic == 1){
-      document.getElementById("slider")!.style.transform = "translateX(calc(-78vw - 3rem))"
+      document.getElementById("slider")!.style.transform = "translateX(calc(-78vw - 1.5rem))"
       this.slideLogic++
     } else if(this.slideLogic == 2){
-      document.getElementById("slider")!.style.transform = "translateX(calc(-156vw - 6rem))"
+      document.getElementById("slider")!.style.transform = "translateX(calc(-156vw - 3rem))"
       this.slideLogic++
     }
   }
@@ -81,21 +81,21 @@ export class ApplicationsectionComponent implements OnInit {
       document.getElementById("slider")!.style.transform = "translateX(0)"
       this.slideLogic--
     } else if(this.slideLogic == 3){
-      document.getElementById("slider")!.style.transform = "translateX(calc(-78vw - 3rem))"
+      document.getElementById("slider")!.style.transform = "translateX(calc(-78vw - 1.5rem))"
       this.slideLogic--
     }
   }
 
-  getLastNineItems(): Grocery[]{
+  getLastNineItems(){
     this.groceryService.getGroceryData().subscribe(
       (response => {
         this.lastNine = response
         for(let i = 0; this.lastNine.length !== 9; i++){
           this.lastNine.shift()
         }
+        this.lastNine.reverse()
       })
     )
-    return this.lastNine
   }
 
 }

@@ -178,7 +178,7 @@ main {
 
             input,
             label,
-            textarea {
+            textarea, select {
                 width: 100%;
             }
             label {
@@ -187,7 +187,7 @@ main {
                 bottom: 0.2rem;
             }
             input,
-            textarea {
+            textarea, select {
                 border-radius: 0.15rem;
                 border: none;
                 outline: 0.125rem solid var(--primary-color-brighter);
@@ -206,6 +206,14 @@ main {
                 height: 6rem;
                 padding: 0.2rem;
                 resize: none;
+            }
+
+            select{
+                height: 1.8rem;
+                *{
+                    background-color: var(--darkmode);
+                    color: var(--primary-text-color);
+                }
             }
 
             input::-webkit-outer-spin-button,
@@ -282,7 +290,7 @@ main {
     height: 26vw;
     border-radius: 0.75rem;
     outline: 0.15rem solid var(--primary-color-brighter);
-    background-color: var(--darkmode-darker);
+    background-color: var(--darkmode-card);
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;

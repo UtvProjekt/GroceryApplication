@@ -8,7 +8,7 @@
                     <h2>Filter</h2>
                     <ul class="categoryfilter">
                         <p>Categories</p>
-                        <li class="singlefilter" (click)="categoryFilter('meatfish'); searchStyle()">Meat & Fish</li>
+                        <li class="singlefilter" (click)="categoryFilter('meat'); searchStyle()">Meat & Fish</li>
                         <li class="singlefilter" (click)="categoryFilter('fruit'); searchStyle()">Fruit & Vegetables</li>
                         <li class="singlefilter" (click)="categoryFilter('dairy'); searchStyle()">Dairy Products</li>
                         <li class="singlefilter" (click)="categoryFilter('snacks'); searchStyle()">Snacks</li>
@@ -62,7 +62,13 @@
 
             <div class="inputsinforms">
                 <label for="category">CATEGORY</label>
-                <input type="text" name="category" id="category" formControlName="category" autocomplete="off">
+                <select name="category" id="category" formControlName="category">
+                    <option value="meat">Meat & Fish</option>
+                    <option value="fruit">Fruits & Vegetables</option>
+                    <option value="bakery">Bread & Bakery</option>
+                    <option value="dairy">Dairy Products</option>
+                    <option value="snacks">Snacks</option>
+                </select>
             </div>
 
             <div class="inputsinforms">

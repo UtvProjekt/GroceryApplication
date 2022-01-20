@@ -265,11 +265,11 @@ section {
             }
         }
         .container-slider{
-            width: calc(78vw + 3rem);
-            height: 35vh;
+            width: calc(78vw + 2.3rem);
+            height: 32vh;
             overflow-x: hidden;
             overflow-y: visible;
-            
+            border-inline: 0.15rem solid var(--yellow);
             .as-figure{
                 display: flex;
                 width: 540%;
@@ -292,8 +292,5 @@ section {
     fa-icon {
         transition: 300ms;
         color: var(--primary-text-color);
-        &:hover{
-            color: var(--yellow);
-        }
     }
 }
