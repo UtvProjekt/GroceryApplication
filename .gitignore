@@ -118,4 +118,4 @@ dist
 .tern-port
 
 # Solr
-solr-8.9.0/server
+solr-8.9.0
