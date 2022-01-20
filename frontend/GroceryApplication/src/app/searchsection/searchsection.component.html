@@ -6,7 +6,19 @@
             <section class="allSearches">
                 <aside class="categories">
                     <h2>Filter</h2>
-                    <div class="test" (click)="categoryFilter('fruit')"></div>
+                    <ul class="categoryfilter">
+                        <p>Categories</p>
+                        <li class="singlefilter" (click)="categoryFilter('meatfish'); searchStyle()">Meat & Fish</li>
+                        <li class="singlefilter" (click)="categoryFilter('fruit'); searchStyle()">Fruit & Vegetables</li>
+                        <li class="singlefilter" (click)="categoryFilter('dairy'); searchStyle()">Dairy Products</li>
+                        <li class="singlefilter" (click)="categoryFilter('snacks'); searchStyle()">Snacks</li>
+                        <li class="singlefilter" (click)="categoryFilter('bakery'); searchStyle()">Bakery</li>
+                        <p>Sort by</p>
+                        <li class="singlefilter" (click)="sortByName()">A-Z</li>
+                        <li class="singlefilter">Price</li>
+                    </ul>
+
+                    
                 </aside>
                 
                 <section class="pane-container">
@@ -18,7 +30,7 @@
                     </div>
     
                     <div id="resultpane" class="thisorthat">
-                        <h2>Your Search. {{ this.searchedItems.length }} Results.</h2><button routerLink="/search" class="pointer" (click)="reloadWindow()">See all</button>
+                        <h2>{{ this.searchedItems.length }} Results.</h2><button routerLink="/search" class="pointer" (click)="reloadWindow()">See all</button>
                         <section class="resultcards">
                             <app-results *ngFor="let value of searchedItems" [dataValue]="value" class="searchResultComponent"></app-results>
                         </section>

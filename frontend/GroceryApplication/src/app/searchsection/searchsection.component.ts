@@ -54,6 +54,23 @@ export class SearchsectionComponent implements OnInit {
     )
   }
   
+  sortByName(){
+    console.log("old list:" + this.allItems.value)
+    this.searchedItems.sort(function(a: { name: String; }, b: { name: String; }){
+      if(a.name < b.name) { return -1; }
+      if(a.name > b.name) { return 1; }
+      return 0;
+    })
+
+    this.allItems.sort(function(a: { name: String; }, b: { name: String; }){
+      if(a.name < b.name) { return -1; }
+      if(a.name > b.name) { return 1; }
+      return 0;
+    })
+
+    console.log("new List:" + this.allItems.value)
+  }
+  
   getFiles(event: any) {
     this.fileString = event.target.files[0].name
   }

@@ -12,6 +12,21 @@ main {
     transition: opacity 600ms 500ms;
 }
 
+.categoryfilter{
+    width: 80%;
+    color: white;
+    font-size: 1.2rem;
+    p{
+        padding-top: 2rem;
+        font-size: 1.7rem;
+    }
+}
+
+.singlefilter{
+    cursor: pointer;
+    padding-top: 1rem;
+}
+
 .test{
     width: 30px;
     height: 30px;
