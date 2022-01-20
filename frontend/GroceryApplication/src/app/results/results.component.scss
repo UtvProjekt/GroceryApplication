@@ -8,6 +8,7 @@
     height: fit-content;
     will-change: transform;
     transition: 300ms;
+    outline: .1rem solid var(--yellow);
     .name{
         font-size: 1.6rem;
         letter-spacing: 0.05rem;

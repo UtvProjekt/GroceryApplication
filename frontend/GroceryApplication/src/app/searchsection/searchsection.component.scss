@@ -14,7 +14,7 @@ main {
     transition: opacity 600ms 500ms;
 }
 
-.test{
+.test {
     width: 30px;
     height: 30px;
     background-color: blue;
@@ -178,7 +178,8 @@ main {
 
             input,
             label,
-            textarea, select {
+            textarea,
+            select {
                 width: 100%;
             }
             label {
@@ -187,32 +188,41 @@ main {
                 bottom: 0.2rem;
             }
             input,
-            textarea, select {
+            textarea,
+            select {
                 border-radius: 0.15rem;
                 border: none;
                 outline: 0.125rem solid var(--primary-color-brighter);
                 transition: 200ms;
-                &:focus {
-                    transform: scale(1.02);
-                    outline-color: var(--yellow);
-                }
                 font-size: 1.1rem;
             }
             input {
                 height: 1.8rem;
                 padding-inline: 0.2rem;
+                &:focus {
+                    transform: scale(1.02);
+                    outline-color: var(--yellow);
+                }
             }
             textarea {
                 height: 6rem;
                 padding: 0.2rem;
                 resize: none;
+
+                &:focus {
+                    transform: scale(1.02);
+                    outline-color: var(--yellow);
+                }
             }
 
-            select{
+            select {
                 height: 1.8rem;
-                *{
+                * {
                     background-color: var(--darkmode);
                     color: var(--primary-text-color);
+                }
+                &:focus{
+                    outline-color: var(--yellow);
                 }
             }
 
@@ -320,7 +330,6 @@ main {
     stroke-miterlimit: 10;
     stroke: var(--primary-color-brighter);
     fill: none;
-    
 }
 .checkmark__check {
     transform-origin: 50% 50%;
@@ -347,18 +356,18 @@ main {
         box-shadow: inset 0px 0px 0px 10rem var(--primary-color-brighter);
     }
 }
-  
- .categoryfilter{
+
+.categoryfilter {
     width: 80%;
     color: white;
     font-size: 1.2rem;
-    p{
+    p {
         padding-top: 2rem;
         font-size: 1.7rem;
     }
 }
 
-.singlefilter{
+.singlefilter {
     cursor: pointer;
     padding-top: 1rem;
 }
