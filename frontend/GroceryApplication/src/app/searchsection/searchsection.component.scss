@@ -371,3 +371,105 @@ main {
     cursor: pointer;
     padding-top: 1rem;
 }
+
+.menuShoppingcart {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    height: 100vh;
+    width: 25vw;
+    background-color: var(--darkmode);
+    left: 101vw;
+    transition: left ease-in-out 350ms;
+    section {
+        height: 70vh;
+        width: 100%;
+    }
+}
+.menutitle {
+    display: flex;
+    height: 10vh;
+    width: 100%;
+    justify-content: space-between;
+    padding-inline: 1.5rem;
+    align-items: center;
+    border-bottom: 0.1rem solid var(--primary-text-color);
+    color: var(--primary-text-color);
+    fa-icon {
+        font-size: 2.3rem;
+    }
+}
+.menuFooter {
+    display: flex;
+    height: 20vh;
+    width: 100%;
+    border-top: 0.1rem solid var(--primary-text-color);
+    text-align: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    h2 {
+        color: var(--primary-text-color);
+    }
+    button {
+        height: 25%;
+        width: 60%;
+        background-color: var(--darkmode-darker);
+        border: none;
+        outline: 0.1rem solid var(--primary-color-brighter);
+        border-radius: 0.15rem;
+        color: var(--primary-text-color);
+        font-size: 1.25rem;
+        transition: 250ms;
+        font-weight: var(--thickfont);
+        letter-spacing: 0.06rem;
+        &:hover{
+            background-color: var(--primary-color-brighter);
+            color: var(--darkmode-card);
+        }
+    }
+}
+#hideShoppingCart {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    background-color: rgba(128, 121, 121, 0.4);
+    transition: ease-in-out 600ms;
+    visibility: hidden;
+    opacity: 0;
+}
+
+
+.results{
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    background-color: var(--darkmode);
+    border-radius: 0.25rem;
+    padding: 0.8rem;
+    height: fit-content;
+    will-change: transform;
+    transition: 300ms;
+    outline: .1rem solid var(--yellow);
+    .name{
+        font-size: 1.6rem;
+        letter-spacing: 0.05rem;
+    }   
+    .price{
+        font-size: 1.3;
+        font-weight: var(--thickfont);
+    }
+    &:hover{
+        transform: scale(1.02);
+    }
+}
+.items{
+    width: 100%;
+    text-align: center;
+    color: var(--primary-text-color);
+    &:not(:first-child){
+        margin-top: 1rem;
+    }
+}

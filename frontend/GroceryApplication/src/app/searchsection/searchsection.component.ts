@@ -1,7 +1,9 @@
 import { Component, Directive, HostListener, Injectable, OnInit, } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Grocery } from 'src/Grocery';
 import { GroceryService } from 'src/Grocery.service';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-searchsection',
@@ -28,14 +30,17 @@ export class SearchsectionComponent implements OnInit {
   public nonAlphabeticallyAllItems: any = []
   public nonNumericalSearchedItems: any = []
   public nonNumericalAllItems: any = []
+  listOfShoppingCart: Grocery[] = []
   //BOOLEANS
   public showFormInSearch: boolean = false
   public onEntry: boolean = true
   public isOnSearchSection: boolean = true
   message: boolean = false;
   public formController: boolean = false
+  shoppingcartOpen: boolean = false
   public sortedAlphabetically: number = 0
   public sortedNumerically: number = 0
+  totalPrice: number = 0;
   fileString: string = ""
   //FA ICONS
   faTimes = faTimes
@@ -239,6 +244,30 @@ export class SearchsectionComponent implements OnInit {
       }
       
     }
+  }
+
+  public addToShoppingCart(grocery: Grocery){
+    console.log("Kommer in, Listan:" + grocery.name)
+    this.listOfShoppingCart.push(grocery)
+    console.log(this.listOfShoppingCart)
+
+  }
+
+  toggleShoppingCart(){
+
+    this.shoppingcartOpen = !this.shoppingcartOpen
+
+    if(this.shoppingcartOpen){
+      document.getElementById('shoppingcart')!.style.left = "75vw"
+      document.getElementById('hideShoppingCart')!.style.visibility = "visible"
+      document.getElementById('hideShoppingCart')!.style.opacity = "1"
+    }
+    else{
+      document.getElementById('shoppingcart')!.style.left = "126vw"
+      document.getElementById('hideShoppingCart')!.style.visibility = "hidden"
+      document.getElementById('hideShoppingCart')!.style.opacity = "0"
+    }
+
   }
 
 

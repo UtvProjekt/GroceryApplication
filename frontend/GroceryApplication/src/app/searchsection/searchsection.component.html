@@ -25,14 +25,49 @@
                     <div id="examplepane" class="thisorthat">
                         <h2>Our sortiment</h2>
                         <section class="resultcards">
-                            <app-results *ngFor="let value of allItems" [dataValue]="value" class="searchResultComponent"></app-results>
+                            <div class="results" *ngFor="let dataValue of allItems">
+                                <div class="imagecontainer items">
+                                    <img src="../../assets/{{this.dataValue.imageUrl}}" alt="groceryimage">
+                                </div>
+                            
+                                <div class="items name">
+                                    {{this.dataValue.name.substring(0, 25)}} 
+                                </div>
+                            
+                                <div class="items price">
+                                    {{this.dataValue.price}} kr
+                                </div>
+                            
+                                <div class="items">
+                                    <button class="btn pointer addtocart" (click)="this.addToShoppingCart(dataValue)">Add to cart</button>
+                                </div>
+                            
+                            </div>
                         </section>
                     </div>
     
                     <div id="resultpane" class="thisorthat">
                         <h2>{{ this.searchedItems.length }} Results.</h2><button routerLink="/search" class="pointer" (click)="reloadWindow()">See all</button>
                         <section class="resultcards">
-                            <app-results *ngFor="let value of searchedItems" [dataValue]="value" class="searchResultComponent"></app-results>
+
+                            <div class="results" *ngFor="let dataValue of searchedItems">
+                                <div class="imagecontainer items">
+                                    <img src="../../assets/{{this.dataValue.imageUrl}}" alt="groceryimage">
+                                </div>
+                            
+                                <div class="items name">
+                                    {{this.dataValue.name.substring(0, 25)}} 
+                                </div>
+                            
+                                <div class="items price">
+                                    {{this.dataValue.price}} kr
+                                </div>
+                            
+                                <div class="items">
+                                    <button class="btn pointer addtocart" (click)="this.addToShoppingCart(dataValue)">Add to cart</button>
+                                </div>
+                            
+                            </div>
                         </section>
                     </div>
                 </section>
@@ -104,6 +139,34 @@
             <span>You successfully created a new grocery.</span>
         </div>
     </section>
-
+    
 </main>
 <app-header [viewInit]="this.isOnSearchSection" (messageEvent)="receiveMessage($event)"></app-header>
+
+    <!-- HIDE SHOPPING CART -->
+    <div id="hideShoppingCart" (click)="this.toggleShoppingCart()"></div>
+
+        <!-- SHOPPING CART -->
+        <div class="menuShoppingcart" id="shoppingcart">
+                <div class="menutitle">
+                    <h1>Shopping Cart</h1>
+                    <fa-icon [icon]="faTimes" class="pointer" (click)="this.toggleShoppingCart()"></fa-icon>
+                </div>
+
+                <section>
+                    
+                    <div id="shoppingCartSection" *ngFor="let value of this.listOfShoppingCart">
+                       <div>
+                           {{value.name}}
+                       </div>
+                    </div>
+
+                </section>
+
+                <footer class="menuFooter">
+                    <h2>Total: {{this.totalPrice}}kr</h2>
+                    <button class="pointer">Pay</button>
+                </footer>
+        </div>
+
+

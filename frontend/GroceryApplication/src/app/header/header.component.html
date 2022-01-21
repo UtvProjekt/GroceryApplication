@@ -33,33 +33,10 @@
         </div>
 
         <div class="shoppingcart" *ngIf="!this.viewInit">
-            <fa-icon [icon]="faShoppingCart" class="pointer" (click)="toggleShoppingCart()"></fa-icon>
+            <fa-icon [icon]="faShoppingCart" class="pointer" (click)="this.searchcomp.toggleShoppingCart()"></fa-icon>
         </div>
 
     </div>
 
-    <!-- HIDE SHOPPING CART -->
-    <div id="hideShoppingCart" (click)="toggleShoppingCart()"></div>
 
-        <!-- SHOPPING CART -->
-        <div class="menuShoppingcart" id="shoppingcart">
-                <div class="menutitle">
-                    <h1>Shopping Cart</h1>
-                    <fa-icon [icon]="faTimes" class="pointer" (click)="toggleShoppingCart()"></fa-icon>
-                </div>
-
-                <section>
-                    
-                    <div id="shoppingCartSection" *ngFor="let value of this.listOfShoppingCart">
-                        Hello Hello
-
-                    </div>
-
-                </section>
-
-                <footer class="menuFooter">
-                    <h2>Total: {{this.totalPrice}}kr</h2>
-                    <button class="pointer">Pay</button>
-                </footer>
-        </div>
 </header>

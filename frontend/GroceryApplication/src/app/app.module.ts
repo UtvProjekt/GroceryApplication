@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ApplicationsectionComponent } from './applicationsection/applicationsection.component';
 import { SearchbarComponent } from './searchbar/searchbar.component';
-import { ResultsComponent } from './results/results.component';
 import { SigninpageComponent } from './signinpage/signinpage.component';
 import { FooterComponent } from './footer/footer.component';
 import { MyaccountComponent } from './myaccount/myaccount.component';
@@ -24,7 +23,6 @@ import { CardComponent } from './card/card.component';
     HeaderComponent,
     ApplicationsectionComponent,
     SearchbarComponent,
-    ResultsComponent,
     SigninpageComponent,
     FooterComponent,
     MyaccountComponent,

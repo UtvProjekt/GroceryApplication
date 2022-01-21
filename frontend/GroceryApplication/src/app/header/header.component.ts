@@ -1,5 +1,7 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, EventEmitter, Injectable, Input, OnInit, Output} from '@angular/core';
 import { faBars, faBrain, faDna, faPlus, faSearch, faShoppingCart, faSignInAlt, faTimes, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { BehaviorSubject } from 'rxjs';
 import { Grocery } from 'src/Grocery';
 import { AppComponent } from '../app.component';
 import { MyaccountComponent } from '../myaccount/myaccount.component';
@@ -30,20 +32,14 @@ export class HeaderComponent implements OnInit {
   @Output() messageEvent = new EventEmitter<boolean>();
 
   open: boolean = false
-  shoppingcartOpen: boolean = false
   public showForm: boolean = false
 
   email: string = ""
   firstname: string = ""
   lastname: string = ""
   admin: string = ""
-
-  totalPrice: number = 0;
-
-  listOfShoppingCart: Array<any> = ["hej hopp", "hha", "okok"]
-
-
-  constructor(public myacc: MyaccountComponent, public globalvar: AppComponent, private searchcomp: SearchsectionComponent) { }
+  
+  constructor(public myacc: MyaccountComponent, public globalvar: AppComponent, public searchcomp: SearchsectionComponent) { }
 
   ngOnInit(): void {
     this.email = this.globalvar.getCookieValue("email")
@@ -109,28 +105,6 @@ export class HeaderComponent implements OnInit {
   closeMenu() {
     document.getElementById('menu')!.style.bottom = "6em"
     document.getElementById("nav-icon")!.classList.remove("open")
-  }
-
-  toggleShoppingCart(){
-
-    if(!this.shoppingcartOpen){
-      document.getElementById('shoppingcart')!.style.left = "75vw"
-      document.getElementById('hideShoppingCart')!.style.visibility = "visible"
-      document.getElementById('hideShoppingCart')!.style.opacity = "1"
-    }
-    else{
-      document.getElementById('shoppingcart')!.style.left = "126vw"
-      document.getElementById('hideShoppingCart')!.style.visibility = "hidden"
-      document.getElementById('hideShoppingCart')!.style.opacity = "0"
-    }
-
-    this.shoppingcartOpen = !this.shoppingcartOpen
-  }
-
-  public addToShoppingCart(grocery: Grocery){
-    console.log("Kommer in, Listan:" + grocery.name)
-    this.listOfShoppingCart.unshift(grocery)
-
   }
 
 
