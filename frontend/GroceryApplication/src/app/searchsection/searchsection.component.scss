@@ -469,6 +469,9 @@ main {
     width: 100%;
     text-align: center;
     color: var(--primary-text-color);
+    button{
+        margin: 0 auto;
+    }
     &:not(:first-child){
         margin-top: 1rem;
     }
