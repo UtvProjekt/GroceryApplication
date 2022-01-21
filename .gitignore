@@ -119,4 +119,4 @@ dist
 
 # Solr
 solr-8.9.0/
-solr-8.9.0/server/contexts/solr-jetty-context.xml
+solr-8.9.0/server/
