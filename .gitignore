@@ -120,3 +120,4 @@ dist
 # Solr
 solr-8.9.0/
 solr-8.9.0/server/
+solr-8.9.0/bin/solr-8983.port
