@@ -7,20 +7,26 @@
                 <aside class="categories">
                     <h2>Filter</h2>
                     <ul class="categoryfilter">
-                        <p>Categories</p>
-                        <li class="singlefilter" (click)="categoryFilter('meat'); searchStyle()">Meat & Fish</li>
-                        <li class="singlefilter" (click)="categoryFilter('fruit'); searchStyle()">Fruit & Vegetables</li>
-                        <li class="singlefilter" (click)="categoryFilter('dairy'); searchStyle()">Dairy Products</li>
-                        <li class="singlefilter" (click)="categoryFilter('snacks'); searchStyle()">Snacks</li>
-                        <li class="singlefilter" (click)="categoryFilter('bakery'); searchStyle()">Bakery</li>
-                        <p>Sort by</p>
-                        <li class="singlefilter" (click)="sortByName()">A-Z</li>
-                        <li class="singlefilter" (click)="sortByPrice()">Price</li>
+                        <div class="category-wrapper">
+                            <p>Categories.</p>
+                            <li class="singlefilter" (click)="categoryFilter('meat'); searchStyle()">Meat & Fish</li>
+                            <li class="singlefilter" (click)="categoryFilter('fruit'); searchStyle()">Fruit & Vegetables
+                            </li>
+                            <li class="singlefilter" (click)="categoryFilter('dairy'); searchStyle()">Dairy Products
+                            </li>
+                            <li class="singlefilter" (click)="categoryFilter('snacks'); searchStyle()">Snacks</li>
+                            <li class="singlefilter" (click)="categoryFilter('bakery'); searchStyle()">Bakery</li>
+                        </div>
+                        <div class="category-wrapper">
+                            <p>Sort by.</p>
+                            <li class="singlefilter" (click)="sortByName()">A-Z</li>
+                            <li class="singlefilter" (click)="sortByPrice()">Price</li>
+                        </div>
                     </ul>
 
-                    
+
                 </aside>
-                
+
                 <section class="pane-container">
                     <div id="examplepane" class="thisorthat">
                         <h2>Our sortiment</h2>
@@ -29,44 +35,72 @@
                                 <div class="imagecontainer items">
                                     <img src="../../assets/{{this.dataValue.imageUrl}}" alt="groceryimage">
                                 </div>
-                            
-                                <div class="items name">
-                                    {{this.dataValue.name.substring(0, 25)}} 
+
+                                <div class="items name desktop">
+                                    {{dataValue.name.substring(0, 14)}}<span
+                                        *ngIf="dataValue.name.length > 12">..</span>
                                 </div>
-                            
+
+                                <div class="items name laptop">
+                                    {{dataValue.name.substring(0, 8)}}<span *ngIf="dataValue.name.length > 10">..</span>
+                                </div>
+
                                 <div class="items price">
-                                    {{this.dataValue.price}} kr
+                                    {{dataValue.price}} kr
                                 </div>
-                            
+
                                 <div class="items">
-                                    <button class="btn pointer addtocart" (click)="this.addToShoppingCart(dataValue)">Add to cart</button>
+                                    <button class="btn pointer addtocart" (click)="this.addToShoppingCart(dataValue)"
+                                        *ngIf="dataValue.totalOfProduct < 1">Add to cart</button>
+                                    <div class="increaseordecrease" *ngIf="dataValue.totalOfProduct > 0">
+                                        <button class="plusorminus btn"
+                                            (click)="dataValue.totalOfProduct > 0 && dataValue.totalOfProduct = dataValue.totalOfProduct - 1; isZero(dataValue)">-</button>
+                                        <p>{{dataValue.totalOfProduct}}st</p>
+                                        <button class="plusorminus btn"
+                                            (click)="dataValue.totalOfProduct = dataValue.totalOfProduct + 1">+</button>
+                                    </div>
                                 </div>
-                            
+
                             </div>
                         </section>
                     </div>
-    
+
                     <div id="resultpane" class="thisorthat">
-                        <h2>{{ this.searchedItems.length }} Results.</h2><button routerLink="/search" class="pointer" (click)="reloadWindow()">See all</button>
+                        <h2>{{ this.searchedItems.length }} Results.</h2><button routerLink="/search" class="pointer"
+                            (click)="reloadWindow()">See all</button>
                         <section class="resultcards">
 
                             <div class="results" *ngFor="let dataValue of searchedItems">
                                 <div class="imagecontainer items">
                                     <img src="../../assets/{{this.dataValue.imageUrl}}" alt="groceryimage">
                                 </div>
-                            
-                                <div class="items name">
-                                    {{this.dataValue.name.substring(0, 25)}} 
+
+                                <div class="items name desktop">
+                                    {{dataValue.name.substring(0, 14)}}<span
+                                        *ngIf="dataValue.name.length > 12">..</span>
                                 </div>
-                            
+
+                                <div class="items name laptop">
+                                    {{dataValue.name.substring(0, 8)}}<span *ngIf="dataValue.name.length > 10">..</span>
+                                </div>
+
                                 <div class="items price">
-                                    {{this.dataValue.price}} kr
+                                    {{dataValue.price}} kr
                                 </div>
-                            
+
                                 <div class="items">
-                                    <button class="btn pointer addtocart" (click)="this.addToShoppingCart(dataValue)">Add to cart</button>
+                                    <button class="btn pointer addtocart" id="{{dataValue.id}}"
+                                        (click)="this.addToShoppingCart(dataValue)"
+                                        *ngIf="dataValue.totalOfProduct === 0">Add to
+                                        cart</button>
+                                    <div class="increaseordecrease" *ngIf="dataValue.totalOfProduct > 0">
+                                        <button class="plusorminus btn"
+                                            (click)="dataValue.totalOfProduct > 0 && dataValue.totalOfProduct = dataValue.totalOfProduct - 1; isZero(dataValue)">-</button>
+                                        <p>{{dataValue.totalOfProduct}}st</p>
+                                        <button class="plusorminus btn"
+                                            (click)="dataValue.totalOfProduct = dataValue.totalOfProduct + 1">+</button>
+                                    </div>
                                 </div>
-                            
                             </div>
                         </section>
                     </div>
@@ -133,40 +167,62 @@
         </form>
         <div class="successmessage" id="successmessagegrocery">
             <svg id="checkmark" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                <circle id="circleoncheckmark" class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
-                <path id="pathoncheckmark" class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                <circle id="circleoncheckmark" class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                <path id="pathoncheckmark" class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
             </svg>
             <span>You successfully created a new grocery.</span>
         </div>
     </section>
-    
+
 </main>
 <app-header [viewInit]="this.isOnSearchSection" (messageEvent)="receiveMessage($event)"></app-header>
 
-    <!-- HIDE SHOPPING CART -->
-    <div id="hideShoppingCart" (click)="this.toggleShoppingCart()"></div>
+<!-- HIDE SHOPPING CART -->
+<div id="hideShoppingCart" (click)="this.toggleShoppingCart()"></div>
 
-        <!-- SHOPPING CART -->
-        <div class="menuShoppingcart" id="shoppingcart">
-                <div class="menutitle">
-                    <h1>Shopping Cart</h1>
-                    <fa-icon [icon]="faTimes" class="pointer" (click)="this.toggleShoppingCart()"></fa-icon>
+<!-- SHOPPING CART -->
+<div class="menuShoppingcart" id="shoppingcart">
+    <div class="menutitle">
+        <h1>Shopping Cart</h1>
+        <fa-icon [icon]="faTimes" class="pointer" (click)="this.toggleShoppingCart()"></fa-icon>
+    </div>
+
+    <section>
+        <div class="shoppingcart-items" *ngFor="let value of this.listOfShoppingCart">
+
+            <div class="sc-image">
+                <img src="../../assets/{{value.imageUrl}}">
+            </div>
+
+            <div class="sc-grid-wrapper">
+                <div class="sc-name laptop">
+                    {{value.name}}
+                    <!--<span *ngIf="value.name.length > 10">..</span>-->
                 </div>
+                <div class="sc-name desktop">
+                    {{value.name}}
+                    <!--<span *ngIf="value.name.length > 10">..</span>-->
+                </div>
+                <div class="sc-price">
+                    {{value.price}}kr
+                </div>
+                <div class="sc-plusorminus">
+                    <button class="plusorminus btn"
+                        (click)="value.totalOfProduct > 0 && value.totalOfProduct = value.totalOfProduct - 1; isZero(value)">-</button>
+                    <p>{{value.totalOfProduct}}st</p>
+                    <button class="plusorminus btn" (click)="value.totalOfProduct = value.totalOfProduct + 1">+</button>
+                </div>
+            </div>
 
-                <section>
-                    
-                    <div id="shoppingCartSection" *ngFor="let value of this.listOfShoppingCart">
-                       <div>
-                           {{value.name}}
-                       </div>
-                    </div>
+            <span class="sc-trash-item pointer">
+                <fa-icon [icon]="faTrash" (click)="removeFromShoppingCart(value)"></fa-icon>
+            </span>
 
-                </section>
-
-                <footer class="menuFooter">
-                    <h2>Total: {{this.totalPrice}}kr</h2>
-                    <button class="pointer">Pay</button>
-                </footer>
         </div>
+    </section>
 
-
+    <footer class="menuFooter">
+        <h2>Total: {{this.totalPrice}}kr</h2>
+        <button class="pointer">Pay</button>
+    </footer>
+</div>

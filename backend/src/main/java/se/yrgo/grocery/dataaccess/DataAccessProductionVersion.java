@@ -17,7 +17,11 @@ import se.yrgo.grocery.domain.Grocery;
 import se.yrgo.grocery.domain.Login;
 import se.yrgo.grocery.exceptions.GroceryCouldNotBeAddedException;
 import se.yrgo.grocery.exceptions.GroceryNotFoundException;
+import se.yrgo.grocery.exceptions.UserNotFoundException;
 import se.yrgo.grocery.solr.SolrService;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Class that handles queries and communication with the database.
@@ -32,6 +36,8 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 	private EntityManager em = emf.createEntityManager();
 	private EntityTransaction tx = em.getTransaction();
 	private SolrService solrService = new SolrService();
+	// private static final Logger logger =
+	// LogManager.getLogger(DataAccessProductionVersion.class);
 
 	/**
 	 * @return - returns all groceries from the database
@@ -47,28 +53,22 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 	 * @throws JsonProcessingException
 	 */
 	public void addGrocery(Grocery gro) {
-		/*
-		 * tx.begin(); Grocery persistError = new Grocery(gro.getName(), gro.getPrice(),
-		 * gro.getDescription(), gro.getExpiredDate(), gro.getStockOf(), gro.getBrand(),
-		 * gro.getImageUrl()); em.persist(persistError); tx.commit();
-		 */
-
 		try {
 			tx.begin();
-			Grocery persistGrocery = new Grocery(gro.getName(), gro.getBrand(), gro.getCategory(), gro.getImageUrl(),
-					gro.getPrice(), gro.getDescription(), gro.getExpiredDate());
-			em.persist(persistGrocery);
-			
+			Grocery persistGrocery = new Grocery(gro.getBrand(), gro.getCategory(), gro.getDescription(),
+					gro.getExpiredDate(), gro.getImageUrl(), gro.getName(), gro.getPrice(), gro.getTotalOfProduct());
 
+			em.persist(persistGrocery);
 			solrService.addNewGroceryItem(persistGrocery);
 			solrService.reload();
-
 			tx.commit();
+			// logger.info("Successfully added a new grocery to database.");
+
 		} catch (GroceryNotFoundException ex) {
-			// logga och ge error message här sen
+			// logger.error("Grocery from call could not be found");
 			tx.rollback();
 		} catch (GroceryCouldNotBeAddedException ex) {
-			// logga och ge error message här sen
+			// logger.error("Grocery could not be added: stacktrace: " + ex.getMessage());
 			tx.rollback();
 		}
 
@@ -93,6 +93,8 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 
 			tx.commit();
 		} catch (GroceryNotFoundException ex) {
+			// logger.error("Grocery from call could not be found when trying to delete.
+			// Stacktrace: " + ex.getMessage());
 			tx.rollback();
 		} catch (Exception ex) {
 			tx.rollback();
@@ -106,7 +108,9 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 			tx.begin();
 			em.merge(gro);
 			tx.commit();
-		} catch (Exception ex) {
+		} catch (GroceryNotFoundException ex) {
+			// logger.error("Grocery from call could not be found when trying to update.
+			// Stacktrace: " + ex.getMessage());
 			tx.rollback();
 		}
 
@@ -137,7 +141,9 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 					credentials.getLastname(), credentials.isAdmin());
 			em.persist(persistUser);
 			tx.commit();
-		} catch (Exception ex) {
+		} catch (UserNotFoundException ex) {
+			// logger.error("User from call could not be found when trying to add.
+			// Stacktrace: " + ex.getMessage());
 			tx.rollback();
 		}
 	}
@@ -179,12 +185,12 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 	public String searchForGroceries(String search, int rows) {
 		return solrService.get(search, rows);
 	}
-	
-	public List<Grocery> searchWithFilter(String filter){
+
+	@SuppressWarnings("unchecked")
+	public List<Grocery> searchWithFilter(String filter) {
 		Query q = em.createQuery("select grocery from Grocery grocery where grocery.category = :filter");
 		q.setParameter("filter", filter);
 		return q.getResultList();
 	}
-
 
 }

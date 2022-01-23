@@ -21,6 +21,6 @@ export class GroceryService {
     }
 
     public filterGrocery(filter: String): Observable<Grocery[]> {
-        return  this.httpClient.get<Grocery[]>("http://localhost:25000/grocery/page/grocery/filtergroceries/" + filter)
+        return this.httpClient.get<Grocery[]>("http://localhost:25000/grocery/page/grocery/filtergroceries/" + filter)
     }
 }

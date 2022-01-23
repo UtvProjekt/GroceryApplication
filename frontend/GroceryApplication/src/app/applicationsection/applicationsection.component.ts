@@ -41,7 +41,7 @@ export class ApplicationsectionComponent implements OnInit {
   ngOnInit(): void {
     this.isUserSignedIn()
     this.bindBottomArrow()
-    this.getLastNineItems()
+    //this.getLastNineItems()
 
     if(this.globalvar.getCookieValue("appearance") == "light"){
       this.settings.darkLightMode()
@@ -65,7 +65,7 @@ export class ApplicationsectionComponent implements OnInit {
     }
   }
 
-  // Math is 84vw + 3rem
+  // Math is 78vw + 1.5rem for one slide
   slideMenuLeft(){
     if(this.slideLogic == 1){
       document.getElementById("slider")!.style.transform = "translateX(calc(-78vw - 1.5rem))"

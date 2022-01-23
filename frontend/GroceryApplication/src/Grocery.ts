@@ -7,4 +7,5 @@ export interface Grocery{
     imageUrl: string
     name: string
     price: number
+    totalOfProduct: number
 }

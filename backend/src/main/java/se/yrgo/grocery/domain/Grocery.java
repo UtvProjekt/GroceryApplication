@@ -1,6 +1,5 @@
 package se.yrgo.grocery.domain;
 
-
 import java.io.Serializable;
 
 import javax.persistence.Entity;
@@ -13,47 +12,44 @@ import javax.validation.constraints.Size;
 public class Grocery implements Serializable {
 
 	private static final long serialVersionUID = 3090615371178706749L;
-	
+
 	/**
 	 * Variables for grocery
 	 */
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
-	@Size(min = 3, max = 100)
+
 	private String name;
-	
-	@Size(min = 3, max = 40)
+
 	private String brand;
-	
+
 	private String category;
-	
-	@Size(min = 1)
+
 	private String imageUrl;
-	
+
 	private double price;
-	
-	@Size(min = 0, max = 2000)
+
 	private String description;
-	
+
 	private int expiredDate;
-	
+
+	private int totalOfProduct;
+
 	public Grocery() {}
-	
-	public Grocery(String name, String brand, String category, String imageUrl, double price, String description,
-			int expiredDate) {
+
+	public Grocery(String brand, String category, String description, int expiredDate, String imageUrl, String name,
+			double price, int totalOfProduct) {
 		super();
-		this.name = name;
 		this.brand = brand;
 		this.category = category;
-		this.imageUrl = imageUrl;
-		this.price = price;
 		this.description = description;
 		this.expiredDate = expiredDate;
+		this.imageUrl = imageUrl;
+		this.name = name;
+		this.price = price;
+		this.totalOfProduct = totalOfProduct;
 	}
-
-
 
 	public String getImageUrl() {
 		return imageUrl;
@@ -114,18 +110,26 @@ public class Grocery implements Serializable {
 	public String getCategory() {
 		return category;
 	}
-	
+
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	
-	@Override
-	public String toString() {
-		return "Grocery [id=" + id + ", name=" + name + ", brand=" + brand + ", imageUrl=" + imageUrl + ", price="
-				+ price + ", description=" + description + ", expiredDate=" + expiredDate + "]";
+
+	public int getTotalOfProduct() {
+		return totalOfProduct;
 	}
 
+	public void setTotalOfProduct(int totalOfProduct) {
+		this.totalOfProduct = totalOfProduct;
+	}
+
+	@Override
+	public String toString() {
+		return "Grocery [id=" + id + ", name=" + name + ", brand=" + brand + ", category=" + category + ", imageUrl="
+				+ imageUrl + ", price=" + price + ", description=" + description + ", expiredDate=" + expiredDate
+				+ ", totalOfProduct=" + totalOfProduct + "]";
+	}
 
 	
-	
+
 }

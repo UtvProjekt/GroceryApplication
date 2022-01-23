@@ -117,7 +117,7 @@ a {
     background-color: var(--yellow);
     font-size: 1.1rem;
     font-weight: var(--thickfont);
-    transition: transform 200ms;
+    transition: transform 200ms, opacity 400ms 250ms;
     will-change: transform;
     border-radius: 0.2rem;
     &:hover {

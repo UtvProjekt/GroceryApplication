@@ -1,6 +1,6 @@
 import { Component, Directive, HostListener, Injectable, OnInit, } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Grocery } from 'src/Grocery';
 import { GroceryService } from 'src/Grocery.service';
 import { HeaderComponent } from '../header/header.component';
@@ -38,12 +38,16 @@ export class SearchsectionComponent implements OnInit {
   message: boolean = false;
   public formController: boolean = false
   shoppingcartOpen: boolean = false
+  //NUMBERS
   public sortedAlphabetically: number = 0
   public sortedNumerically: number = 0
   totalPrice: number = 0;
+  totalOfItem: number = 0
+  //STRINGS
   fileString: string = ""
   //FA ICONS
   faTimes = faTimes
+  faTrash = faTrash
 
   constructor(private groceryService: GroceryService, private builder: FormBuilder) { }
   //ON INITS
@@ -56,7 +60,6 @@ export class SearchsectionComponent implements OnInit {
   //METHODS
 
   categoryFilter(filter: String): void {
-    console.log(filter)
     this.groceryService.filterGrocery(filter).subscribe(
       (response => {
         this.allItems = response
@@ -71,8 +74,11 @@ export class SearchsectionComponent implements OnInit {
   addNewGrocery(): void {
     delete this.addForm.value.imageUrl
     this.addForm.value.imageUrl = this.fileString
+    this.addForm.value.totalOfProduct = 0
+    console.log(this.addForm.value)
     this.groceryService.createGrocery(this.addForm.value).subscribe(
       (response => {
+        console.log("Created a new grocery...", response)
         document.getElementById("successmessagegrocery")!.style.visibility = "visible"
         document.getElementById("successmessagegrocery")!.style.opacity = "1"
         document.getElementById("checkmark")!.style.animation = "fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both"
@@ -147,49 +153,49 @@ export class SearchsectionComponent implements OnInit {
     window.location.reload()
   }
 
- sortByName(){
-    if(this.sortedNumerically == 0){
+  sortByName() {
+    if (this.sortedNumerically == 0) {
 
-      if(this.sortedAlphabetically == 0){
+      if (this.sortedAlphabetically == 0) {
         console.log("sorting from A-Z")
-       
+
         this.nonAlphabeticallySearchedItems = []
         this.searchedItems.forEach((element: { value: any; }) => {
           this.nonAlphabeticallySearchedItems.unshift(element)
         });
-        this.searchedItems.sort(function(a: { name: String; }, b: { name: String; }){
-          if(a.name < b.name) { return -1; }
-          if(a.name > b.name) { return 1; }
+        this.searchedItems.sort(function (a: { name: String; }, b: { name: String; }) {
+          if (a.name < b.name) { return -1; }
+          if (a.name > b.name) { return 1; }
           return 0;
         })
-        
+
         this.nonAlphabeticallyAllItems = []
         this.allItems.forEach((element: { value: any; }) => {
           this.nonAlphabeticallyAllItems.unshift(element)
         });
-        
-        this.allItems.sort(function(a: { name: String; }, b: { name: String; }){
-          if(a.name < b.name) { return -1; }
-          if(a.name > b.name) { return 1; }
+
+        this.allItems.sort(function (a: { name: String; }, b: { name: String; }) {
+          if (a.name < b.name) { return -1; }
+          if (a.name > b.name) { return 1; }
           return 0;
         })
         this.sortedAlphabetically++
         return
       }
-      if(this.sortedAlphabetically == 1){
+      if (this.sortedAlphabetically == 1) {
         console.log("Sorting from Z-A")
         this.allItems.reverse()
         this.searchedItems.reverse()
         this.sortedAlphabetically++
         return
       }
-      if(this.sortedAlphabetically == 2){
+      if (this.sortedAlphabetically == 2) {
         console.log("going back to non alphabetically")
         this.allItems = []
         this.nonAlphabeticallyAllItems.forEach((element: { value: any; }) => {
           this.allItems.unshift(element)
         });
-       
+
         this.searchedItems = []
         this.nonAlphabeticallySearchedItems.forEach((element: { value: any; }) => {
           this.searchedItems.unshift(element)
@@ -200,41 +206,41 @@ export class SearchsectionComponent implements OnInit {
     }
   }
 
-  sortByPrice(){
-    if(this.sortedAlphabetically == 0){
+  sortByPrice() {
+    if (this.sortedAlphabetically == 0) {
 
-      if(this.sortedNumerically == 0){
+      if (this.sortedNumerically == 0) {
         this.nonNumericalSearchedItems = []
-          this.searchedItems.forEach((element: { value: any; }) => {
-            this.nonNumericalSearchedItems.unshift(element)
-          });
-        this.searchedItems.sort(function(a: {price: number}, b: {price: number}){
-          return a.price-b.price
+        this.searchedItems.forEach((element: { value: any; }) => {
+          this.nonNumericalSearchedItems.unshift(element)
+        });
+        this.searchedItems.sort(function (a: { price: number }, b: { price: number }) {
+          return a.price - b.price
         })
-    
+
         this.nonNumericalAllItems = []
-          this.allItems.forEach((element: { value: any; }) => {
-            this.nonNumericalAllItems.unshift(element)
-          });
-          
-        this.allItems.sort(function(a: {price: number}, b: {price: number}){
-          return a.price-b.price
+        this.allItems.forEach((element: { value: any; }) => {
+          this.nonNumericalAllItems.unshift(element)
+        });
+
+        this.allItems.sort(function (a: { price: number }, b: { price: number }) {
+          return a.price - b.price
         })
         this.sortedNumerically++
         return
       }
-      if(this.sortedNumerically == 1){
+      if (this.sortedNumerically == 1) {
         this.allItems.reverse()
         this.searchedItems.reverse()
         this.sortedNumerically++
         return
       }
-      if(this.sortedNumerically == 2){
+      if (this.sortedNumerically == 2) {
         this.allItems = []
         this.nonNumericalAllItems.forEach((element: { value: any; }) => {
           this.allItems.unshift(element)
         });
-       
+
         this.searchedItems = []
         this.nonNumericalSearchedItems.forEach((element: { value: any; }) => {
           this.searchedItems.unshift(element)
@@ -242,33 +248,43 @@ export class SearchsectionComponent implements OnInit {
         this.sortedNumerically = 0;
         return
       }
-      
+
     }
   }
 
-  public addToShoppingCart(grocery: Grocery){
-    console.log("Kommer in, Listan:" + grocery.name)
-    this.listOfShoppingCart.push(grocery)
-    console.log(this.listOfShoppingCart)
-
-  }
-
-  toggleShoppingCart(){
-
+  
+  toggleShoppingCart() {
     this.shoppingcartOpen = !this.shoppingcartOpen
-
-    if(this.shoppingcartOpen){
+    if (this.shoppingcartOpen) {
       document.getElementById('shoppingcart')!.style.left = "75vw"
       document.getElementById('hideShoppingCart')!.style.visibility = "visible"
       document.getElementById('hideShoppingCart')!.style.opacity = "1"
     }
-    else{
+    else {
       document.getElementById('shoppingcart')!.style.left = "126vw"
       document.getElementById('hideShoppingCart')!.style.visibility = "hidden"
       document.getElementById('hideShoppingCart')!.style.opacity = "0"
     }
-
   }
 
+  public addToShoppingCart(grocery: Grocery) {
+    grocery.totalOfProduct = 1
+    this.listOfShoppingCart.push(grocery)
+  }
+
+  public removeFromShoppingCart(grocery: Grocery){
+    const removeItem = this.listOfShoppingCart.indexOf(grocery)
+    grocery.totalOfProduct = 0
+    this.listOfShoppingCart.splice(removeItem, 1)
+  }
+
+  isZero(grocery: Grocery){
+    if(grocery.totalOfProduct === 0){
+      this.removeFromShoppingCart(grocery)
+      grocery.totalOfProduct = 0
+    }
+  }
+
+ 
 
 }
