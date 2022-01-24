@@ -19,18 +19,23 @@ public class Grocery implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-
+	
+	@Size(min=0, max=4000)
 	private String name;
-
+	
+	@Size(min=0, max=4000)
 	private String brand;
-
+	
+	@Size(min=0, max=4000)
 	private String category;
-
+	
+	@Size(min=0, max=4000)
 	private String imageUrl;
 
-	private double price;
-
+	@Size(min=0, max=4000)
 	private String description;
+	
+	private double price;
 
 	private int expiredDate;
 
@@ -38,6 +43,18 @@ public class Grocery implements Serializable {
 
 	public Grocery() {}
 
+	/**
+	 * Grocery object constructor, matches database layout
+	 * 
+	 * @param brand
+	 * @param category
+	 * @param description
+	 * @param expiredDate
+	 * @param imageUrl
+	 * @param name
+	 * @param price
+	 * @param totalOfProduct
+	 */
 	public Grocery(String brand, String category, String description, int expiredDate, String imageUrl, String name,
 			double price, int totalOfProduct) {
 		super();

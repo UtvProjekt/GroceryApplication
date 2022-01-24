@@ -133,11 +133,9 @@ export class SigninpageComponent implements OnInit {
                   (respon: boolean) => {
                     if (respon) {
                       document.cookie = "admin=true;" + expiresIn30Min + ";path=/"
-                      console.log("sant")
                     }
                     else{
                       document.cookie = "admin=false;" + expiresIn30Min + ";path=/"
-                      console.log("falskt")
                     }
                   }
                 )
@@ -166,14 +164,12 @@ export class SigninpageComponent implements OnInit {
     const d = new Date()
     d.setTime(d.getTime() + 30 * 60000)
     let expiresIn = "expires=" + d.toUTCString()
-    console.log(expiresIn)
     return expiresIn
   }
   public expiresIn30Days(): string {
     const d = new Date()
     d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000))
     let expiresIn = "expires=" + d.toUTCString()
-    console.log(expiresIn)
     return expiresIn
   }
 

@@ -127,3 +127,10 @@ a {
         transform: scale(0.95);
     }
 }
+
+.icon-close-hover{
+    transition: color 250ms;
+    &:hover{
+        color: red;
+    }
+}

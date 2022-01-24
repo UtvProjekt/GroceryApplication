@@ -33,6 +33,7 @@ input{
     box-sizing: content-box;
     background-color: var(--darkmode);
     color: var(--primary-text-color);
+    transition: border-color 200ms;
     &:focus{
         border-color: var(--yellow);
     }

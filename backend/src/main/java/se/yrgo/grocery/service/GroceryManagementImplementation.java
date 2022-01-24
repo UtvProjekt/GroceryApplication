@@ -2,14 +2,14 @@ package se.yrgo.grocery.service;
 
 import java.util.List;
 
-import se.yrgo.grocery.dataaccess.DataAccess;
+import se.yrgo.grocery.dataaccess.GroceryDataAccess;
 import se.yrgo.grocery.dataaccess.DataAccessProductionVersion;
 import se.yrgo.grocery.domain.Grocery;
 import se.yrgo.grocery.solr.SolrRequest;
 
 public class GroceryManagementImplementation implements GroceryManagementService, GroceryManagementServiceLocal{
 
-	private DataAccess ida = new DataAccessProductionVersion();
+	private GroceryDataAccess ida = new DataAccessProductionVersion();
 	
 	@Override
 	public List<Grocery> findAll() {

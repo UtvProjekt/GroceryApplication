@@ -40,7 +40,14 @@ public class Login implements Serializable {
 	public Login() {
 
 	}
-
+	/**
+	 * Login object constructor, matches database layout
+	 * @param email
+	 * @param password
+	 * @param firstname
+	 * @param lastname
+	 * @param admin
+	 */
 	public Login(String email, String password, String firstname, String lastname, int admin) {
 		this.email = email;
 		this.password = password;
@@ -89,17 +96,18 @@ public class Login implements Serializable {
 		this.password = password;
 	}
 
+	public int isAdmin() {
+		return admin;
+	}
+	
+	public void setAdmin(int admin) {
+		this.admin = admin;
+	}
+	
 	@Override
 	public String toString() {
 		return "Login [id=" + id + ", email=" + email + ", password=" + password + "]";
 	}
 
-	public int isAdmin() {
-		return admin;
-	}
-
-	public void setAdmin(int admin) {
-		this.admin = admin;
-	}
 
 }

@@ -4,7 +4,12 @@ import java.util.List;
 
 
 import se.yrgo.grocery.domain.Login;
-
+/**
+ * 
+ * @author Anton
+ *
+ *	An interface for the login methods
+ */
 public interface LoginDataAccess {
 	public void addUser(Login credentials);
 	public Login findUserByEmail(String email);

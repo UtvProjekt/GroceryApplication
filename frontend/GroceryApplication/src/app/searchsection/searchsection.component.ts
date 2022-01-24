@@ -22,6 +22,14 @@ export class SearchsectionComponent implements OnInit {
     expiredDate: ['', Validators.required],
     imageUrl: [null, Validators.required]
   })
+  editForm = this.builder.group({
+    name: ['', Validators.required],
+    brand: ['', Validators.required],
+    category: ['', Validators.required],
+    description: ['', Validators.required],
+    price: ['', Validators.required],
+    expiredDate: ['', Validators.required]
+  })
 
   //ARRAYS
   public searchedItems: any = []
@@ -270,21 +278,35 @@ export class SearchsectionComponent implements OnInit {
   public addToShoppingCart(grocery: Grocery) {
     grocery.totalOfProduct = 1
     this.listOfShoppingCart.push(grocery)
+    this.totalPrice += grocery.price
   }
 
   public removeFromShoppingCart(grocery: Grocery){
+    this.totalPrice -= (grocery.price * grocery.totalOfProduct)
     const removeItem = this.listOfShoppingCart.indexOf(grocery)
     grocery.totalOfProduct = 0
     this.listOfShoppingCart.splice(removeItem, 1)
-  }
-
-  isZero(grocery: Grocery){
-    if(grocery.totalOfProduct === 0){
-      this.removeFromShoppingCart(grocery)
-      grocery.totalOfProduct = 0
+    if(this.listOfShoppingCart.length === 0){
+      this.totalPrice = 0
     }
   }
 
- 
+  isZero(grocery: Grocery){
+    if(grocery.totalOfProduct > 0){
+      this.totalPrice -= grocery.price
+    }
+    if(grocery.totalOfProduct === 0){
+      grocery.totalOfProduct = 1
+      this.removeFromShoppingCart(grocery)
+      grocery.totalOfProduct = 0
+    }
+    if(this.listOfShoppingCart.length === 0){
+      this.totalPrice = 0
+    }
+  }
+
+  checkPrice(grocery: Grocery){
+    this.totalPrice += grocery.price
+  }
 
 }

@@ -11,6 +11,9 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import se.yrgo.grocery.domain.Grocery;
@@ -20,15 +23,12 @@ import se.yrgo.grocery.exceptions.GroceryNotFoundException;
 import se.yrgo.grocery.exceptions.UserNotFoundException;
 import se.yrgo.grocery.solr.SolrService;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 /**
  * Class that handles queries and communication with the database.
  */
 @Default
 @Stateless
-public class DataAccessProductionVersion implements DataAccess, LoginDataAccess {
+public class DataAccessProductionVersion implements GroceryDataAccess, LoginDataAccess {
 
 	@PersistenceContext
 	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("groceryDB");
@@ -36,9 +36,10 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 	private EntityManager em = emf.createEntityManager();
 	private EntityTransaction tx = em.getTransaction();
 	private SolrService solrService = new SolrService();
-	// private static final Logger logger =
-	// LogManager.getLogger(DataAccessProductionVersion.class);
-
+	private static final Logger errorLogger = LogManager.getLogger("errorLogger");
+	private static final Logger infoLogger = LogManager.getLogger("infoLogger");
+	
+	
 	/**
 	 * @return - returns all groceries from the database
 	 */
@@ -49,75 +50,75 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 	}
 
 	/**
-	 * @param gro - Grocery object Adding a Grocery to the database
-	 * @throws JsonProcessingException
+	 * @param gro - Adding a created grocery object to the database from the frontend.
+	 * 
+	 * Logs to src/main/resources/logfiles/information.log
 	 */
 	public void addGrocery(Grocery gro) {
 		try {
 			tx.begin();
-			Grocery persistGrocery = new Grocery(gro.getBrand(), gro.getCategory(), gro.getDescription(),
-					gro.getExpiredDate(), gro.getImageUrl(), gro.getName(), gro.getPrice(), gro.getTotalOfProduct());
-
-			em.persist(persistGrocery);
-			solrService.addNewGroceryItem(persistGrocery);
+			em.persist(gro);
+			solrService.addNewGroceryItem(gro);
 			solrService.reload();
+			infoLogger.info("Successfully added a new grocery to database.");
 			tx.commit();
-			// logger.info("Successfully added a new grocery to database.");
 
 		} catch (GroceryNotFoundException ex) {
-			// logger.error("Grocery from call could not be found");
+			errorLogger.error("Grocery from call could not be found");
 			tx.rollback();
 		} catch (GroceryCouldNotBeAddedException ex) {
-			// logger.error("Grocery could not be added: stacktrace: " + ex.getMessage());
+			errorLogger.error("Grocery could not be added:\nStacktrace: " + ex.getMessage() + "\n");
 			tx.rollback();
 		}
 
 	}
 
 	/**
-	 * @param id - generatedKey Deletes a Grocery from the database
+	 * @param id - Deletes a Grocery object from the database
+	 * 
+	 * Logs to src/main/resources/logfiles/error.log
 	 */
 	@Override
 	public void deleteGrocery(int id) {
-		/*
-		 * tx.begin();
-		 * 
-		 * Query q = em.createQuery("delete from Grocery where Id = :id");
-		 * q.setParameter("id", id); q.executeUpdate();
-		 */
 		try {
 			tx.begin();
 			em.remove(findGroceryById(id));
-
 			solrService.deleteGroceryItem(id);
-
 			tx.commit();
 		} catch (GroceryNotFoundException ex) {
-			// logger.error("Grocery from call could not be found when trying to delete.
-			// Stacktrace: " + ex.getMessage());
+			errorLogger.error("Grocery from call could not be found when trying to delete. (Executing rollback) " 
+			+ "Stacktrace: " + ex.getMessage());
 			tx.rollback();
 		} catch (Exception ex) {
 			tx.rollback();
 		}
 
 	}
+	
+	/**
+	 * @param gro - Updates a grocery.
+	 * 
+	 * Logs to src/main/resources/logfiles/information.log
+	 * or if error towards error.log
+	 */
 
 	public void updateGrocery(Grocery gro) {
 
 		try {
 			tx.begin();
 			em.merge(gro);
+			infoLogger.info("Successfully updated a grocery.");
 			tx.commit();
 		} catch (GroceryNotFoundException ex) {
-			// logger.error("Grocery from call could not be found when trying to update.
-			// Stacktrace: " + ex.getMessage());
+			errorLogger.error("Grocery from call could not be found when trying to update. (Executing rollback) "
+			+ "Stacktrace: " + ex.getMessage());
 			tx.rollback();
 		}
 
 	}
 
 	/**
-	 * @param id - generatedKey
+	 * @param id - id finds object from database with query.
 	 * @return - returns a single Grocery by id
 	 */
 	@Override
@@ -127,27 +128,27 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 		return (Grocery) q.getSingleResult();
 	}
 
+	/**
+	 * @param credentials - comes from frontend webapp to store in database
+	 * 
+	 * addUser stores a new user in table Login
+	 */
 	@Override
 	public void addUser(Login credentials) {
-		/*
-		 * tx.begin(); Login persistUser = new Login(credentials.getEmail(),
-		 * credentials.getPassword(), credentials.getFirstname(),
-		 * credentials.getSurname()); em.persist(persistUser); tx.commit();
-		 */
-
 		try {
 			tx.begin();
-			Login persistUser = new Login(credentials.getEmail(), credentials.getPassword(), credentials.getFirstname(),
-					credentials.getLastname(), credentials.isAdmin());
-			em.persist(persistUser);
+			em.persist(credentials);
 			tx.commit();
 		} catch (UserNotFoundException ex) {
-			// logger.error("User from call could not be found when trying to add.
-			// Stacktrace: " + ex.getMessage());
+			errorLogger.error("User from call could not be found when trying to add. (Executing rollback) "
+			+ "Stacktrace: " + ex.getMessage());
 			tx.rollback();
 		}
 	}
 
+	/**
+	 * @param email - finds a user (Login) object by their email
+	 */
 	@Override
 	public Login findUserByEmail(String email) {
 		Query q = em.createQuery("select login from Login login where login.email = :email");
@@ -156,6 +157,9 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 
 	}
 
+	/**
+	 * Selects all users from Login table
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Login> findAllUsers() {
@@ -163,6 +167,9 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 		return q.getResultList();
 	}
 
+	/**
+	 * @return - returns the encrypted password of a user my their email
+	 */
 	@Override
 	public String getPasswordByEmail(String email) {
 		Query q = em.createQuery("select password.password from Login password where password.email = :email")
@@ -170,6 +177,9 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 		return (String) q.getSingleResult();
 	}
 
+	/**
+	 * @return - returns true or false depending whether the user is an admin or not.
+	 */
 	@Override
 	public boolean checkIfAdmin(String email) {
 		Login adminCheck = findUserByEmail(email);
@@ -180,12 +190,23 @@ public class DataAccessProductionVersion implements DataAccess, LoginDataAccess 
 		}
 
 	}
-
+	
+	/**
+	 * @param search - searched item
+	 * @param rows - how many returned items there should be
+	 * 
+	 * Solr search for groceries. 
+	 */
 	@Override
 	public String searchForGroceries(String search, int rows) {
 		return solrService.get(search, rows);
 	}
 
+	/**
+	 * @param filter - filters the search or all objects in frontend
+	 * 
+	 * @return - returns a list of all filtered items
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Grocery> searchWithFilter(String filter) {
 		Query q = em.createQuery("select grocery from Grocery grocery where grocery.category = :filter");

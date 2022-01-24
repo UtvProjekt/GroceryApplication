@@ -23,8 +23,6 @@
                             <li class="singlefilter" (click)="sortByPrice()">Price</li>
                         </div>
                     </ul>
-
-
                 </aside>
 
                 <section class="pane-container">
@@ -57,9 +55,10 @@
                                             (click)="dataValue.totalOfProduct > 0 && dataValue.totalOfProduct = dataValue.totalOfProduct - 1; isZero(dataValue)">-</button>
                                         <p>{{dataValue.totalOfProduct}}st</p>
                                         <button class="plusorminus btn"
-                                            (click)="dataValue.totalOfProduct = dataValue.totalOfProduct + 1">+</button>
+                                            (click)="dataValue.totalOfProduct = dataValue.totalOfProduct + 1; checkPrice(dataValue)">+</button>
                                     </div>
                                 </div>
+
 
                             </div>
                         </section>
@@ -106,6 +105,42 @@
                     </div>
                 </section>
             </section>
+            <!--POPUPS START -->
+            <!-- contenteditable="true" på p tagsen -->
+            <section class="popup displaycenter" id="{{value.id}}" *ngFor="let value of allItems">
+                <article class="popup-main">
+
+                    <div class="popupname">{{value.name}}</div>
+                    <div class="image-container-popup">
+                        <img src="../../assets/{{value.imageUrl}}" alt="groceryimage">
+                        <fa-icon [icon]="faTimes" class="pointer icon-close-hover"></fa-icon>
+                    </div>
+
+                    <div class="grid-two-row displaycenter"><h3>Brand </h3><p>{{value.brand}}</p></div>
+                    <div class="grid-two-row displaycenter"><h3>Category </h3><p>{{value.category}}</p></div>
+
+                    <select class="grid-two-row select-cateory" id="select-category-{{value.id}}">
+                        <option value="Meat & Fish">Meat & Fish</option>
+                        <option value="Fruits & Vegetables">Fruits & Vegetables</option>
+                        <option value="Bread & Bakery">Bread & Bakery</option>
+                        <option value="Dairy Products">Dairy Products</option>
+                        <option value="Snacks">Snacks</option>
+                    </select>
+
+                    <div class="grid-two-row displaycenter"><h3>Price </h3><p>{{value.price}}kr</p></div>
+                    <div class="grid-two-row displaycenter"><h3>Expires in </h3><p>{{value.expiredDate}} days from delivery</p></div>
+
+                    <div class="button-container grid-two-row">
+                        <button type="submit" class="btn pointer">EDIT GROCERY</button>
+                        <button type="submit" class="btn pointer">DELETE GROCERY</button>
+                    </div>
+
+                </article>
+            </section>
+            <section class="popup displaycenter" id="searchedItems-popup" *ngFor="let value of searchedItems">
+
+            </section>
+            <!--POPUPS END -->
         </div>
     </section>
 
@@ -132,11 +167,11 @@
             <div class="inputsinforms">
                 <label for="category">CATEGORY</label>
                 <select name="category" id="category" formControlName="category">
-                    <option value="meat">Meat & Fish</option>
-                    <option value="fruit">Fruits & Vegetables</option>
-                    <option value="bakery">Bread & Bakery</option>
-                    <option value="dairy">Dairy Products</option>
-                    <option value="snacks">Snacks</option>
+                    <option value="Meat & Fish">Meat & Fish</option>
+                    <option value="Fruits & Vegetables">Fruits & Vegetables</option>
+                    <option value="Bread & Bakery">Bread & Bakery</option>
+                    <option value="Dairy Products">Dairy Products</option>
+                    <option value="Snacks">Snacks</option>
                 </select>
             </div>
 
@@ -204,13 +239,14 @@
                     <!--<span *ngIf="value.name.length > 10">..</span>-->
                 </div>
                 <div class="sc-price">
-                    {{value.price}}kr
+                    {{(value.price*value.totalOfProduct).toFixed(2)}}kr
                 </div>
                 <div class="sc-plusorminus">
                     <button class="plusorminus btn"
                         (click)="value.totalOfProduct > 0 && value.totalOfProduct = value.totalOfProduct - 1; isZero(value)">-</button>
                     <p>{{value.totalOfProduct}}st</p>
-                    <button class="plusorminus btn" (click)="value.totalOfProduct = value.totalOfProduct + 1">+</button>
+                    <button class="plusorminus btn"
+                        (click)="value.totalOfProduct = value.totalOfProduct + 1; checkPrice(value)">+</button>
                 </div>
             </div>
 
@@ -222,7 +258,7 @@
     </section>
 
     <footer class="menuFooter">
-        <h2>Total: {{this.totalPrice}}kr</h2>
+        <h2>Total: {{this.totalPrice.toFixed(2)}}kr</h2>
         <button class="pointer">Pay</button>
     </footer>
 </div>
