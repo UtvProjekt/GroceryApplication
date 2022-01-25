@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { faTimes, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Grocery } from 'src/Grocery';
 import { GroceryService } from 'src/Grocery.service';
+import { AppComponent } from '../app.component';
 import { HeaderComponent } from '../header/header.component';
 
 @Component({
@@ -46,6 +47,8 @@ export class SearchsectionComponent implements OnInit {
   message: boolean = false;
   public formController: boolean = false
   shoppingcartOpen: boolean = false
+  editMode: boolean = false
+  public loggedInAsAdmin: boolean = false
   //NUMBERS
   public sortedAlphabetically: number = 0
   public sortedNumerically: number = 0
@@ -53,15 +56,18 @@ export class SearchsectionComponent implements OnInit {
   totalOfItem: number = 0
   //STRINGS
   fileString: string = ""
+  admin: string = ""
   //FA ICONS
   faTimes = faTimes
   faTrash = faTrash
 
-  constructor(private groceryService: GroceryService, private builder: FormBuilder) { }
+  constructor(private groceryService: GroceryService, private builder: FormBuilder, private globalvar: AppComponent) { }
   //ON INITS
 
   ngOnInit(): void {
     this.isOnSearchSection = false
+    this.admin = this.globalvar.getCookieValue("admin")
+    this.checkIfUserIsAdmin()
     this.getAllItems()
   }
 
@@ -95,9 +101,6 @@ export class SearchsectionComponent implements OnInit {
       })
     )
 
-
-    //RESPONSE MESSAGE THEN RUN CLOSE
-
     setTimeout(() => {
       (<HTMLInputElement>document.getElementById("name")).value = "";
       (<HTMLInputElement>document.getElementById("brand")).value = "";
@@ -109,6 +112,12 @@ export class SearchsectionComponent implements OnInit {
     setTimeout(() => {
       this.formCloseStyling();
     }, 4000);
+  }
+
+  checkIfUserIsAdmin(): void{
+    if(this.admin === "true"){
+      this.loggedInAsAdmin = true
+    }
   }
 
   receiveMessage($event: any) {
@@ -308,5 +317,16 @@ export class SearchsectionComponent implements OnInit {
   checkPrice(grocery: Grocery){
     this.totalPrice += grocery.price
   }
+
+  openCard(value: number){
+    document.getElementById("allitem-popup-" + value)!.style.visibility = "visible"
+    document.getElementById("allitem-popup-" + value)!.style.opacity = "1"
+  }
+
+  closeCard(value: number){
+    document.getElementById("allitem-popup-" + value)!.style.visibility = "hidden"
+    document.getElementById("allitem-popup-" + value)!.style.opacity = "0"
+  }
+
 
 }

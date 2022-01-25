@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { faAt, faCog, faLongArrowAltDown, faPen, faPlus, faSignInAlt, faUser, faSearch, faUserCircle, faArrowAltCircleUp, faKey, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { HeaderComponent } from '../header/header.component';
-import { MyaccountComponent } from '../myaccount/myaccount.component';
 import { SettingsComponent } from '../settings/settings.component';
 import { GroceryService } from 'src/Grocery.service';
 import { Grocery } from 'src/Grocery';
@@ -36,7 +35,7 @@ export class ApplicationsectionComponent implements OnInit {
 
   public lastNine: Grocery[] = []
 
-  constructor(public globalvar: AppComponent, public headervar: HeaderComponent, public myacc: MyaccountComponent, public headercomp: HeaderComponent, public settings: SettingsComponent, public groceryService: GroceryService) { }
+  constructor(public globalvar: AppComponent, public headervar: HeaderComponent, public headercomp: HeaderComponent, public settings: SettingsComponent, public groceryService: GroceryService) { }
 
   ngOnInit(): void {
     this.isUserSignedIn()

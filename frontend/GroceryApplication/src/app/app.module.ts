@@ -10,7 +10,6 @@ import { ApplicationsectionComponent } from './applicationsection/applicationsec
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { SigninpageComponent } from './signinpage/signinpage.component';
 import { FooterComponent } from './footer/footer.component';
-import { MyaccountComponent } from './myaccount/myaccount.component';
 import { SearchsectionComponent } from './searchsection/searchsection.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -25,7 +24,6 @@ import { CardComponent } from './card/card.component';
     SearchbarComponent,
     SigninpageComponent,
     FooterComponent,
-    MyaccountComponent,
     SearchsectionComponent,
     SettingsComponent,
     CardComponent,

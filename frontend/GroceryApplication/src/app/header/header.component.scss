@@ -48,9 +48,9 @@ header {
     transition: bottom 200ms;
     a {
         fa-icon {
-            margin-right: 1em;
             color: #fff;
             transition: transform 200ms;
+            
             &:hover {
                 transform: scale(1.1);
                 color: var(--yellow);
@@ -89,6 +89,7 @@ header {
     height: 100%;
     text-decoration: none;
     font-weight: var(--thickfont);
+    margin-right: 5rem;
 }
 .maintitle {
     a {
@@ -101,9 +102,11 @@ header {
     align-items: center;
     justify-content: center;
     height: 100%;
+    .searchsection-icons{
+        margin-right: 2.5rem;
+    }
     fa-icon {
-        font-size: 2em;
-        padding-right: 1em;
+        font-size: 2.2rem;
         transition: color 300ms;
 
         &:hover {

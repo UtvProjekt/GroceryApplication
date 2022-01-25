@@ -1,14 +1,19 @@
 @import "bourbon";
 main {
     max-height: 100vh;
-    overflow-y: hidden;
 }
 
 #examplepane {
+    position: absolute;
+    top: 0;
+    left: 0;
     visibility: visible;
 }
 
 #resultpane {
+    position: absolute;
+    top: 0;
+    left: 0;
     visibility: hidden;
     opacity: 0;
     transition: opacity 600ms 500ms;
@@ -525,6 +530,7 @@ main {
 }
 
 .results {
+    cursor: pointer;
     flex-direction: column;
     display: flex;
     align-items: center;
@@ -551,12 +557,8 @@ main {
     text-align: center;
     color: var(--primary-text-color);
     .increaseordecrease {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
         button {
             margin-inline: 0.5rem;
-            cursor: pointer;
         }
     }
     button {
@@ -566,6 +568,14 @@ main {
         margin-top: 1rem;
     }
 }
+.increaseordecrease {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    button {
+        cursor: pointer;
+    }
+}
 //POPUP WITH DELETE & EDIT
 .popup {
     position: absolute;
@@ -573,69 +583,136 @@ main {
     left: 0;
     height: 90vh;
     width: 100vw;
+    visibility: hidden;
+    opacity: 0;
+    transition: 200ms;
+    background-color: rgba(17, 17, 17, 0.5);
 }
-
-// VISIBILITY HIDDEN AND OPACITY 0
+//EDIT MODE
 .popup-main {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    position: relative;
     width: 44vw;
     height: 80vh;
     background-color: var(--darkmode);
     border-radius: 1rem;
     outline: 0.15rem solid var(--primary-color-brighter);
-    padding: 0 1.5rem;
+    padding-inline: 1.5rem;
+    padding-top: 1rem;
     color: var(--primary-text-color);
-    .displaycenter{
-        align-items: flex-start;
-        flex-direction: column;
-    }
-    .popupname {
-        font-size: 3rem;
-        padding: 2rem 1.5rem;
-    }
-    .image-container-popup{
-        display: flex;
-        align-items: flex-start;
-        justify-content: flex-end;
-        padding: .5rem 0;
-        img{
-            margin-right: 2rem;
-            margin-top: 2rem;
-            width: 50%;
-        }
-        fa-icon{
-            font-size: 2.5rem;
-            color: var(--primary-text-color);
+    fa-icon {
+        position: absolute;
+        right: 1rem;
+        top: .5rem;
+        font-size: 2.5rem;
+        color: var(--primary-text-color);
+        transition: 250ms;
+        &:hover{
+            color: red;
         }
     }
-    .select-cateory{
-        display: none;
-    }
-    .button-container{
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
+    .infoinpopup {
+        width: 100%;
+        height: 86%;
+        overflow-y: scroll;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 1rem;
         padding-bottom: 1rem;
+        .displaycenter {
+            align-items: flex-start;
+            flex-direction: column;
+            h3,
+            p {
+                font-size: 1.25rem;
+            }
+            p{  //STYLE ON EDITMODE
+                // border: 0.15rem solid var(--yellow);
+                // border-radius: .5rem;
+            }
+        }
+        .popupname {
+            font-size: 2.5vw;
+            //STYLE ON EDITMODE
+            // border-radius: .5rem;
+            // border: 0.15rem solid var(--yellow);
+        }
+        .image-container-popup {
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-end;
+            padding: 0.5rem 0;
+            img {
+                margin-right: 2rem;
+                margin-top: 2rem;
+                width: 70%;
+            }
+        }
+        .select-cateory {
+            display: none;
+        }
+    }
+    .button-container {
+        height: 14%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 0.15rem solid var(--primary-color-brighter);
+        & > button:only-child{
+            justify-content: center;
+        }
         button{
             font-size: 1.2rem;
             color: var(--primary-text-color);
-            outline: .15rem solid var(--primary-color-brighter);
+            outline: 0.15rem solid var(--primary-color-brighter);
+            transition: 300ms;
+            border-radius: 0.15rem;
             padding: 1rem 1.5rem;
-            transition: 250ms;
-            border-radius: .15rem;
-            &:first-child{
-                &:hover{
-                    background-color: var(--yellow);
-                    outline-color: var(--yellow);
-                    color: #111;
-                }
+        }
+        .plusorminus{
+            padding: 0;
+            width: 2vw;
+            height: 2vw;
+            font-size: 1.5rem;
+        }
+        .editgrocery {
+            &:hover {
+                background-color: var(--yellow);
+                outline-color: var(--yellow);
+                color: #111;
             }
-            &:last-child{
-                &:hover{
-                    background-color: red;
-                    outline-color: red;
-                }
+        }
+        .deletegrocery {
+            &:hover {
+                background-color: red;
+                outline-color: red;
+            }
+        }
+        .addgrocery {
+            background-color: var(--primary-color);
+            color: #fff;
+            font-weight: var(--thickfont);
+            &:hover {
+                background-color: rgb(93, 185, 185);
+                outline-color: rgb(93, 185, 185);
+                color: #111;
+            }
+        }
+        .increaseordecrease {
+            button {
+                background-color: var(--primary-color);
+                
+            }
+            button:hover {
+                background-color: var(--yellow);
+                outline-color: var(--yellow);
+                color: #111;
+            }
+            p {
+                font-size: 1.5rem;
+            }
+            p,
+            button:last-child {
+                margin-left: 1.5rem;
             }
         }
     }

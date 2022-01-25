@@ -7,32 +7,35 @@
         </div>
     </div>
     <div class="icons">
-        <!--NAV MENU-->
+        <!-- NAV MENU START -->
         <nav class="menucontainer" *ngIf="this.viewInit">
             <ul class="links" id="menu">
                 <a routerLink="/search" class="link">
                     <fa-icon [icon]="faSearch"></fa-icon>
                 </a>
-                <a *ngIf="!loggedInHeader" routerLink="/signin" routerLinkActive="activelink" class="link">
-                    <fa-icon [icon]="faSignIn"></fa-icon>
+                <a *ngIf="!loggedInHeader" routerLink="/signin" class="link">
+                    <fa-icon [icon]="faSignIn" class="pointer"></fa-icon>
                 </a>
-                <a *ngIf="loggedInHeader" routerLink="/myaccount" routerLinkActive="activelink" class="link">
-                    <fa-icon [icon]="faUserCircle"></fa-icon>
+                <a *ngIf="loggedInHeader" class="link">
+                    <fa-icon [icon]="faSignOut" class="pointer" (click)="signOut()"></fa-icon>
                 </a>
             </ul>
+            <!-- NAV MENU END -->
+            <!-- MENU OPENER START -->
             <div id="nav-icon" (click)="toggleMenu()" class="">
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
+            <!-- MENU OPENER END -->
         </nav>
 
-        <div class="addgrocery" *ngIf="!this.viewInit && this.loggedInAsAdmin">
+        <div class="addgrocery searchsection-icons" *ngIf="!this.viewInit && this.loggedInAsAdmin">
             <fa-icon [icon]="faPlus" class="pointer" (click)="alterForm()"></fa-icon>
         </div>
 
-        <div class="shoppingcart" *ngIf="!this.viewInit">
+        <div class="shoppingcart searchsection-icons" *ngIf="!this.viewInit">
             <fa-icon [icon]="faShoppingCart" class="pointer" (click)="this.searchcomp.toggleShoppingCart()"></fa-icon>
         </div>
 

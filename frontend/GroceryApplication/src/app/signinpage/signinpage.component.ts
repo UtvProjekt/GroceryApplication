@@ -4,7 +4,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { LoginService } from 'src/Login.service';
 import { Login } from 'src/Login';
 import { sha256 } from 'js-sha256';
-import { MyaccountComponent } from '../myaccount/myaccount.component';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
 

@@ -1,10 +1,7 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, EventEmitter, Injectable, Input, OnInit, Output} from '@angular/core';
-import { faBars, faBrain, faDna, faPlus, faSearch, faShoppingCart, faSignInAlt, faTimes, faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { BehaviorSubject } from 'rxjs';
-import { Grocery } from 'src/Grocery';
+import { Router } from '@angular/router';
+import { faBars, faBrain, faDna, faPlus, faSearch, faShoppingCart, faSignInAlt, faSignOutAlt, faTimes, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { AppComponent } from '../app.component';
-import { MyaccountComponent } from '../myaccount/myaccount.component';
 import { SearchsectionComponent } from '../searchsection/searchsection.component';
 
 @Component({
@@ -24,6 +21,7 @@ export class HeaderComponent implements OnInit {
   faDna = faDna
   faSignIn = faSignInAlt
   faPlus = faPlus
+  faSignOut = faSignOutAlt
 
   public loggedInHeader: boolean = false
   public loggedInAsAdmin: boolean = false
@@ -39,7 +37,7 @@ export class HeaderComponent implements OnInit {
   lastname: string = ""
   admin: string = ""
   
-  constructor(public myacc: MyaccountComponent, public globalvar: AppComponent, public searchcomp: SearchsectionComponent) { }
+  constructor(public globalvar: AppComponent, public searchcomp: SearchsectionComponent) { }
 
   ngOnInit(): void {
     this.email = this.globalvar.getCookieValue("email")
@@ -63,6 +61,12 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  checkIfUserIsAdmin(): void{
+    if(this.admin === "true"){
+      this.loggedInAsAdmin = true
+    }
+  }
+
   setHeaderChangeOnScroll(): void {
     window.addEventListener("scroll", () => {
       if (window.scrollY > 200) {
@@ -78,12 +82,6 @@ export class HeaderComponent implements OnInit {
   checkIfUserIsLoggedIn(): void {
     if (this.globalvar.getCookieValue("isUserLoggedIn") === "true") {
       this.loggedInHeader = true
-    }
-  }
-
-  checkIfUserIsAdmin(): void{
-    if(this.admin === "true"){
-      this.loggedInAsAdmin = true
     }
   }
 
@@ -107,5 +105,13 @@ export class HeaderComponent implements OnInit {
     document.getElementById("nav-icon")!.classList.remove("open")
   }
 
+  public signOut(): void{
+    document.cookie = "email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+    document.cookie = "firstname=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+    document.cookie = "lastname=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+    document.cookie = "isUserLoggedIn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+    document.cookie = "admin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+    window.location.reload()
+  }
 
 }

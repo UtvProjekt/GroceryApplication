@@ -2,7 +2,6 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import { faArrowAltCircleUp, faAt, faCog, faKey, faLongArrowAltDown, faPen, faPlus, faSearch, faSignInAlt, faUser, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { AppComponent } from '../app.component';
 import { HeaderComponent } from '../header/header.component';
-import { MyaccountComponent } from '../myaccount/myaccount.component';
 
 @Component({
   selector: 'app-settings',
@@ -30,7 +29,7 @@ export class SettingsComponent implements OnInit {
   showCart: boolean = false
   showMenu: boolean = false
 
-  constructor(public globalvar: AppComponent, public headervar: HeaderComponent, public myacc: MyaccountComponent) { }
+  constructor(public globalvar: AppComponent, public headervar: HeaderComponent) { }
 
   ngOnInit(): void {
     

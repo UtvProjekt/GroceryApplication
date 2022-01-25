@@ -29,7 +29,7 @@
                     <div id="examplepane" class="thisorthat">
                         <h2>Our sortiment</h2>
                         <section class="resultcards">
-                            <div class="results" *ngFor="let dataValue of allItems">
+                            <div class="results" *ngFor="let dataValue of allItems" (click)="openCard(dataValue.id)">
                                 <div class="imagecontainer items">
                                     <img src="../../assets/{{this.dataValue.imageUrl}}" alt="groceryimage">
                                 </div>
@@ -48,18 +48,16 @@
                                 </div>
 
                                 <div class="items">
-                                    <button class="btn pointer addtocart" (click)="this.addToShoppingCart(dataValue)"
+                                    <button class="btn pointer addtocart" (click)="this.addToShoppingCart(dataValue); $event.stopPropagation()" 
                                         *ngIf="dataValue.totalOfProduct < 1">Add to cart</button>
                                     <div class="increaseordecrease" *ngIf="dataValue.totalOfProduct > 0">
                                         <button class="plusorminus btn"
-                                            (click)="dataValue.totalOfProduct > 0 && dataValue.totalOfProduct = dataValue.totalOfProduct - 1; isZero(dataValue)">-</button>
+                                            (click)="dataValue.totalOfProduct > 0 && dataValue.totalOfProduct = dataValue.totalOfProduct - 1; isZero(dataValue); $event.stopPropagation()">-</button>
                                         <p>{{dataValue.totalOfProduct}}st</p>
                                         <button class="plusorminus btn"
-                                            (click)="dataValue.totalOfProduct = dataValue.totalOfProduct + 1; checkPrice(dataValue)">+</button>
+                                            (click)="dataValue.totalOfProduct = dataValue.totalOfProduct + 1; checkPrice(dataValue); $event.stopPropagation()">+</button>
                                     </div>
                                 </div>
-
-
                             </div>
                         </section>
                     </div>
@@ -68,8 +66,8 @@
                         <h2>{{ this.searchedItems.length }} Results.</h2><button routerLink="/search" class="pointer"
                             (click)="reloadWindow()">See all</button>
                         <section class="resultcards">
-
-                            <div class="results" *ngFor="let dataValue of searchedItems">
+                            <!-- RESULT CARD START -->
+                            <div class="results" *ngFor="let dataValue of searchedItems" (click)="openCard(dataValue.id)">
                                 <div class="imagecontainer items">
                                     <img src="../../assets/{{this.dataValue.imageUrl}}" alt="groceryimage">
                                 </div>
@@ -89,55 +87,85 @@
 
                                 <div class="items">
                                     <button class="btn pointer addtocart" id="{{dataValue.id}}"
-                                        (click)="this.addToShoppingCart(dataValue)"
+                                        (click)="this.addToShoppingCart(dataValue); $event.stopPropagation()"
                                         *ngIf="dataValue.totalOfProduct === 0">Add to
                                         cart</button>
                                     <div class="increaseordecrease" *ngIf="dataValue.totalOfProduct > 0">
                                         <button class="plusorminus btn"
-                                            (click)="dataValue.totalOfProduct > 0 && dataValue.totalOfProduct = dataValue.totalOfProduct - 1; isZero(dataValue)">-</button>
+                                            (click)="dataValue.totalOfProduct > 0 && dataValue.totalOfProduct = dataValue.totalOfProduct - 1; isZero(dataValue); $event.stopPropagation()">-</button>
                                         <p>{{dataValue.totalOfProduct}}st</p>
                                         <button class="plusorminus btn"
-                                            (click)="dataValue.totalOfProduct = dataValue.totalOfProduct + 1">+</button>
+                                            (click)="dataValue.totalOfProduct = dataValue.totalOfProduct + 1; checkPrice(dataValue); $event.stopPropagation()">+</button>
                                     </div>
                                 </div>
                             </div>
+                            <!-- RESULT CARD END -->
                         </section>
                     </div>
                 </section>
             </section>
             <!--POPUPS START -->
             <!-- contenteditable="true" på p tagsen -->
-            <section class="popup displaycenter" id="{{value.id}}" *ngFor="let value of allItems">
-                <article class="popup-main">
-
-                    <div class="popupname">{{value.name}}</div>
-                    <div class="image-container-popup">
-                        <img src="../../assets/{{value.imageUrl}}" alt="groceryimage">
-                        <fa-icon [icon]="faTimes" class="pointer icon-close-hover"></fa-icon>
+            <section class="popup displaycenter" id="allitem-popup-{{dataValue.id}}" *ngFor="let dataValue of allItems" (click)="closeCard(dataValue.id)">
+                <article class="popup-main" (click)="$event.stopPropagation()">
+                    <fa-icon [icon]="faTimes" class="pointer" (click)="closeCard(dataValue.id)"></fa-icon>
+                    <div class="infoinpopup">
+                        <div class="popupname">{{dataValue.name}}</div>
+                        <div class="image-container-popup">
+                            <img src="../../assets/{{dataValue.imageUrl}}" alt="groceryimage">
+                        </div>
+    
+                        <div class="grid-two-row displaycenter">
+                            <h3>Brand</h3>
+                            <p>{{dataValue.brand}}</p>
+                        </div>
+                        <div class="grid-two-row displaycenter">
+                            <h3>Description</h3>
+                            <p>{{dataValue.description}}</p>
+                        </div>
+                        <div class="grid-two-row displaycenter">
+                            <h3>Category</h3>
+                            <p>{{dataValue.category}}</p>
+                        </div>
+    
+                        <select class="grid-two-row select-cateory" id="select-category-{{dataValue.id}}">
+                            <option value="Meat & Fish">Meat & Fish</option>
+                            <option value="Fruits & Vegetables">Fruits & Vegetables</option>
+                            <option value="Bread & Bakery">Bread & Bakery</option>
+                            <option value="Dairy Products">Dairy Products</option>
+                            <option value="Snacks">Snacks</option>
+                        </select>
+    
+                        <div class="grid-two-row displaycenter">
+                            <h3>Price</h3>
+                            <p>{{dataValue.price}}kr</p>
+                        </div>
+                        <div class="grid-two-row displaycenter">
+                            <h3>Expires in</h3>
+                            <p>{{dataValue.expiredDate}} days from delivery</p>
+                        </div>
                     </div>
 
-                    <div class="grid-two-row displaycenter"><h3>Brand </h3><p>{{value.brand}}</p></div>
-                    <div class="grid-two-row displaycenter"><h3>Category </h3><p>{{value.category}}</p></div>
-
-                    <select class="grid-two-row select-cateory" id="select-category-{{value.id}}">
-                        <option value="Meat & Fish">Meat & Fish</option>
-                        <option value="Fruits & Vegetables">Fruits & Vegetables</option>
-                        <option value="Bread & Bakery">Bread & Bakery</option>
-                        <option value="Dairy Products">Dairy Products</option>
-                        <option value="Snacks">Snacks</option>
-                    </select>
-
-                    <div class="grid-two-row displaycenter"><h3>Price </h3><p>{{value.price}}kr</p></div>
-                    <div class="grid-two-row displaycenter"><h3>Expires in </h3><p>{{value.expiredDate}} days from delivery</p></div>
-
-                    <div class="button-container grid-two-row">
-                        <button type="submit" class="btn pointer">EDIT GROCERY</button>
-                        <button type="submit" class="btn pointer">DELETE GROCERY</button>
+                    <div class="button-container grid-two-row" *ngIf="!editMode">
+                        <button type="submit" class="btn pointer editgrocery" *ngIf="loggedInAsAdmin">EDIT GROCERY</button>
+                        <button type="submit" class="btn pointer addgrocery" (click)="addToShoppingCart(dataValue)" *ngIf="dataValue.totalOfProduct < 1">ADD TO CART</button>
+                        <div class="increaseordecrease" *ngIf="dataValue.totalOfProduct > 0" id="center">
+                            <button class="plusorminus btn"
+                                (click)="dataValue.totalOfProduct > 0 && dataValue.totalOfProduct = dataValue.totalOfProduct - 1; isZero(dataValue)">-</button>
+                            <p>{{dataValue.totalOfProduct}}st</p>
+                            <button class="plusorminus btn"
+                                (click)="dataValue.totalOfProduct = dataValue.totalOfProduct + 1; checkPrice(dataValue);">+</button>
+                        </div>
+                        <button type="submit" class="btn pointer deletegrocery" *ngIf="loggedInAsAdmin">DELETE GROCERY</button>
+                    </div>
+                    <div class="button-container grid-two-row" *ngIf="editMode && loggedInAsAdmin">
+                        <button type="submit" class="btn pointer">CANCEL GROCERY</button>
+                        <button type="submit" class="btn pointer">SAVE GROCERY</button>
                     </div>
 
                 </article>
             </section>
-            <section class="popup displaycenter" id="searchedItems-popup" *ngFor="let value of searchedItems">
+            <section class="popup displaycenter" id="search-popup-{{dataValue.id}}" *ngFor="let dataValue of searchedItems">
 
             </section>
             <!--POPUPS END -->
@@ -223,35 +251,34 @@
     </div>
 
     <section>
-        <div class="shoppingcart-items" *ngFor="let value of this.listOfShoppingCart">
-
+        <div class="shoppingcart-items" *ngFor="let dataValue of this.listOfShoppingCart">
             <div class="sc-image">
-                <img src="../../assets/{{value.imageUrl}}">
+                <img src="../../assets/{{dataValue.imageUrl}}">
             </div>
 
             <div class="sc-grid-wrapper">
                 <div class="sc-name laptop">
-                    {{value.name}}
-                    <!--<span *ngIf="value.name.length > 10">..</span>-->
+                    {{dataValue.name}}
+                    <!--<span *ngIf="dataValue.name.length > 10">..</span>-->
                 </div>
                 <div class="sc-name desktop">
-                    {{value.name}}
-                    <!--<span *ngIf="value.name.length > 10">..</span>-->
+                    {{dataValue.name}}
+                    <!--<span *ngIf="dataValue.name.length > 10">..</span>-->
                 </div>
                 <div class="sc-price">
-                    {{(value.price*value.totalOfProduct).toFixed(2)}}kr
+                    {{(dataValue.price*dataValue.totalOfProduct).toFixed(2)}}kr
                 </div>
                 <div class="sc-plusorminus">
                     <button class="plusorminus btn"
-                        (click)="value.totalOfProduct > 0 && value.totalOfProduct = value.totalOfProduct - 1; isZero(value)">-</button>
-                    <p>{{value.totalOfProduct}}st</p>
+                        (click)="dataValue.totalOfProduct > 0 && dataValue.totalOfProduct = dataValue.totalOfProduct - 1; isZero(dataValue)">-</button>
+                    <p>{{dataValue.totalOfProduct}}st</p>
                     <button class="plusorminus btn"
-                        (click)="value.totalOfProduct = value.totalOfProduct + 1; checkPrice(value)">+</button>
+                        (click)="dataValue.totalOfProduct = dataValue.totalOfProduct + 1; checkPrice(dataValue)">+</button>
                 </div>
             </div>
 
             <span class="sc-trash-item pointer">
-                <fa-icon [icon]="faTrash" (click)="removeFromShoppingCart(value)"></fa-icon>
+                <fa-icon [icon]="faTrash" (click)="removeFromShoppingCart(dataValue)"></fa-icon>
             </span>
 
         </div>

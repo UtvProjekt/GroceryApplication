@@ -1,6 +1,4 @@
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { MyaccountComponent } from './myaccount/myaccount.component';
 
 @Component({
   selector: 'app-root',
