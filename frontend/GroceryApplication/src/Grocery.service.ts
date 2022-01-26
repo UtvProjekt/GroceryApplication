@@ -20,6 +20,10 @@ export class GroceryService {
         return this.httpClient.post<Grocery>('http://localhost:25000/grocery/page/grocery/addgrocery', grocery)
     }
 
+    public updateGrocery(grocery: Grocery): Observable<Grocery>{
+        return this.httpClient.put<Grocery>('http://localhost:25000/grocery/page/grocery/updategrocery', grocery)
+    }
+
     public deleteGrocery(grocery: Number): Observable<Number>{
         return this.httpClient.delete<Number>("http://localhost:25000/grocery/page/grocery/deletegrocery/" + grocery)
     }

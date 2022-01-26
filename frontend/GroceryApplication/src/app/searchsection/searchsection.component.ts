@@ -59,6 +59,14 @@ export class SearchsectionComponent implements OnInit {
   //STRINGS
   fileString: string = ""
   admin: string = ""
+  name: string = ""
+  brand: string = ""
+  description: string = ""
+  price: string = ""
+  expiredDate: string = ""
+  category: string = ""
+
+
   //FA ICONS
   faTimes = faTimes
   faTrash = faTrash
@@ -330,8 +338,19 @@ export class SearchsectionComponent implements OnInit {
     document.getElementById("allitem-popup-" + value)!.style.opacity = "0"
   }
 
-  saveChanges(): void{
+  saveChanges(value: Grocery): void{
     
+    this.groceryService.updateGrocery(value).subscribe(
+      ((response : Grocery) =>  {
+        this.closeEditMode(value.id)
+      })
+    )
+
+      //Måste skicka in nya värderna om man trckte save
+      //Just nu skickar vi in dom gamla värderna
+      //Samt att det är en bugg när man trycker save, då öppnar den cancel typ
+
+
   }
 
   deleteGrocery(value: Grocery): void{
@@ -349,16 +368,57 @@ export class SearchsectionComponent implements OnInit {
     document.getElementById("action-wrapper" + value)!.style.opacity = "0"
     document.getElementById("save" + value)!.style.display = "none"
     document.getElementById("delete" + value)!.style.display = "none"
+    document.getElementById("cancel" + value)!.style.display = "none"
   }
   
-  openYesOrNo(value: Number, saveordelete: boolean){
+  openYesOrNo(value: Number, saveordelete: Number){
     document.getElementById("action-wrapper" + value)!.style.visibility = "visible"
     document.getElementById("action-wrapper" + value)!.style.opacity = "1"
-    if(saveordelete){
+    if(saveordelete === 0){
       document.getElementById("save" + value)!.style.display = "flex"
-    } else if (!saveordelete){
+    } else if (saveordelete === 1){
       document.getElementById("delete" + value)!.style.display = "flex"
+    } else if(saveordelete === 2){
+      document.getElementById("cancel" + value)!.style.display = "flex"
     }
   }
+
+  openEditMode(value: Number){
+    this.editMode = true
+    this.name = document.getElementById("allitem-name-" + value)!.innerText 
+    this.brand = document.getElementById("allitem-brand-" + value)!.innerText
+    this.description = document.getElementById("allitem-description-" + value)!.innerText
+    this.price = document.getElementById("allitem-price-" + value)!.innerText
+    this.expiredDate = document.getElementById("allitem-expiredDate-" + value)!.innerText
+    this.category = document.getElementById("allitem-category-" + value)!.innerText
+
+    document.getElementById("allitem-name-" + value)!.setAttribute("contenteditable", "true")
+    document.getElementById("allitem-brand-" + value)!.setAttribute("contenteditable", "true")
+    document.getElementById("allitem-description-" + value)!.setAttribute("contenteditable", "true")
+    document.getElementById("allitem-price-" + value)!.setAttribute("contenteditable", "true")
+    document.getElementById("allitem-expiredDate-" + value)!.setAttribute("contenteditable", "true")
+    document.getElementById("allitem-category-" + value)!.style.display="none"
+  }
+
+  closeEditMode(value: Number){
+    this.editMode = false
+    document.getElementById("allitem-name-" + value)!.setAttribute("contenteditable", "false")
+    document.getElementById("allitem-brand-" + value)!.setAttribute("contenteditable", "false")
+    document.getElementById("allitem-description-" + value)!.setAttribute("contenteditable", "false")
+    document.getElementById("allitem-price-" + value)!.setAttribute("contenteditable", "false")
+    document.getElementById("allitem-expiredDate-" + value)!.setAttribute("contenteditable", "false")
+    document.getElementById("allitem-category-" + value)!.style.display="block"
+
+  }
+
+  resetEditedText(value: Number){
+    document.getElementById("allitem-name-" + value)!.innerText = this.name;
+    document.getElementById("allitem-brand-" + value)!.innerText = this.brand;
+    document.getElementById("allitem-description-" + value)!.innerText = this.description;
+    document.getElementById("allitem-price-" + value)!.innerText = this.price;
+    document.getElementById("allitem-expiredDate-" + value)!.innerText = this.expiredDate;
+  }
+
+
 
 }

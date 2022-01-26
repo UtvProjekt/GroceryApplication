@@ -40,7 +40,7 @@ export class ApplicationsectionComponent implements OnInit {
   ngOnInit(): void {
     this.isUserSignedIn()
     this.bindBottomArrow()
-    this.getLastNineItems()
+    //this.getLastNineItems()
 
     if(this.globalvar.getCookieValue("appearance") == "light"){
       this.settings.darkLightMode()
