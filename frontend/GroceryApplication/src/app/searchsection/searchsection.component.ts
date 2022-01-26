@@ -1,10 +1,9 @@
-import { Component, Directive, HostListener, Injectable, OnInit, } from '@angular/core';
+import { Component, Injectable, OnInit, } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { faTimes, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Grocery } from 'src/Grocery';
 import { GroceryService } from 'src/Grocery.service';
 import { AppComponent } from '../app.component';
-import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-searchsection',
@@ -139,6 +138,7 @@ export class SearchsectionComponent implements OnInit {
     for (let iterator of newItem) {
       this.searchedItems.push(iterator)
     }
+    console.log(this.searchedItems)
   }
 
   getAllItems() {
@@ -339,18 +339,23 @@ export class SearchsectionComponent implements OnInit {
   }
 
   saveChanges(value: Grocery): void{
-    
+    this.closeEditMode(value.id)
+    value.name = document.getElementById("allitem-name-" + value.id)!.innerText
+    value.brand = document.getElementById("allitem-brand-" + value.id)!.innerText
+    value.description = document.getElementById("allitem-description-" + value.id)!.innerText
+    value.category = (<HTMLSelectElement>document.getElementById("select-category-" + value.id))!.value
+    value.price = parseInt(document.getElementById("allitem-price-" + value.id)!.innerText)
+    value.expiredDate = parseInt(document.getElementById("allitem-expiredDate-" + value.id)!.innerText)
+
     this.groceryService.updateGrocery(value).subscribe(
       ((response : Grocery) =>  {
         this.closeEditMode(value.id)
+        this.afterAction(value.id)
+        setTimeout(() => {
+          window.location.reload()
+        }, 1000);
       })
     )
-
-      //Måste skicka in nya värderna om man trckte save
-      //Just nu skickar vi in dom gamla värderna
-      //Samt att det är en bugg när man trycker save, då öppnar den cancel typ
-
-
   }
 
   deleteGrocery(value: Grocery): void{
@@ -397,9 +402,16 @@ export class SearchsectionComponent implements OnInit {
     document.getElementById("allitem-description-" + value)!.setAttribute("contenteditable", "true")
     document.getElementById("allitem-price-" + value)!.setAttribute("contenteditable", "true")
     document.getElementById("allitem-expiredDate-" + value)!.setAttribute("contenteditable", "true")
-    document.getElementById("allitem-category-" + value)!.style.display="none"
+    document.getElementById("allitem-category-" + value)!.style.display = "none"
+    document.getElementById("select-category-" + value)!.style.display = "block"
+    /*
+    document.getElementById("allitem-description-" + value)!.style.border = ".15rem solid var(--primary-color-brighter)"
+    document.getElementById("allitem-brand-" + value)!.style.border = ".15rem solid var(--primary-color-brighter)"
+    document.getElementById("allitem-price-" + value)!.style.border = ".15rem solid var(--primary-color-brighter)"
+    document.getElementById("allitem-expiredDate-" + value)!.style.border = ".15rem solid var(--primary-color-brighter)"
+    document.getElementById("allitem-name-" + value)!.style.border = ".15rem solid var(--primary-color-brighter)"*/
   }
-
+  
   closeEditMode(value: Number){
     this.editMode = false
     document.getElementById("allitem-name-" + value)!.setAttribute("contenteditable", "false")
@@ -408,7 +420,13 @@ export class SearchsectionComponent implements OnInit {
     document.getElementById("allitem-price-" + value)!.setAttribute("contenteditable", "false")
     document.getElementById("allitem-expiredDate-" + value)!.setAttribute("contenteditable", "false")
     document.getElementById("allitem-category-" + value)!.style.display="block"
-
+    document.getElementById("select-category-" + value)!.style.display = "none"
+    /*
+    document.getElementById("allitem-description-" + value)!.style.border = "none"
+    document.getElementById("allitem-brand-" + value)!.style.border = "none"
+    document.getElementById("allitem-price-" + value)!.style.border = "none"
+    document.getElementById("allitem-expiredDate-" + value)!.style.border = "none"
+    document.getElementById("allitem-name-" + value)!.style.border = "none"*/
   }
 
   resetEditedText(value: Number){

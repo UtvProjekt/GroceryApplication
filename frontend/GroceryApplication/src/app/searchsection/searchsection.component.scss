@@ -646,14 +646,30 @@ main {
                     justify-content: space-between;
                     align-items: center;
                     padding: 1.5rem;
+                    display: none;
+                    h2{
+                        text-align: center;
+                    }
                     &:first-child, &:last-child{
                         display: none;
                     }
                     .buttoncontainer-action {
                         display: flex;
                         justify-content: space-evenly;
-
                         width: 80%;
+                        button{
+                            padding: .5rem 1rem;
+                            background-color: var(--primary-color-brighter);
+                            color: #fff;
+                            border: none;
+                            border-radius: .15rem;
+                            font-size: 1.1rem;
+                            transition: 100ms;
+                            &:hover{
+                                background-color: var(--yellow);
+                                color: #111;
+                            }
+                        }
                     }
                 }
             }
@@ -666,17 +682,9 @@ main {
             p {
                 font-size: 1.25rem;
             }
-            p {
-                //STYLE ON EDITMODE
-                // border: 0.15rem solid var(--yellow);
-                // border-radius: .5rem;
-            }
         }
         .popupname {
             font-size: 2.5vw;
-            //STYLE ON EDITMODE
-            // border-radius: .5rem;
-            // border: 0.15rem solid var(--yellow);
         }
         .image-container-popup {
             display: flex;
@@ -691,6 +699,14 @@ main {
         }
         .select-cateory {
             display: none;
+            width: 100%;
+            background-color: var(--darkmode);
+            outline: none;
+            border-radius: .15rem;
+            padding: 0;
+            border: none;
+            font-size: 1.15rem;
+            color: var(--primary-text-color);
         }
     }
     .button-container {
@@ -699,6 +715,13 @@ main {
         align-items: center;
         justify-content: space-between;
         border-top: 0.15rem solid var(--primary-color-brighter);
+        button{
+            &:hover{
+                background-color: var(--yellow);
+                color: #111;
+                outline-color: var(--yellow);
+            }
+        }
         & > button:only-child {
             justify-content: center;
         }
@@ -756,6 +779,36 @@ main {
                 margin-left: 1.5rem;
             }
         }
+    }
+}
+
+.editmode, .editmodep{
+    border-radius: .15rem;
+    &[contenteditable]{
+        outline: none;
+        
+    }
+    span[contenteditable]{
+        outline: none;
+    }
+}
+
+.editmode{
+    margin-top: .2rem;
+    margin-left: .2rem;
+    &:focus{
+        border-color: var(--yellow);
+    }
+}
+
+.editmodep{
+    width: 99%;
+    margin-inline: auto;
+    span{
+        font-size: 1.1rem;
+    }
+    span[contenteditable]{
+        border-radius: .15rem;
     }
 }
 

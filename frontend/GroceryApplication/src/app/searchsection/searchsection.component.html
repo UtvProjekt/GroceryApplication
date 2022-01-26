@@ -106,69 +106,65 @@
                     </div>
                 </section>
             </section>
-            <!--POPUPS START -->
-            <!-- contenteditable="true" på p tagsen -->
+            <!-- POPUPS START -->
             <section class="popup displaycenter" id="allitem-popup-{{dataValue.id}}" *ngFor="let dataValue of allItems"
                 (click)="closeCard(dataValue.id); afterAction(dataValue.id); closeEditMode(dataValue.id); resetEditedText(dataValue.id)">
                 <article class="popup-main" (click)="$event.stopPropagation()">
                     <fa-icon [icon]="faTimes" class="pointer" (click)="closeCard(dataValue.id); closeEditMode(dataValue.id); resetEditedText(dataValue.id)"></fa-icon>
                     <div class="infoinpopup" id="infoinpopup{{dataValue.id}}">
                         
-                        <div class="popupname" id="allitem-name-{{dataValue.id}}">{{dataValue.name}}</div>
+                        <div class="popupname editmode" id="allitem-name-{{dataValue.id}}">{{dataValue.name}}</div>
                         <div class="image-container-popup">
                             <img src="../../assets/{{dataValue.imageUrl}}" alt="groceryimage">
                         </div>
-
-                        <div class="grid-two-row displaycenter">
+                        <div class="grid-two-row displaycenter editmodep">
                             <h3>Brand</h3>
-                            <p id="allitem-brand-{{dataValue.id}}">{{dataValue.brand}}</p>
+                            <span id="allitem-brand-{{dataValue.id}}">{{dataValue.brand}}</span>
                         </div>
-                        <div class="grid-two-row displaycenter">
+                        <div class="grid-two-row displaycenter editmodep">
                             <h3>Description</h3>
-                            <p id="allitem-description-{{dataValue.id}}">{{dataValue.description}}</p>
+                            <span id="allitem-description-{{dataValue.id}}">{{dataValue.description}}</span>
                         </div>
-                        <div class="grid-two-row displaycenter">
+                        <div class="grid-two-row displaycenter editmodep">
                             <h3>Category</h3>
-                            <p id="allitem-category-{{dataValue.id}}">{{dataValue.category}}</p>
+                            <span id="allitem-category-{{dataValue.id}}">{{dataValue.category}}</span>
+                            <select class="grid-two-row select-cateory" id="select-category-{{dataValue.id}}">
+                                <option value="Meat & Fish">Meat & Fish</option>
+                                <option value="Fruits & Vegetables">Fruits & Vegetables</option>
+                                <option value="Bread & Bakery">Bread & Bakery</option>
+                                <option value="Dairy Products">Dairy Products</option>
+                                <option value="Snacks">Snacks</option>
+                            </select>
                         </div>
-
-                        <select class="grid-two-row select-cateory" id="select-category-{{dataValue.id}}">
-                            <option value="Meat & Fish">Meat & Fish</option>
-                            <option value="Fruits & Vegetables">Fruits & Vegetables</option>
-                            <option value="Bread & Bakery">Bread & Bakery</option>
-                            <option value="Dairy Products">Dairy Products</option>
-                            <option value="Snacks">Snacks</option>
-                        </select>
-
-                        <div class="grid-two-row displaycenter">
+                        <div class="grid-two-row displaycenter editmodep">
                             <h3>Price</h3>
-                            <p id="allitem-price-{{dataValue.id}}">{{dataValue.price}}kr</p>
+                            <p><span id="allitem-price-{{dataValue.id}}">{{dataValue.price}}</span><span>kr</span></p>
                         </div>
-                        <div class="grid-two-row displaycenter">
+                        <div class="grid-two-row displaycenter editmodep">
                             <h3>Expires in</h3>
-                            <p id="allitem-expiredDate-{{dataValue.id}}">{{dataValue.expiredDate}} days from delivery</p>
+                            <p><span id="allitem-expiredDate-{{dataValue.id}}">{{dataValue.expiredDate}}</span><span> days from delivery</span></p>
                         </div>
                         <div class="action-wrapper" id="action-wrapper{{dataValue.id}}">
                             <div class="confirm-action">
                                 <div class="action-buttons" id="save{{dataValue.id}}">
-                                    <h2 id="action-title">Are you sure you want to save the changes?</h2>
+                                    <h2 id="action-title">Are you sure you want to save your changes?</h2>
                                     <div class="buttoncontainer-action">
-                                        <button class="action" (click)="afterAction(dataValue.id)">No</button>
-                                        <button class="action">Yes</button>
+                                        <button class="action btn pointer" (click)="afterAction(dataValue.id)">No</button>
+                                        <button class="action btn pointer" (click)="saveChanges(dataValue)">Yes</button>
                                     </div>
                                 </div>
                                 <div class="action-buttons" id="cancel{{dataValue.id}}">
-                                    <h2 id="action-title">Are you sure you want to cancel the changes?</h2>
+                                    <h2 id="action-title">Are you sure you want to cancel your changes?</h2>
                                     <div class="buttoncontainer-action">
-                                        <button class="action" (click)="afterAction(dataValue.id)">No</button>
-                                        <button class="action" (click)="closeEditMode(dataValue.id); afterAction(dataValue.id); resetEditedText(dataValue.id)">Yes</button>
+                                        <button class="action btn pointer" (click)="afterAction(dataValue.id)">No</button>
+                                        <button class="action btn pointer" (click)="closeEditMode(dataValue.id); afterAction(dataValue.id); resetEditedText(dataValue.id)">Yes</button>
                                     </div>
                                 </div>
                                 <div class="action-buttons" id="delete{{dataValue.id}}">
-                                    <h2 id="action-title">Are you sure you want to delete a grocery?</h2>
+                                    <h2 id="action-title">Are you sure you want to delete {{dataValue.name}}</h2>
                                     <div class="buttoncontainer-action">
-                                        <button class="action" (click)="afterAction(dataValue.id)">No</button>
-                                        <button class="action" (click)="deleteGrocery(dataValue)">Yes</button>
+                                        <button class="action btn pointer" (click)="afterAction(dataValue.id)">No</button>
+                                        <button class="action btn pointer" (click)="deleteGrocery(dataValue)">Yes</button>
                                     </div>
                                 </div>
                             </div>
@@ -197,9 +193,94 @@
 
                 </article>
             </section>
-            <section class="popup displaycenter" id="search-popup-{{dataValue.id}}"
-                *ngFor="let dataValue of searchedItems">
+            <!-- POPUPS FOR SEARCHRESULTS -->
+            <section class="popup displaycenter" id="search-popup-{{dataValue.id}}" *ngFor="let dataValue of searchedItems">
+                <article class="popup-main" (click)="$event.stopPropagation()">
+                    <fa-icon [icon]="faTimes" class="pointer" (click)="closeCard(dataValue.id); closeEditMode(dataValue.id); resetEditedText(dataValue.id)"></fa-icon>
+                    <div class="infoinpopup" id="infoinpopup{{dataValue.id}}">
+                        
+                        <div class="popupname editmode" id="allitem-name-{{dataValue.id}}">{{dataValue.name}}</div>
+                        <div class="image-container-popup">
+                            <img src="../../assets/{{dataValue.imageUrl}}" alt="groceryimage">
+                        </div>
 
+                        <div class="grid-two-row displaycenter editmodep">
+                            <h3>Brand</h3>
+                            <span id="allitem-brand-{{dataValue.id}}">{{dataValue.brand}}</span>
+                        </div>
+                        <div class="grid-two-row displaycenter editmodep">
+                            <h3>Description</h3>
+                            <span id="allitem-description-{{dataValue.id}}">{{dataValue.description}}</span>
+                        </div>
+                        <div class="grid-two-row displaycenter editmodep">
+                            <h3>Category</h3>
+                            <span id="allitem-category-{{dataValue.id}}">{{dataValue.category}}</span>
+                            <select class="grid-two-row select-cateory" id="select-category-{{dataValue.id}}">
+                                <option value="Meat & Fish">Meat & Fish</option>
+                                <option value="Fruits & Vegetables">Fruits & Vegetables</option>
+                                <option value="Bread & Bakery">Bread & Bakery</option>
+                                <option value="Dairy Products">Dairy Products</option>
+                                <option value="Snacks">Snacks</option>
+                            </select>
+                        </div>
+
+
+                        <div class="grid-two-row displaycenter editmodep">
+                            <h3>Price</h3>
+                            <p><span id="allitem-price-{{dataValue.id}}">{{dataValue.price}}</span><span>kr</span></p>
+                        </div>
+                        <div class="grid-two-row displaycenter editmodep">
+                            <h3>Expires in</h3>
+                            <p><span id="allitem-expiredDate-{{dataValue.id}}">{{dataValue.expiredDate}}</span><span> days from delivery</span></p>
+                        </div>
+                        <div class="action-wrapper" id="action-wrapper{{dataValue.id}}">
+                            <div class="confirm-action">
+                                <div class="action-buttons" id="save{{dataValue.id}}">
+                                    <h2 id="action-title">Are you sure you want to save the changes?</h2>
+                                    <div class="buttoncontainer-action">
+                                        <button class="action btn pointer" (click)="afterAction(dataValue.id)">No</button>
+                                        <button class="action btn pointer" (click)="saveChanges(dataValue)">Yes</button>
+                                    </div>
+                                </div>
+                                <div class="action-buttons" id="cancel{{dataValue.id}}">
+                                    <h2 id="action-title">Are you sure you want to cancel the changes?</h2>
+                                    <div class="buttoncontainer-action">
+                                        <button class="action btn pointer" (click)="afterAction(dataValue.id)">No</button>
+                                        <button class="action btn pointer" (click)="closeEditMode(dataValue.id); afterAction(dataValue.id); resetEditedText(dataValue.id)">Yes</button>
+                                    </div>
+                                </div>
+                                <div class="action-buttons" id="delete{{dataValue.id}}">
+                                    <h2 id="action-title">Are you sure you want to delete a grocery?</h2>
+                                    <div class="buttoncontainer-action">
+                                        <button class="action btn pointer" (click)="afterAction(dataValue.id)">No</button>
+                                        <button class="action btn pointer" (click)="deleteGrocery(dataValue)">Yes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="button-container grid-two-row" *ngIf="!editMode">
+                        <button type="submit" class="btn pointer editgrocery" (click)="openEditMode(dataValue.id)" *ngIf="loggedInAsAdmin">EDIT
+                            </button>
+                        <button type="submit" class="btn pointer addgrocery" (click)="addToShoppingCart(dataValue)"
+                            *ngIf="dataValue.totalOfProduct < 1">ADD TO CART</button>
+                        <div class="increaseordecrease" *ngIf="dataValue.totalOfProduct > 0" id="center">
+                            <button class="plusorminus btn"
+                                (click)="dataValue.totalOfProduct > 0 && dataValue.totalOfProduct = dataValue.totalOfProduct - 1; isZero(dataValue)">-</button>
+                            <p>{{dataValue.totalOfProduct}}st</p>
+                            <button class="plusorminus btn"
+                                (click)="dataValue.totalOfProduct = dataValue.totalOfProduct + 1; checkPrice(dataValue);">+</button>
+                        </div>
+                        <button type="submit" class="btn pointer deletegrocery" *ngIf="loggedInAsAdmin"
+                            (click)="openYesOrNo(dataValue.id, 1)">DELETE</button>
+                    </div>
+                    <div class="button-container grid-two-row" *ngIf="editMode && loggedInAsAdmin">
+                        <button type="submit" class="btn pointer" (click)="openYesOrNo(dataValue.id, 2)">CANCEL</button>
+                        <button type="submit" class="btn pointer" (click)="openYesOrNo(dataValue.id, 0)">SAVE</button>
+                    </div>
+
+                </article>
             </section>
             <!--POPUPS END -->
         </div>
