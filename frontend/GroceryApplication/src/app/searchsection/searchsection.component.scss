@@ -602,11 +602,11 @@ main {
     fa-icon {
         position: absolute;
         right: 1rem;
-        top: .5rem;
+        top: 0.5rem;
         font-size: 2.5rem;
         color: var(--primary-text-color);
         transition: 250ms;
-        &:hover{
+        &:hover {
             color: red;
         }
     }
@@ -618,6 +618,47 @@ main {
         grid-template-columns: repeat(2, 1fr);
         row-gap: 1rem;
         padding-bottom: 1rem;
+        .action-wrapper {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            visibility: hidden;
+            opacity: 0;
+            backdrop-filter: blur(10px);
+            border-radius: 0.15rem;
+            transition: 250ms;
+            .confirm-action {
+                width: 50%;
+                height: 30%;
+                background-color: var(--darkmode-card);
+                outline: 0.15rem solid var(--primary-color-brighter);
+                border-radius: 0.15rem;
+                
+                .action-buttons {
+                    height: 100%;
+                    width: 100%;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 1.5rem;
+                    &:first-child, &:last-child{
+                        display: none;
+                    }
+                    .buttoncontainer-action {
+                        display: flex;
+                        justify-content: space-evenly;
+
+                        width: 80%;
+                    }
+                }
+            }
+        }
+
         .displaycenter {
             align-items: flex-start;
             flex-direction: column;
@@ -625,7 +666,8 @@ main {
             p {
                 font-size: 1.25rem;
             }
-            p{  //STYLE ON EDITMODE
+            p {
+                //STYLE ON EDITMODE
                 // border: 0.15rem solid var(--yellow);
                 // border-radius: .5rem;
             }
@@ -657,10 +699,10 @@ main {
         align-items: center;
         justify-content: space-between;
         border-top: 0.15rem solid var(--primary-color-brighter);
-        & > button:only-child{
+        & > button:only-child {
             justify-content: center;
         }
-        button{
+        button {
             font-size: 1.2rem;
             color: var(--primary-text-color);
             outline: 0.15rem solid var(--primary-color-brighter);
@@ -668,7 +710,7 @@ main {
             border-radius: 0.15rem;
             padding: 1rem 1.5rem;
         }
-        .plusorminus{
+        .plusorminus {
             padding: 0;
             width: 2vw;
             height: 2vw;
@@ -700,7 +742,6 @@ main {
         .increaseordecrease {
             button {
                 background-color: var(--primary-color);
-                
             }
             button:hover {
                 background-color: var(--yellow);

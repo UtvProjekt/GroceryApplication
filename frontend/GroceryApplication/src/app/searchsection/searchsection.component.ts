@@ -49,6 +49,8 @@ export class SearchsectionComponent implements OnInit {
   shoppingcartOpen: boolean = false
   editMode: boolean = false
   public loggedInAsAdmin: boolean = false
+  save: boolean = false
+  delete: boolean = false
   //NUMBERS
   public sortedAlphabetically: number = 0
   public sortedNumerically: number = 0
@@ -328,5 +330,35 @@ export class SearchsectionComponent implements OnInit {
     document.getElementById("allitem-popup-" + value)!.style.opacity = "0"
   }
 
+  saveChanges(): void{
+    
+  }
+
+  deleteGrocery(value: Grocery): void{
+    this.groceryService.deleteGrocery(value.id).subscribe(
+      (response: any) => {
+        this.afterAction(value.id)
+        setTimeout(() => {
+          window.location.reload()
+        }, 1000);
+      })
+  }
+
+  afterAction(value: Number){
+    document.getElementById("action-wrapper" + value)!.style.visibility = "hidden"
+    document.getElementById("action-wrapper" + value)!.style.opacity = "0"
+    document.getElementById("save" + value)!.style.display = "none"
+    document.getElementById("delete" + value)!.style.display = "none"
+  }
+  
+  openYesOrNo(value: Number, saveordelete: boolean){
+    document.getElementById("action-wrapper" + value)!.style.visibility = "visible"
+    document.getElementById("action-wrapper" + value)!.style.opacity = "1"
+    if(saveordelete){
+      document.getElementById("save" + value)!.style.display = "flex"
+    } else if (!saveordelete){
+      document.getElementById("delete" + value)!.style.display = "flex"
+    }
+  }
 
 }
