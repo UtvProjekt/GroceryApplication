@@ -1,5 +1,5 @@
 <section class="card">
-    <div class="top-of-card"><h1>{{this.cardValue.name}}</h1><img src="../../assets/{{this.cardValue.imageUrl}}"></div>
+    <div class="top-of-card"><h1>{{this.cardValue.name.substring(0, 45)}}<span *ngIf="this.cardValue.name.length > 45">...</span></h1><img src="../../assets/{{this.cardValue.imageUrl}}"></div>
     <main class="rest-of-card">
         <span class="description">{{this.cardValue.description}}</span>
         <div class="bottomlayer">

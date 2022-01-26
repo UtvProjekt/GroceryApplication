@@ -385,7 +385,7 @@ main {
             transition: background-color 250ms;
             border-radius: 0.15rem;
             &:hover {
-                background-color: rgb(44, 44, 44);
+                background-color: var(--darkmode-darker);
             }
         }
         p {
@@ -534,10 +534,11 @@ main {
     flex-direction: column;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     background-color: var(--darkmode);
     border-radius: 0.25rem;
     padding: 0.8rem;
-    height: fit-content;
+    height: 41vh;
     will-change: transform;
     transition: 300ms;
     outline: 0.1rem solid var(--yellow);
@@ -563,6 +564,7 @@ main {
     }
     button {
         margin: 0 auto;
+        color: #fff;
     }
     &:not(:first-child) {
         margin-top: 1rem;
@@ -734,6 +736,7 @@ main {
             padding: 1rem 1.5rem;
         }
         .plusorminus {
+            color: #fff;
             padding: 0;
             width: 2vw;
             height: 2vw;
@@ -841,5 +844,8 @@ main {
                 margin-inline: 1rem;
             }
         }
+    }
+    .results{
+        height: 43vh;
     }
 }
