@@ -8,7 +8,12 @@ import javax.ws.rs.core.Response;
 import se.yrgo.grocery.domain.Grocery;
 import se.yrgo.grocery.exceptions.GroceryCouldNotBeAddedException;
 import se.yrgo.grocery.exceptions.GroceryNotFoundException;
-
+/**
+ * 
+ * Class for updating the solr database
+ * Solr is a nosql document database
+ *
+ */
 public class SolrService {
 	private String baseUrl = "http://localhost:8983/";
 	private String updateUrl = baseUrl + "solr/groceryApp/update";
@@ -16,6 +21,10 @@ public class SolrService {
 	private String deleteUrl = baseUrl + "solr/groceryApp/update?commit=true";
 	private String baseGetUrl = baseUrl + "solr/groceryApp/select?indent=true&q.op=OR&sort=score%20desc";
 
+	/**
+	 * Adds new grocery to the database
+	 * @param groceryToAdd Grocery to be added to the database
+	 */
 	public void addNewGroceryItem(Grocery groceryToAdd) {
 		
 		Grocery[] groceryArray = {groceryToAdd};
@@ -31,7 +40,10 @@ public class SolrService {
 			throw new GroceryCouldNotBeAddedException();
 		}	
 	}
-	
+	/**
+	 * reloads the solr database
+	 * @return returns the response from solr
+	 */
 	public int reload() {
 		Client client = ClientBuilder.newClient();
 		Response response = client.target(reloadUrl).request().buildGet().invoke();
@@ -41,6 +53,10 @@ public class SolrService {
 		return response.getStatus();
 	}
 
+	/**
+	 * Deletes an item from the solr database
+	 * @param id id of item to be removed
+ 	 */
 	public void deleteGroceryItem(int id) {
 		Client client = ClientBuilder.newClient();
 		String delete = "{\"delete\": {\"id\":\"" + id + "\"}}";
@@ -55,6 +71,11 @@ public class SolrService {
 		}
 
 	}
+	
+	/**
+	 * Gets data from solr database with a custom set of rows
+	 * @return the filtered search
+	 */
 	public String get(String search, int rows){
 		Client client = ClientBuilder.newClient();
 		String getUrl = baseGetUrl + "&rows=" + rows + "&q=" + search;

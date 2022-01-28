@@ -5,7 +5,6 @@ import java.util.List;
 import se.yrgo.grocery.domain.Grocery;
 /**
  * 
- * @author Anton
  * 
  * Interface for grocery methods
  *

@@ -14,30 +14,48 @@ import org.jboss.resteasy.annotations.jaxrs.QueryParam;
 
 import se.yrgo.grocery.domain.Grocery;
 import se.yrgo.grocery.service.GroceryManagementImplementation;
-import se.yrgo.grocery.service.GroceryManagementServiceLocal;
+import se.yrgo.grocery.service.GroceryManagementService;
 import se.yrgo.grocery.solr.SolrRequest;
 
-
+/**
+ * Rest class for GroceryDataAccess methods
+ * 
+ *
+ */
 @Path("/grocery")
 public class GroceryResourceService {
 	
 	private static final GroceryResourceService INSTANCE = new GroceryResourceService();
-	private GroceryManagementServiceLocal service = new GroceryManagementImplementation();
+	private GroceryManagementService service = new GroceryManagementImplementation();
 
 	private GroceryResourceService() {}
 	
+	/**
+	 * makes class a singleton
+	 * @return singleton
+	 */
 	public static GroceryResourceService getInstance() {
 		return INSTANCE;
 	}
 	
+	/**
+	 * Searches for grocieres
+	 * @param rows number of searches to return
+	 * @param search search value
+	 * @return json object of Grocery 
+	 */
 	@POST
 	@Path("/searchforgroceries")
 	@Produces("application/JSON")
-	public String searchForSpecificAmountsOfErrors(@QueryParam("rows") int rows, String search){
+	public String searchForSpecificAmountsOfGroceries(@QueryParam("rows") int rows, String search){
 		SolrRequest solrRequest = new SolrRequest(search, rows);
 		return service.searchForGroceries(solrRequest);
 	}
 	
+	/**
+	 * Gets all grocieres
+	 * @return list of all groceries
+	 */
 	@GET
 	@Path("/getallgroceries")
 	@Produces("application/json")
@@ -45,12 +63,21 @@ public class GroceryResourceService {
 		return service.findAll();
 	}
 	
+	/**
+	 * Deletes a grocery
+	 * @param id grocery id to delete
+	 */
 	@DELETE
 	@Path("/deletegrocery/{id}")
 	public void deleteGrocery(@PathParam("id") int id) {
 		service.deleteGrocery(id);
 	}
 	
+	/**
+	 * Returns one grocery by id
+	 * @param id id of grocery to return
+	 * @return a grocery
+	 */
 	@GET
 	@Path("{id}")
 	@Produces("application/JSON")
@@ -58,7 +85,10 @@ public class GroceryResourceService {
 		return service.findGroceryById(id);
 	}
 	
-	
+	/**
+	 * Updates a grocery
+	 * @param gro grocery object to update
+	 */
 	@POST
 	@Path("/updategrocery")
 	@Produces("application/JSON")
@@ -67,6 +97,10 @@ public class GroceryResourceService {
 		service.updateGrocery(gro);
 	}
 	
+	/**
+	 * Adds a grocery
+	 * @param gro grocery to add
+	 */
 	@POST
 	@Path("/addgrocery")
 	@Produces("application/JSON")
@@ -75,6 +109,11 @@ public class GroceryResourceService {
 		service.addGrocery(gro);
 	}
 	
+	/**
+	 * Filter groceries
+	 * @param filter filter to filter by
+	 * @return filtered list of grocieres
+	 */
 	@GET
 	@Path("/filtergroceries/{filter}")
 	@Produces("application/JSON")

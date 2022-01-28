@@ -8,6 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
+/**
+ * 
+ * Domain class for Grocery
+ *
+ */
 @Entity
 public class Grocery implements Serializable {
 
