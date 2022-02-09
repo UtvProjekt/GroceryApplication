@@ -538,7 +538,7 @@ main {
     background-color: var(--darkmode);
     border-radius: 0.25rem;
     padding: 0.8rem;
-    height: 41vh;
+    height: 45vh;
     will-change: transform;
     transition: 300ms;
     outline: 0.1rem solid var(--yellow);
@@ -552,6 +552,13 @@ main {
     }
     &:hover {
         transform: scale(1.02);
+    }
+    .imagecontainer{
+        height: 20vh;
+        background-color: red;
+        img{
+            height: inherit;
+        }
     }
 }
 .items {

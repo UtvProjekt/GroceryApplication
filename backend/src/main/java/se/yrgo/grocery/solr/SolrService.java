@@ -5,6 +5,9 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import se.yrgo.grocery.domain.Grocery;
 import se.yrgo.grocery.exceptions.GroceryCouldNotBeAddedException;
 import se.yrgo.grocery.exceptions.GroceryNotFoundException;
@@ -15,9 +18,9 @@ public class SolrService {
 	private String reloadUrl = baseUrl + "solr/admin/cores?action=RELOAD&core=groceryApp";
 	private String deleteUrl = baseUrl + "solr/groceryApp/update?commit=true";
 	private String baseGetUrl = baseUrl + "solr/groceryApp/select?indent=true&q.op=OR&sort=score%20desc";
+	private static final Logger infoLogger = LogManager.getLogger("infoLogger");
 
 	public void addNewGroceryItem(Grocery groceryToAdd) {
-		
 		Grocery[] groceryArray = {groceryToAdd};
 		Client client = ClientBuilder.newClient();
 		
@@ -29,15 +32,17 @@ public class SolrService {
 		
 		if (response.getStatus() != 200) {
 			throw new GroceryCouldNotBeAddedException();
-		}	
+		}
 	}
 	
 	public int reload() {
+		infoLogger.info("Starting reload on solr data.");
 		Client client = ClientBuilder.newClient();
 		Response response = client.target(reloadUrl).request().buildGet().invoke();
 		
 		response.close();
 		client.close();
+		infoLogger.info("Ending reload on solr data.");
 		return response.getStatus();
 	}
 

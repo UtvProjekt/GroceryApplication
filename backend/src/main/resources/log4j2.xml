@@ -3,14 +3,14 @@
 <Configuration status="debug" name="yrgoApp" packages="">
 	<Appenders>
 		<File name="infoLogFile"
-			fileName="C:\Users\Anton\Documents\GitHub\GroceryApplication\backend\src\main\resources\logfiles\information.log"
+			fileName="C:\Users\handb\Documents\Kurser\ProjektEntr\GroceryApplication\backend\src\main\resources\logfiles\information.log"
 			append="true">
 			<PatternLayout>
 				<Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %m%n</Pattern>
 			</PatternLayout>
 		</File>
 		<File name="errorLogFile"
-			fileName="C:\Users\Anton\Documents\GitHub\GroceryApplication\backend\src\main\resources\logfiles\errors.log"
+			fileName="C:\Users\handb\Documents\Kurser\ProjektEntr\GroceryApplication\backend\src\main\resources\logfiles\errors.log"
 			append="true">
 			<PatternLayout>
 				<Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %m%n</Pattern>
