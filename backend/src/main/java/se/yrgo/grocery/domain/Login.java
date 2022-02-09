@@ -9,6 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
+/**
+ * Domain class for Login
+ *
+ *
+ */
 @Entity
 public class Login implements Serializable {
 

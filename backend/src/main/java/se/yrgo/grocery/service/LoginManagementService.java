@@ -4,6 +4,11 @@ import java.util.List;
 
 import se.yrgo.grocery.domain.Login;
 
+/**
+ * Interface for Login Service Class
+ *
+ *
+ */
 public interface LoginManagementService {
 	public List<Login> findAllUsers();
 	public void addUser(Login credentials);

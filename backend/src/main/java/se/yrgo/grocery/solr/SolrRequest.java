@@ -1,5 +1,10 @@
 package se.yrgo.grocery.solr;
 
+/**
+ * 
+ * Keeps track of search string and total rows to return
+ *
+ */
 public class SolrRequest{
 
 	private String search;
